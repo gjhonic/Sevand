@@ -1,15 +1,12 @@
 <?php
 
-return [
+$routeCore = require(__DIR__ . '/route/core.php');
+$routeKonus = require(__DIR__ . '/route/konus.php');
+$routeAttendance = require(__DIR__ . '/route/attendance.php');
+$routeMsk = require(__DIR__ . '/route/msk.php');
 
-    //Роутинг на модуль "Core"
-    '' => 'core/page/index',
-    'index' => 'core/page/index',
-    //'admin/<action:\w+>' => 'core/admin/<action>',
-    '<controller:\w+>/<action:\w+>' => 'core/<controller>/<action>',
+$route = [
 
-    //Роутинг на модуль "KONUS"
-    'konus' => 'konus/page/index',
-    'konus/<controller:\w+>' => 'konus/<controller>/index',
-    'konus/<controller:\w+>/<action:\w+>' => 'konus/<controller>/<action>',
 ];
+
+return array_merge($route, $routeCore, $routeKonus, $routeAttendance, $routeMsk);

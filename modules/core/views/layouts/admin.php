@@ -12,6 +12,8 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\helpers\Url;
 
+$nav = array_merge(require(__DIR__ . '/_nav/admin.php'));
+
 AdminAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -38,11 +40,7 @@ AdminAsset::register($this);
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
-        'items' => [
-            ['label' => Module::t('app', 'Bases'), 'url' => Url::to('admin/bases')],
-            ['label' => Module::t('app', 'Settings'), 'url' => ['/']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-        ],
+        'items' => $nav,
     ]);
     NavBar::end();
     ?>

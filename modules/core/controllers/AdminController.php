@@ -12,11 +12,16 @@ class AdminController extends Controller
     public $layout = 'admin';
 
     /**
-     * Renders the index view for the module
+     * HomePage admin
      * @return string
      */
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionBases()
+    {
+        return $this->render('bases');
     }
 }
