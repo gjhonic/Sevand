@@ -13,20 +13,28 @@ return [
     "Add" => "Добавить",
     "Save" => "Сохранить",
     "Update" => "Изменить",
+    "Delete" => "Удалить",
     "Title" => "Название",
     "Short title" => "Короткое название",
     "Description" => "Описание",
     "Bases" => "Базы",
     "Settings" => "Настройки",
+    "Created at" => "Добавлен",
+    "Updated at" => "Изменен",
 
     //Сущности
     "University" => "Университет",
     "Universities" => "Университеты",
     "Department" => "Факультет",
+    "Departments" => "Факультеты",
 
     //Про Университет
     "Create University" => "Добавить университет",
     "Update University: {name}" => "Редактирование университета: {name}",
+
+    //Про Факультет
+    "Create Department" => "Добавить вакультет",
+    "Update Department: {name}" => "Редактирование факультета: {name}",
 
     //Языки
     "English" => "Английский",

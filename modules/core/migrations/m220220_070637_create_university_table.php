@@ -16,7 +16,9 @@ class m220220_070637_create_university_table extends Migration
             'id' => $this->primaryKey(),
             'title' => $this->string(255)->notNull(),
             'short_title' => $this->string(10)->notNull(),
-            'description' => $this->string()->null(),
+            'description' => $this->text()->null(),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
         ]);
 
         $this->createIndex(
