@@ -7,8 +7,11 @@ use yii\web\Controller;
 /**
  * Default controller for the `konus` module
  */
-class DefaultController extends Controller
+class PageController extends Controller
 {
+
+    public $layout = 'admin';
+
     /**
      * Renders the index view for the module
      * @return string

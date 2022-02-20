@@ -9,7 +9,7 @@ use yii\web\Controller;
  */
 class PageController extends Controller
 {
-    public $layout = 'admin';
+    public $layout = 'default';
 
     /**
      * Renders the index view for the module
