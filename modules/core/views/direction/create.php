@@ -4,13 +4,13 @@ use app\modules\core\Module;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\core\models\base\University */
+/* @var $model app\modules\core\models\base\Direction */
 
-$this->title = Module::t('app', 'Create University');
-$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Universities'), 'url' => ['index']];
+$this->title = Module::t('app', 'Create Direction');
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Directions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="university-create">
+<div class="direction-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

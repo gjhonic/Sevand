@@ -4,7 +4,7 @@ use app\modules\core\Module;
 use yii\helpers\Url;
 
 return [
-    ['label' => Module::t('app', 'Bases'), 'url' => Url::to('admin/bases')],
+    ['label' => Module::t('app', 'Bases'), 'url' => Url::to('/admin/bases')],
     ['label' => Module::t('app', 'Settings'), 'url' => ['/']],
     ['label' => 'Contact', 'url' => ['/site/contact']],
 ];

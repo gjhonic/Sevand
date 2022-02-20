@@ -5,6 +5,7 @@ namespace app\modules\core\models\base;
 use app\modules\core\Module;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "core_department".
@@ -12,7 +13,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $id
  * @property string $title
  * @property string $short_title
- * @property string|null $description
+ * @property string $description
  * @property int $university_id
  * @property int $created_at
  * @property int $updated_at
@@ -45,6 +46,9 @@ class Department extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @return array
+     */
     public function behaviors(): array
     {
         return [
@@ -76,5 +80,19 @@ class Department extends \yii\db\ActiveRecord
     public function getUniversity(): \yii\db\ActiveQuery
     {
         return $this->hasOne(University::className(), ['id' => 'university_id']);
+    }
+
+    /**
+     * Возвразает факультеты сгрупированные по университетам
+     * @return array
+     */
+    public static function getDepartmentGroup(): array
+    {
+        $universities = University::find()->all();
+        $departmentGroup = [];
+        foreach ($universities as $university){
+            $departmentGroup[$university->short_title] = ArrayHelper::map($university->departments, 'id', 'short_title');
+        }
+        return $departmentGroup;
     }
 }
