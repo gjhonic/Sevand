@@ -6,14 +6,14 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\core\models\base\University */
+/* @var $model app\modules\core\models\base\Direction */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Universities'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Directions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="university-view">
+<div class="direction-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -35,6 +35,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'short_title',
             [
+                'attribute' => 'department_id',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a($model->department->short_title,
+                        Url::to(['/department/view', 'id' => $model->department_id]),
+                        ['class' => 'btn btn-outline-secondary']);
+                }
+            ],
+            [
                 'attribute' => 'created_at',
                 'value' => function ($model) {
                     return date('j F, Y H:i:s', $model->created_at);
@@ -48,8 +57,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ],
     ]) ?>
-
-    <h3><?=Module::t('app', 'Departments')?></h3>
 
     <h3>
         <?=Module::t('app', 'Description')?>

@@ -1,5 +1,7 @@
 # ПРОЕКТ ИС "СЕВАНД"
 ________________
+Система ежедневного внутрифакультетского анализа неявок и достижений
+
 
 
 # Инструкции для добавления новых модулей
@@ -26,9 +28,9 @@ modules
 ```
 
 ## Модульные миграции
-`````
+```
 Создание:
-php yii migrate/create --migrationPath=@modules/{module_name}/migrations
+php yii migrate/create {migtaration_name} --migrationPath=@modules/{module_name}/migrations
 
 Запуск:
 php yii migrate --migrationPath=@modules/{module_name}/migrations

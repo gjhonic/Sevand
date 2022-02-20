@@ -27,6 +27,8 @@ return [
     "Universities" => "Университеты",
     "Department" => "Факультет",
     "Departments" => "Факультеты",
+    "Direction" => "Направление",
+    "Directions" => "Направления",
 
     //Про Университет
     "Create University" => "Добавить университет",
@@ -35,6 +37,11 @@ return [
     //Про Факультет
     "Create Department" => "Добавить вакультет",
     "Update Department: {name}" => "Редактирование факультета: {name}",
+
+    //Про Направления
+    "Create Direction" => "Добавить направление",
+    "Update Direction: {name}" => "Редактировать направление {name}",
+
 
     //Языки
     "English" => "Английский",

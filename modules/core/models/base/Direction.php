@@ -3,45 +3,52 @@
 namespace app\modules\core\models\base;
 
 use app\modules\core\Module;
+use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "core_university".
+ * This is the model class for table "core_direction".
  *
  * @property int $id
  * @property string $title
  * @property string $short_title
  * @property string $description
+ * @property int $department_id
  * @property int $created_at
  * @property int $updated_at
  *
- * @property Department[] $departments
+ * @property Department $department
  */
-class University extends \yii\db\ActiveRecord
+class Direction extends \yii\db\ActiveRecord
 {
     /**
      * @return string
      */
-    public static function tableName()
+    public static function tableName(): string
     {
-        return '{{%core_university}}';
+        return '{{%core_direction}}';
     }
 
     /**
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            [['title', 'short_title'], 'required'],
+            [['title', 'short_title', 'department_id'], 'required'],
+            [['description'], 'string'],
+            [['department_id'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['short_title'], 'string', 'max' => 10],
-            [['description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
+            [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
         ];
     }
 
-    public function behaviors()
+    /**
+     * @return array
+     */
+    public function behaviors(): array
     {
         return [
             TimestampBehavior::class,
@@ -58,16 +65,19 @@ class University extends \yii\db\ActiveRecord
             'title' => Module::t('app', 'Title'),
             'short_title' => Module::t('app', 'Short title'),
             'description' => Module::t('app', 'Description'),
+            'department_id' => Module::t('app', 'Department'),
             'created_at' => Module::t('app', 'Created at'),
             'updated_at' => Module::t('app', 'Updated at'),
         ];
     }
 
     /**
+     * Gets query for [[Department]].
+     *
      * @return \yii\db\ActiveQuery
      */
-    public function getDepartments(): \yii\db\ActiveQuery
+    public function getDepartment(): \yii\db\ActiveQuery
     {
-        return $this->hasMany(Department::class, ['university_id' => 'id']);
+        return $this->hasOne(Department::className(), ['id' => 'department_id']);
     }
 }

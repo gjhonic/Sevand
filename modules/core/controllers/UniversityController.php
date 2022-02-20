@@ -3,7 +3,8 @@
 namespace app\modules\core\controllers;
 
 use app\modules\core\models\base\University;
-use yii\data\ActiveDataProvider;
+use app\modules\core\models\search\UniversitySearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -40,12 +41,12 @@ class UniversityController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => University::find(),
-        ]);
+        $searchModel = new UniversitySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 
