@@ -1,12 +1,12 @@
 <?php
-namespace app\modules\core\assets;
+namespace app\modules\attendance\assets;
 
 use yii\web\AssetBundle;
 
 class AdminAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/media/core/admin';
+    public $baseUrl = '@web/media/attendance/admin';
     public $css = [
         'css/site.css',
     ];

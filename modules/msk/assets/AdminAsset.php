@@ -1,12 +1,12 @@
 <?php
-namespace app\modules\core\assets;
+namespace app\modules\msk\assets;
 
 use yii\web\AssetBundle;
 
 class AdminAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/media/core/admin';
+    public $baseUrl = '@web/media/msk/admin';
     public $css = [
         'css/site.css',
     ];

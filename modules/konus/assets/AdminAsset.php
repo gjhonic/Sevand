@@ -1,12 +1,18 @@
 <?php
-namespace app\modules\core\assets;
+namespace app\modules\konus\assets;
 
 use yii\web\AssetBundle;
 
+/**
+ * Main application asset bundle.
+ *
+ * @author Qiang Xue <qiang.xue@gmail.com>
+ * @since 2.0
+ */
 class AdminAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/media/core/admin';
+    public $baseUrl = '@web/media/konus/admin';
     public $css = [
         'css/site.css',
     ];

@@ -7,7 +7,7 @@ use yii\web\Controller;
 /**
  * Default controller for the `attendance` module
  */
-class DefaultController extends Controller
+class PageController extends Controller
 {
     /**
      * Renders the index view for the module
