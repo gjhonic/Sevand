@@ -3,7 +3,7 @@
 namespace app\modules\core\models\base;
 
 use app\modules\core\Module;
-use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "core_university".
@@ -11,7 +11,9 @@ use Yii;
  * @property int $id
  * @property string $title
  * @property string $short_title
- * @property string|null $description
+ * @property string $description
+ * @property int $created_at
+ * @property int $updated_at
  */
 class University extends \yii\db\ActiveRecord
 {
@@ -20,7 +22,7 @@ class University extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'core_university';
+        return '{{%core_university}}';
     }
 
     /**
@@ -32,6 +34,14 @@ class University extends \yii\db\ActiveRecord
             [['title', 'short_title'], 'required'],
             [['title', 'description'], 'string', 'max' => 255],
             [['short_title'], 'string', 'max' => 10],
+            [['created_at', 'updated_at'], 'safe'],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
         ];
     }
 
