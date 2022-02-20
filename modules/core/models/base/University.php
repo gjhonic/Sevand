@@ -32,8 +32,9 @@ class University extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'short_title'], 'required'],
-            [['title', 'description'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
             [['short_title'], 'string', 'max' => 10],
+            [['description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -55,6 +56,8 @@ class University extends \yii\db\ActiveRecord
             'title' => Module::t('app', 'Title'),
             'short_title' => Module::t('app', 'Short title'),
             'description' => Module::t('app', 'Description'),
+            'created_at' => Module::t('app', 'Created at'),
+            'updated_at' => Module::t('app', 'Updated at'),
         ];
     }
 }
