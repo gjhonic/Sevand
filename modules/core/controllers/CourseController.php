@@ -2,8 +2,8 @@
 
 namespace app\modules\core\controllers;
 
-use app\modules\core\models\base\Direction;
-use app\modules\core\models\search\DirectionSearch;
+use app\modules\core\models\base\Course;
+use app\modules\core\models\search\CourseSearch;
 use app\modules\core\Module;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -12,9 +12,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DirectionController implements the CRUD actions for Direction model.
+ * CourseController implements the CRUD actions for Course model.
  */
-class DirectionController extends Controller
+class CourseController extends Controller
 {
     /**
      * @inheritDoc
@@ -37,13 +37,13 @@ class DirectionController extends Controller
     public $layout = 'admin';
 
     /**
-     * Lists all Direction models.
+     * Lists all Course models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new DirectionSearch();
+        $searchModel = new CourseSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -53,7 +53,7 @@ class DirectionController extends Controller
     }
 
     /**
-     * Displays a single Direction model.
+     * Displays a single Course model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -66,13 +66,13 @@ class DirectionController extends Controller
     }
 
     /**
-     * Creates a new Direction model.
+     * Creates a new Course model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Direction();
+        $model = new Course();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -88,7 +88,7 @@ class DirectionController extends Controller
     }
 
     /**
-     * Updates an existing Direction model.
+     * Updates an existing Course model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -108,7 +108,7 @@ class DirectionController extends Controller
     }
 
     /**
-     * Deletes an existing Direction model.
+     * Deletes an existing Course model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -122,18 +122,18 @@ class DirectionController extends Controller
     }
 
     /**
-     * Finds the Direction model based on its primary key value.
+     * Finds the Course model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Direction the loaded model
+     * @return Course the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Direction::findOne(['id' => $id])) !== null) {
+        if (($model = Course::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Module::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Module::t('error', 'The requested page does not exist.'));
     }
 }

@@ -3,6 +3,7 @@
 namespace app\modules\core;
 
 use Yii;
+use yii\web\ErrorHandler;
 
 /**
  * core module definition class
@@ -21,7 +22,20 @@ class Module extends \yii\base\Module
     {
         parent::init();
         $this->registerTranslations();
-        // custom initialization code goes here
+
+        \Yii::configure($this, [
+            'components' => [
+                'errorHandler' => [
+                    'class' => ErrorHandler::className(),
+                    'errorAction' => '/core/page/error',
+                ]
+            ],
+        ]);
+
+        /** @var ErrorHandler $handler */
+        $handler = $this->get('errorHandler');
+        \Yii::$app->set('errorHandler', $handler);
+        $handler->register();
     }
 
     public function registerTranslations()

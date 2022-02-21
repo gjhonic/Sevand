@@ -4,6 +4,7 @@ namespace app\modules\core\controllers;
 
 use app\modules\core\models\base\University;
 use app\modules\core\models\search\UniversitySearch;
+use app\modules\core\Module;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -132,6 +133,6 @@ class UniversityController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Module::t('app', 'The requested page does not exist.'));
     }
 }
