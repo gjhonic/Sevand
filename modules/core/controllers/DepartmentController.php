@@ -4,6 +4,7 @@ namespace app\modules\core\controllers;
 
 use app\modules\core\models\base\Department;
 use app\modules\core\models\search\DepartmentSearch;
+use app\modules\core\Module;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -133,6 +134,6 @@ class DepartmentController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Module::t('app', 'The requested page does not exist.'));
     }
 }
