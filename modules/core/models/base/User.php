@@ -17,7 +17,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $password
  * @property string $role
  * @property int $status_id
- * @property string $code
+ * @property int $department_id
  * @property string|null $auth_key
  * @property string|null $access_token
  * @property string $created_at
@@ -58,13 +58,14 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'surname', 'username', 'password', 'role', 'status_id'], 'required'],
-            [['status_id'], 'integer'],
+            [['status_id', 'department_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'surname'], 'string', 'max' => 50],
             [['username', 'password'], 'string', 'max' => 255],
             [['auth_key', 'access_token'], 'string', 'max' => 32],
             [['role'], 'string', 'max' => 15],
             [['username'], 'unique'],
+            [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
         ];
     }
 
@@ -155,5 +156,10 @@ class User extends \yii\db\ActiveRecord
     public function getDepartment(): \yii\db\ActiveQuery
     {
         return $this->hasOne(Department::className(), ['id' => 'department_id']);
+    }
+
+    public function getStatus(): string
+    {
+        return self::getStatuses()[$this->status_id];
     }
 }

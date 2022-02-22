@@ -58,8 +58,16 @@ class UserSearch extends User
 
         $query->joinWith("department");
 
-        $query->andFilterWhere(['like', 'title', $this->title]);
-        $query->andFilterWhere(['like', 'short_title', $this->short_title]);
+
+        $query->andFilterWhere(['like', 'username', $this->username]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'surname', $this->surname]);
+        $query->andFilterWhere(['=', 'role', $this->role]);
+        $query->andFilterWhere(['=', 'status_id', $this->status_id]);
+
+        if(!empty($this->department_id)){
+            $query->andFilterWhere(['=', 'core_department.id', $this->department_id]);
+        }
 
         return $dataProvider;
     }
