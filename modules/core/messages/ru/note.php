@@ -10,4 +10,5 @@
 
 return [
     "Are you sure you want to delete this item?" => "Вы уверены, что хотите удалить этот элемент?",
+    "You have successfully signed in" => "Вы успешно выполнили вход",
 ];

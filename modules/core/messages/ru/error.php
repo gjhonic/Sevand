@@ -10,4 +10,9 @@
 
 return [
     "The requested page does not exist." => "Запрашиваемая страница не существует.",
+
+    //Ошибки аутентификации
+    "Authorization failed" => "Авторизация не удалась",
+    "Invalid username or password!" => "Неверный логин или пароль!",
+
 ];

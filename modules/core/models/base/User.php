@@ -135,7 +135,7 @@ class User extends \yii\db\ActiveRecord
      * @param string $username
      * @return User
      */
-    public static function findByUsername(string $username): User
+    public static function getByUsername(string $username): User
     {
         return self::findOne(['username' => $username]);
     }

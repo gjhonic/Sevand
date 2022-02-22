@@ -28,11 +28,29 @@ class PageController extends Controller
     }
 
     /**
-     * Renders the index view for the module
+     * Render homepage
      * @return string
      */
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    /**
+     * Render personal account user
+     * @return string
+     */
+    public function actionMe()
+    {
+        return $this->render('me');
+    }
+
+    /**
+     * Render ban page
+     * @return string
+     */
+    public function actionBan()
+    {
+        return $this->render('ban');
     }
 }

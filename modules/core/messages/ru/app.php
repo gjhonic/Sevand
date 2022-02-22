@@ -21,6 +21,10 @@ return [
     "Settings" => "Настройки",
     "Created at" => "Добавлен",
     "Updated at" => "Изменен",
+    "Sign in" => "Войти",
+    "Log in as a guest" => "Войти как гость",
+    "Personal account" => "Личный кабинет",
+    "Remember me" => "Запомни меня",
 
     //Сущности
     "University" => "Университет",
@@ -56,6 +60,7 @@ return [
     "Name" => "Имя",
     "Surname" => "Фамилия",
     "Username" => "Имя пользователя",
+    "Password" => "Пароль",
     "Role" => "Роль",
     "Status" => "Статус",
 

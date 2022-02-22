@@ -3,10 +3,14 @@
 namespace app\modules\core\controllers;
 
 use app\modules\core\models\base\Department;
+use app\modules\core\models\base\User;
 use app\modules\core\models\search\DepartmentSearch;
 use app\modules\core\Module;
+use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -16,22 +20,40 @@ use yii\filters\VerbFilter;
  */
 class DepartmentController extends Controller
 {
-    /**
-     * @inheritDoc
-     */
-    public function behaviors()
+    public function behaviors(): array
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'denyCallback' => function () {
+                    $this->redirect(Url::to(['/signin']));
+                },
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'roles' => [User::ROLE_ROOT],
                     ],
                 ],
-            ]
-        );
+            ],
+        ];
+    }
+
+    public function beforeAction($action)
+    {
+        if (!Yii::$app->user->isGuest) {
+            if (StatusService::checkStatusBanUser(Yii::$app->user->identity)) {
+                $this->redirect('/ban');
+            }
+        }
+
+        return parent::beforeAction($action);
     }
 
     public $layout = 'admin';
