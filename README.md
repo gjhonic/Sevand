@@ -2,6 +2,28 @@
 ________________
 Система ежедневного внутрифакультетского анализа неявок и достижений
 
+**Инструкция по установке**
+
+1) Loading the script
+```
+git clone git@github.com:gjhonic/sevand.git
+```
+
+2) Create a .env file and copy the contents from .env.sample
+- /config/.env
+
+
+3) Update Packages
+```
+composer update
+```
+
+4) Start migration
+```
+yii migrate --migrationPath=@yii/rbac/migrations
+yii migrate -- --migrationPath=@modules/core/migrations
+```
+
 
 
 # Инструкции для добавления новых модулей

@@ -3,7 +3,7 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%department}}`.
+ * Handles the creation of table `{{%core_department}}`.
  */
 class m220220_085953_create_department_table extends Migration
 {

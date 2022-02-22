@@ -3,7 +3,7 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%course}}`.
+ * Handles the creation of table `{{%core_course}}`.
  */
 class m220221_061034_create_course_table extends Migration
 {
