@@ -42,9 +42,9 @@ class UserIdentity extends User implements IdentityInterface
     /**
      * Метод возвращает пользователя по его username
      * @param string $username
-     * @return UserIdentity|array|\yii\db\ActiveRecord|null
+     * @return UserIdentity
      */
-    public static function findByUsername(string $username): ?User
+    public static function findByUsername(string $username)
     {
         return static::findOne(['username' => $username]);
     }

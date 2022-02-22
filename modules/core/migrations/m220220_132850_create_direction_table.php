@@ -3,7 +3,7 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%direction}}`.
+ * Handles the creation of table `{{%core_direction}}`.
  */
 class m220220_132850_create_direction_table extends Migration
 {

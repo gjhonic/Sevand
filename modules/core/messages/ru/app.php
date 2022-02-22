@@ -21,6 +21,10 @@ return [
     "Settings" => "Настройки",
     "Created at" => "Добавлен",
     "Updated at" => "Изменен",
+    "Sign in" => "Войти",
+    "Log in as a guest" => "Войти как гость",
+    "Personal account" => "Личный кабинет",
+    "Remember me" => "Запомни меня",
 
     //Сущности
     "University" => "Университет",
@@ -31,6 +35,8 @@ return [
     "Directions" => "Направления",
     "Course" => "Курс",
     "Courses" => "Курсы",
+    "User" => "Пользователь",
+    "Users" => "Пользователи",
 
     //Про Университет
     "Create University" => "Добавить университет",
@@ -48,6 +54,23 @@ return [
     "Create Course" => "Добавить курс",
     "Update Course: {name}" => "Редактировать курс: {name}",
 
+    //Про пользователей
+    "Create User" => "Добавить пользователя",
+    "Update User: {name}" => "Редактировать пользователя: {name}",
+    "Name" => "Имя",
+    "Surname" => "Фамилия",
+    "Username" => "Имя пользователя",
+    "Password" => "Пароль",
+    "Role" => "Роль",
+    "Status" => "Статус",
+
+    //Роли
+    "Root" => "Root",
+    "Admin" => "Админ",
+    "Moderator" => "Модератор",
+    "Curator" => "Куратор",
+    "Headman" => "Староста",
+    "Student" => "Студент",
 
     //Языки
     "English" => "Английский",
