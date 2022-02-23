@@ -90,6 +90,7 @@ class SigninForm extends Model
     {
         if ($this->validate()) {
             if (Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0)) {
+                //print_r(Yii::$app->user->identity);
                 return self::SUCCESS_AUTH;
             } else {
                 return self::ERROR_AUTH_FAILED;
@@ -124,7 +125,7 @@ class SigninForm extends Model
     /**
      * Метод заполняем свойство _user  обьектом user, если он не заполнен и возвращает его.
      */
-    public function getUser()
+    public function getUser(): object
     {
         if ($this->_user === false) {
             $this->_user = UserIdentity::findByUsername($this->username);

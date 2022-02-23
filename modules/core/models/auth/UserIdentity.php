@@ -18,6 +18,7 @@ use yii\web\IdentityInterface;
  */
 class UserIdentity extends User implements IdentityInterface
 {
+
     /**
      * Метод возвращает пользователя по его id
      * @param int|string $id
@@ -25,7 +26,7 @@ class UserIdentity extends User implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return null; //static::findOne(['id' => $id]);
+        return static::findOne(['id' => $id]);
     }
 
     /**
@@ -42,9 +43,9 @@ class UserIdentity extends User implements IdentityInterface
     /**
      * Метод возвращает пользователя по его username
      * @param string $username
-     * @return UserIdentity
+     * @return UserIdentity|array|\yii\db\ActiveRecord|null
      */
-    public static function findByUsername(string $username)
+    public static function findByUsername(string $username): ?User
     {
         return static::findOne(['username' => $username]);
     }
@@ -56,15 +57,6 @@ class UserIdentity extends User implements IdentityInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Метод возвращает код пользователя
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
     }
 
     /**
