@@ -18,13 +18,23 @@ return [
     "Short title" => "Короткое название",
     "Description" => "Описание",
     "Bases" => "Базы",
-    "Settings" => "Настройки",
     "Created at" => "Добавлен",
     "Updated at" => "Изменен",
-    "Sign in" => "Войти",
     "Log in as a guest" => "Войти как гость",
     "Personal account" => "Личный кабинет",
     "Remember me" => "Запомни меня",
+
+    //Меню
+    "Menu" => "Меню",
+    "Home page" => "Главная страница",
+    "Profile" => "Профиль",
+    "Create a raffle" => "Создать конкурс",
+    "Settings" => "Настройки",
+    "Sign out" => "Выход",
+    "Admin panel" => "Админка",
+    "Sign in" => "Войти",
+    "Sign up" => "Зарегистрироваться",
+    "Public API" => "Публичное API",
 
     //Сущности
     "University" => "Университет",
