@@ -5,7 +5,7 @@
 
 use app\modules\core\assets\AdminAsset;
 use app\modules\core\Module;
-use app\widgets\Alert;
+use app\modules\core\widgets\Alert;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;

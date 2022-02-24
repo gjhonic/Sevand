@@ -1,7 +1,7 @@
 <?php
 
 use app\modules\core\Module;
-use app\widgets\Alert;
+use app\modules\core\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
