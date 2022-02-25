@@ -36,4 +36,10 @@ use yii\helpers\Url;
         Url::to(['/user/index']),
         ['class' => 'btn btn-outline-primary btn-lg']
     );?>
+
+    <?=Html::a(
+        Module::t('app', 'Disciplines'),
+        Url::to(['/discipline/index']),
+        ['class' => 'btn btn-outline-primary btn-lg']
+    );?>
 </div>
