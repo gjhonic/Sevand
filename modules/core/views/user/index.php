@@ -15,7 +15,7 @@ use yii\grid\GridView;
 $this->title = Module::t('app', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="direction-index">
+<div class="user-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
