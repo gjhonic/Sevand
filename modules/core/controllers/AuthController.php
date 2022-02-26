@@ -22,9 +22,9 @@ class AuthController extends Controller
                 },
                 'rules' => [
                     [
-                        'allow' => true,
                         'actions' => ['signin'],
-                        'roles' => [User::ROLE_GUEST],
+                        'allow' => true,
+                        'roles' => [User::ROLE_GUEST, User::ROLE_AUTHORIZED],
                     ],
                     [
                         'actions' => ['logout'],
@@ -57,7 +57,7 @@ class AuthController extends Controller
     public function actionSignin()
     {
         if (!Yii::$app->user->isGuest) {
-            $this->redirect(Yii::$app->homeUrl);
+            return $this->redirect(Yii::$app->homeUrl);
         }
 
         $model = new SigninForm();
