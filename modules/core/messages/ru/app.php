@@ -49,6 +49,8 @@ return [
     "Users" => "Пользователи",
     "Discipline" => "Дисциплина",
     "Disciplines" => "Дисциплины",
+    "Group" => "Группа",
+    "Groups" => "Группы",
 
     //Про Университет
     "Create University" => "Добавить университет",
@@ -79,6 +81,10 @@ return [
     "Password" => "Пароль",
     "Role" => "Роль",
     "Status" => "Статус",
+
+    //Про Группы
+    "Create Group" => "Добавить группу",
+    "Update Group: {name}" => "Редактировать группу: {name}",
 
     //Роли
     "Root" => "Root",

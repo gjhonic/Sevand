@@ -5,6 +5,7 @@ namespace app\modules\core\models\base;
 use app\modules\core\Module;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "core_course".
@@ -58,5 +59,11 @@ class Course extends \yii\db\ActiveRecord
             'created_at' => Module::t('app', 'Created at'),
             'updated_at' => Module::t('app', 'Updated at'),
         ];
+    }
+
+    public static function getCourseMap(): array
+    {
+        $courses = Group::find()->all();
+        return ArrayHelper::map($courses, 'id', 'title');
     }
 }

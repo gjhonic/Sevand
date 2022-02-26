@@ -5,6 +5,7 @@ namespace app\modules\core\models\base;
 use app\modules\core\Module;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "core_direction".
@@ -79,5 +80,11 @@ class Direction extends \yii\db\ActiveRecord
     public function getDepartment(): \yii\db\ActiveQuery
     {
         return $this->hasOne(Department::className(), ['id' => 'department_id']);
+    }
+
+    public static function getDirectionMap(): array
+    {
+        $directions = self::find()->all();
+        return ArrayHelper::map($directions, 'id', 'short_title');
     }
 }
