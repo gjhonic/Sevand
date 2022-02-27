@@ -27,7 +27,7 @@ class AuthController extends Controller
                         'roles' => [User::ROLE_GUEST, User::ROLE_AUTHORIZED],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['signout'],
                         'allow' => true,
                         'roles' => [User::ROLE_AUTHORIZED],
                     ],
