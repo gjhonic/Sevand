@@ -11,4 +11,7 @@
 return [
     "Are you sure you want to delete this item?" => "Вы уверены, что хотите удалить этот элемент?",
     "You have successfully signed in" => "Вы успешно выполнили вход",
+
+    "Do you really want to leave" => "Вы действительно хотите выйти",
+    "Go to home page" => "Перейти на главную страницу",
 ];

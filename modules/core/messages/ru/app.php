@@ -23,6 +23,7 @@ return [
     "Log in as a guest" => "Войти как гость",
     "Personal account" => "Личный кабинет",
     "Remember me" => "Запомни меня",
+    "Go out" => "Выйти",
 
     //Меню
     "Menu" => "Меню",

@@ -56,7 +56,7 @@ class PageController extends Controller
         return parent::beforeAction($action);
     }
 
-    public $layout = 'default';
+    public $layout = 'frontend';
 
     /**
      * {@inheritdoc}
