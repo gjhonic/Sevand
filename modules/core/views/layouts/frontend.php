@@ -26,7 +26,8 @@ FrontendAsset::register($this);
     <nav class="navbar navbar-expand-lg navbar-dark bg-navbar">
         <div class="container">
             <a class="navbar-brand" href=""><i class="fa fa-bolt" aria-hidden="true"></i>
-                СЕВАНД</a>
+                <?=Module::t('app', 'SEVAND');?>
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="nav"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
