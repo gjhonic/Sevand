@@ -25,6 +25,7 @@ return [
     "Personal account" => "Личный кабинет",
     "Remember me" => "Запомни меня",
     "Go out" => "Выйти",
+    "Stay" => "Остаться",
 
     //Меню
     "Menu" => "Меню",
