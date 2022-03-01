@@ -84,9 +84,11 @@ return [
     "Name" => "Имя",
     "Surname" => "Фамилия",
     "Username" => "Имя пользователя",
+    "Login" => "Логин",
     "Password" => "Пароль",
     "Role" => "Роль",
     "Status" => "Статус",
+    "Full name" => "ФИО",
 
     //Про Группы
     "Create Group" => "Добавить группу",

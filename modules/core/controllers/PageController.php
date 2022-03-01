@@ -89,7 +89,9 @@ class PageController extends Controller
      */
     public function actionMe()
     {
-        return $this->render('me');
+        return $this->render('me', [
+            'user' =>  Yii::$app->user->identity,
+        ]);
     }
 
     /**

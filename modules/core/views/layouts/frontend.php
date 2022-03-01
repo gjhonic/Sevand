@@ -54,9 +54,7 @@ FrontendAsset::register($this);
                                 <?=Module::t('app', 'Go out')?>
                             </a>
                         </li>
-
                     <?php } ?>
-
                 </ul>
             </div>
         </div>
