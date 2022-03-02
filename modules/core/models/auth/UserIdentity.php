@@ -15,6 +15,10 @@ use yii\web\IdentityInterface;
  * @property int $role_id
  * @property string $code
  * @property string $username
+ *
+ * От класса User
+ * @property int $id
+ * @property string groupRole
  */
 class UserIdentity extends User implements IdentityInterface
 {

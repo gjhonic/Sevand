@@ -8,6 +8,8 @@ use app\modules\core\assets\FrontendAsset;
 
 /* @var $content string */
 
+$navigations = array_merge(require(__DIR__ . '/_nav/frontend.php'));
+
 FrontendAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -26,7 +28,8 @@ FrontendAsset::register($this);
     <nav class="navbar navbar-expand-lg navbar-dark bg-navbar">
         <div class="container">
             <a class="navbar-brand" href=""><i class="fa fa-bolt" aria-hidden="true"></i>
-                СЕВАНД</a>
+                <?=Module::t('app', 'SEVAND');?>
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="nav"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -36,33 +39,29 @@ FrontendAsset::register($this);
 
                 <ul class="navbar-nav ml-auto">
 
-                    <li class='nav-item' style='margin-right:10px; margin-bottom:5px;'>
-                        <a href="" class="btn btn-white btn-sm px-4 btn-block">
-                            <i class="uil uil-plus-circle mr-1 font-16"></i>
-                            <?= Module::t('app', 'Menu sect1') ?>
-                        </a>
-                    </li>
+                    <?php foreach ($navigations as $nav){ ?>
+                        <li class="nav-item" style='margin-right:10px; margin-bottom:5px;'>
+                            <a class="btn btn-white btn-sm px-4 btn-block" href="<?=$nav['url']?>"><i class="uil <?=$nav['ico']?> mr-1 font-16"></i>
+                                <?=$nav['label']?>
+                            </a>
+                        </li>
+                    <?php } ?>
 
-                    <li class='nav-item' style='margin-right:10px; margin-bottom:5px;'>
-                        <a href="" class="btn btn-white btn-sm px-4 btn-block">
-                            <i class="uil uil-plus-circle mr-1 font-16"></i>
-                            <?= Module::t('app', 'Menu sect2') ?>
-                        </a>
-                    </li>
-
-                    <li class="nav-item" style='margin-right:10px; margin-bottom:5px;'>
-                        <a class="btn btn-white btn-sm px-4 btn-block" href="#" data-toggle="modal"
-                           data-target="#logoutModal"><i class="uil uil-exit mr-1 font-16"></i>
-                            <?=Module::t('app', 'Go out')?>
-                        </a>
-                    </li>
+                    <?php if (!Yii::$app->user->isGuest){ ?>
+                        <li class="nav-item" style='margin-right:10px; margin-bottom:5px;'>
+                            <a class="btn btn-white btn-sm px-4 btn-block" href="#" data-toggle="modal"
+                               data-target="#logoutModal"><i class="uil uil-exit mr-1 font-16"></i>
+                                <?=Module::t('app', 'Go out')?>
+                            </a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Modal -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- Модалка выхода -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -73,8 +72,8 @@ FrontendAsset::register($this);
                     </button>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Остаться</button>
-                    <a type="button" class="btn btn-warning" href="?r=sevand/core/auth/logout"><?=Module::t('app', 'Go out')?></a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=Module::t('app', 'Stay')?></button>
+                    <a type="button" class="btn btn-warning" href="<?=Url::to('/signout')?>"><?=Module::t('app', 'Go out')?></a>
                 </div>
             </div>
         </div>

@@ -36,6 +36,10 @@ class User extends \yii\db\ActiveRecord
     const ROLE_GUEST = "?";
     const ROLE_AUTHORIZED = "@";
 
+    //Группы ролей
+    const GROUP_ROLE_ADMIN = 'admin';
+    const GROUP_ROLE_USER = 'user';
+
     //Статусы пользователей
     const STATUS_ACTIVE = "active";
     const STATUS_ACTIVE_ID = 1;
@@ -125,6 +129,33 @@ class User extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @return array
+     */
+    public static function getGroupsRole(): array
+    {
+        return [
+            self::GROUP_ROLE_ADMIN,
+            self::GROUP_ROLE_USER,
+        ];
+    }
+
+    /**
+     * Мапинг груп ролей на роли
+     * @return array
+     */
+    public static function mapGroupRoles(): array
+    {
+        return [
+            self::ROLE_ROOT => self::GROUP_ROLE_ADMIN,
+            self::ROLE_ADMIN => self::GROUP_ROLE_ADMIN,
+            self::ROLE_MODERATOR => self::GROUP_ROLE_ADMIN,
+            self::ROLE_CURATOR => self::GROUP_ROLE_USER,
+            self::ROLE_HEADMAN => self::GROUP_ROLE_USER,
+            self::ROLE_STUDENT => self::GROUP_ROLE_USER,
+        ];
+    }
+
     public static function find(): UserQuery
     {
         return new UserQuery(get_called_class());
@@ -158,6 +189,19 @@ class User extends \yii\db\ActiveRecord
         return $this->hasOne(Department::className(), ['id' => 'department_id']);
     }
 
+    /**
+     * Возвращает группу роли пользователя
+     * @return string
+     */
+    public function getGroupRole(): string
+    {
+        return self::mapGroupRoles()[$this->role];
+    }
+
+    /**
+     * Возвращает статус пользователя
+     * @return string
+     */
     public function getStatus(): string
     {
         return self::getStatuses()[$this->status_id];
