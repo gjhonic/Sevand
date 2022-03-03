@@ -83,12 +83,15 @@ return [
     "Update User: {name}" => "Редактировать пользователя: {name}",
     "Name" => "Имя",
     "Surname" => "Фамилия",
+    "Patronymic" => "Отчество",
     "Username" => "Имя пользователя",
     "Login" => "Логин",
     "Password" => "Пароль",
     "Role" => "Роль",
     "Status" => "Статус",
     "Full name" => "ФИО",
+    "Gender" => "Пол",
+
 
     //Про Группы
     "Create Group" => "Добавить группу",
