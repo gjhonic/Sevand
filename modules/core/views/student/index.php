@@ -29,7 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'surname',
             'patronymic',
-            'gender',
+            [
+                'attribute' => 'gender',
+                'filter' => Student::getGendersMap(),
+                'value' => function ($model) {
+                    return $model->genderTitle;
+                }
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Student $model, $key, $index, $column) {

@@ -21,6 +21,8 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $created_at
  * @property int|null $updated_at
  *
+ * @property string $genderTitle
+ *
  * @property Department $department
  * @property Group $group
  * @property User $user
@@ -31,12 +33,15 @@ class Student extends \yii\db\ActiveRecord
     const GENDRE_MAN = 1;
     const GENDRE_WOMAN = 0;
 
+    const STATUS_ACTIVE = 1;
+    const STATUS_ARCHIVE = 2;
+
     /**
      * @return string
      */
-    public static function tableName()
+    public static function tableName(): string
     {
-        return 'core_student';
+        return '{{%core_student}}';
     }
 
     /**
@@ -86,6 +91,40 @@ class Student extends \yii\db\ActiveRecord
             'created_at' => Module::t('app', 'Created at'),
             'updated_at' => Module::t('app', 'Updated at'),
         ];
+    }
+
+    /**
+     * Массив пол
+     * @return array
+     */
+    public static function getGendersMap(): array
+    {
+        return [
+            self::GENDRE_MAN => Module::t('app', 'Male'),
+            self::GENDRE_WOMAN => Module::t('app', 'Female'),
+        ];
+    }
+
+    /**
+     * Массив статусов
+     * @return array
+     */
+    public static function getStatusesMap(): array
+    {
+        return [
+            self::STATUS_ACTIVE => Module::t('app', 'Active'),
+            self::STATUS_ARCHIVE => Module::t('app', 'Archive'),
+        ];
+    }
+
+
+    /**
+     * Возвращает строку пол
+     * @return string
+     */
+    public function getGenderTitle(): string
+    {
+        return self::getGendersMap()[$this->gender];
     }
 
     /**

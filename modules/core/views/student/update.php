@@ -1,16 +1,17 @@
 <?php
 
+use app\modules\core\Module;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\core\models\base\Student */
 
-$this->title = Yii::t('app', 'Update Student: {name}', [
+$this->title = Module::t('app', 'Update Student: {name}', [
     'name' => $model->name,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Students'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Students'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = Module::t('app', 'Update');
 ?>
 <div class="student-update">
 
