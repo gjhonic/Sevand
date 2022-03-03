@@ -27,6 +27,10 @@ use yii\behaviors\TimestampBehavior;
  */
 class Student extends \yii\db\ActiveRecord
 {
+
+    const GENDRE_MAN = 1;
+    const GENDRE_WOMAN = 0;
+
     /**
      * @return string
      */
