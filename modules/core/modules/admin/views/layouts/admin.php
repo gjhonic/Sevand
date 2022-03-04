@@ -1,7 +1,6 @@
 <?php
 
 /** @var yii\web\View $this */
-
 /** @var string $content */
 
 use app\modules\core\modules\admin\assets\AdminAsset;
@@ -24,11 +23,9 @@ $this->beginPage() ?>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php
-    $this->registerCsrfMetaTags() ?>
+    <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <?php
-    $this->head() ?>
+    <?php $this->head() ?>
 </head>
 <body>
 <?php
@@ -65,7 +62,9 @@ $this->beginBody() ?>
             ]
         ) ?>
         <?= Alert::widget() ?>
+
         <?= $content ?>
+
     </div>
 </div>
 
