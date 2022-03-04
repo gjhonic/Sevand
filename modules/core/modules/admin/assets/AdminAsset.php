@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\core\assets;
+namespace app\modules\core\modules\admin\assets;
 
 use yii\web\AssetBundle;
 
@@ -15,6 +15,6 @@ class AdminAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap4\BootstrapAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
 }

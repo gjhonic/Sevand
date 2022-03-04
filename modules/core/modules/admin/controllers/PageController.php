@@ -32,13 +32,8 @@ class PageController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
-                        'roles' => [User::ROLE_GUEST, User::ROLE_AUTHORIZED],
-                    ],
-                    [
-                        'allow' => true,
-                        'actions' => ['me', 'ban'],
-                        'roles' => [User::ROLE_AUTHORIZED],
+                        'actions' => ['index', 'bases'],
+                        'roles' => [User::ROLE_MODERATOR, User::ROLE_ADMIN, User::ROLE_ROOT],
                     ],
                 ],
             ],

@@ -3,14 +3,12 @@
 /** @var yii\web\View $this */
 /** @var string $content */
 
-use app\modules\core\assets\AdminAsset;
-use app\modules\core\Module;
+use app\modules\core\modules\admin\assets\AdminAsset;
 use app\modules\core\widgets\Alert;
-use yii\bootstrap4\Breadcrumbs;
-use yii\bootstrap4\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
-use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
 
 $nav = array_merge(require(__DIR__ . '/_nav/admin.php'));
 

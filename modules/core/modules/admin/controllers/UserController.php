@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\core\controllers;
+namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\base\Direction;
 use app\modules\core\models\base\User;

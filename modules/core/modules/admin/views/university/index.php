@@ -5,7 +5,10 @@ use app\modules\core\Module;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
+
+
+use kartik\dynagrid\DynaGrid;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,23 +25,67 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Module::t('app', 'Create University'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php
+    $columns = [
+        ['class' => 'yii\grid\SerialColumn'],
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel'  => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        'short_title',
+        'title',
+        [
+            'class' => ActionColumn::className(),
+            'urlCreator' => function ($action, University $model, $key, $index, $column) {
+                return Url::toRoute([$action, 'id' => $model->id]);
+            }
+        ],
+    ];
+    ?>
 
-            'short_title',
-            'title',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, University $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+
+    <?= DynaGrid::widget([
+        'gridOptions' => [
+            'resizeStorageKey' => 'clients',
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'pjax' => true,
+            'toolbar' => [
+                [
+                    'content' =>
+                        Html::a(
+                            '<i class="glyphicon glyphicon-repeat"></i>',
+                            ['index'],
+                            [
+                                'data-pjax' => 0,
+                                'class' => 'btn btn-default',
+                                'title' => Module::t('app', 'Reset')
+                            ]
+                        ) .
+                        Html::a(
+                            '<i class="glyphicon glyphicon-print"></i>',
+                            ['#'],
+                            [
+                                'data-pjax' => 0,
+                                'class' => 'btn btn-default print-grid',
+                                'title' => Module::t('app', 'Print')
+                            ]
+                        ),
+                ],
+                ['content' => '{dynagridFilter}{dynagridSort}{dynagrid}'],
+                '{toggleData}',
+                '{export}',
+            ],
+            'panel' => [
+                'after' => false
+            ],
+            'exportConversions' => [
+                ['from_xls' => '-', 'to_xls' => '–'],
             ],
         ],
-    ]); ?>
+        'options' => [
+            'id' => 'clients'
+        ],
+        'columns' => $columns,
+        ]);
+    ?>
 
 
 </div>
