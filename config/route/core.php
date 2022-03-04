@@ -10,7 +10,11 @@ return [
 
     '' => 'core/page/index',
     'index' => 'core/page/index',
-    'admin' => 'core/admin/index',
+    'admin' => 'core/admin/page/index',
+    'admin/index' => 'core/admin/page/index',
+    'admin/bases' => 'core/admin/page/bases',
+
+    'admin/<controller:\w+>/<action:\w+>' => 'core/admin/<controller>/<action>',
 
     //'admin/<action:\w+>' => 'core/admin/<action>',
     '<controller:\w+>/<action:\w+>' => 'core/<controller>/<action>',
