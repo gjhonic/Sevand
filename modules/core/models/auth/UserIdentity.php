@@ -18,6 +18,7 @@ use yii\web\IdentityInterface;
  *
  * От класса User
  * @property int $id
+ * @property string $role
  * @property string groupRole
  */
 class UserIdentity extends User implements IdentityInterface
