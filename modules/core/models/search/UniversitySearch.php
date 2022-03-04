@@ -20,6 +20,7 @@ class UniversitySearch extends University
     public function rules(): array
     {
         return [
+            [['id'], 'integer'],
             [['title', 'short_title'], 'string', 'max' => 255],
         ];
     }
@@ -53,6 +54,7 @@ class UniversitySearch extends University
             return $dataProvider;
         }
 
+        $query->andFilterWhere(['=', 'id', $this->id]);
         $query->andFilterWhere(['like', 'title', $this->title]);
         $query->andFilterWhere(['like', 'short_title', $this->short_title]);
 

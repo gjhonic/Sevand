@@ -29,8 +29,21 @@ $this->params['breadcrumbs'][] = $this->title;
     $columns = [
         ['class' => 'yii\grid\SerialColumn'],
 
+        'id',
         'short_title',
         'title',
+        [
+            'attribute' => 'created_at',
+            'value' => function ($model) {
+                return date('j F, Y H:i:s', $model->created_at);
+            }
+        ],
+        [
+            'attribute' => 'updated_at',
+            'value' => function ($model) {
+                return date('j F, Y H:i:s', $model->updated_at);
+            }
+        ],
         [
             'class' => ActionColumn::className(),
             'urlCreator' => function ($action, University $model, $key, $index, $column) {
