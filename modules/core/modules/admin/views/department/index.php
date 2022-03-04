@@ -7,7 +7,8 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
+
+use kartik\dynagrid\DynaGrid;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -24,32 +25,94 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Module::t('app', 'Create Department'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php
+    $columns = [
+        ['class' => 'yii\grid\SerialColumn'],
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel'  => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        'id',
+        'short_title',
+        'title',
 
-            'short_title',
-            'title',
-
-            [
-                'attribute' => 'university_id',
-                'filter' => ArrayHelper::map(University::find()->all(), 'id', 'short_title'),
-                'value' => function ($model) {
-                    return $model->university->short_title;
-                }
-            ],
-
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Department $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
+        [
+            'attribute' => 'university_id',
+            'format' => 'raw',
+            'filter' => ArrayHelper::map(University::find()->all(), 'id', 'short_title'),
+            'value' => function ($model) {
+                return Html::a(
+                    $model->university->short_title,
+                    Url::to(['/admin/university/view', 'id' => $model->university_id]),
+                    ['class' => 'btn btn-primary']
+                );
+            }
         ],
-    ]); ?>
+        [
+            'attribute' => 'created_at',
+            'value' => function ($model) {
+                return date('j F, Y H:i:s', $model->created_at);
+            }
+        ],
+        [
+            'attribute' => 'updated_at',
+            'value' => function ($model) {
+                return date('j F, Y H:i:s', $model->updated_at);
+            }
+        ],
+
+        [
+            'class' => ActionColumn::className(),
+            'urlCreator' => function ($action, Department $model, $key, $index, $column) {
+                return Url::toRoute([$action, 'id' => $model->id]);
+            }
+        ],
+    ];
+    ?>
+
+
+    <?= DynaGrid::widget([
+         'gridOptions' => [
+             'resizeStorageKey' => 'Departments',
+             'dataProvider' => $dataProvider,
+             'filterModel' => $searchModel,
+             'pjax' => true,
+             'toolbar' => [
+                 [
+                     'content' =>
+                         Html::a(
+                             '<i class="glyphicon glyphicon-repeat"></i>',
+                             ['index'],
+                             [
+                                 'data-pjax' => 0,
+                                 'class' => 'btn btn-default',
+                                 'title' => Module::t('app', 'Reset')
+                             ]
+                         ) .
+                         Html::a(
+                             '<i class="glyphicon glyphicon-print"></i>',
+                             ['#'],
+                             [
+                                 'data-pjax' => 0,
+                                 'class' => 'btn btn-default print-grid',
+                                 'title' => Module::t('app', 'Print')
+                             ]
+                         ),
+                 ],
+                 ['content' => '{dynagridFilter}{dynagridSort}{dynagrid}'],
+                 '{toggleData}',
+                 '{export}',
+             ],
+             'panel' => [
+                 'after' => false
+             ],
+             'exportConversions' => [
+                 ['from_xls' => '-', 'to_xls' => '–'],
+             ],
+         ],
+         'options' => [
+             'id' => 'departments'
+         ],
+         'columns' => $columns,
+     ]);
+    ?>
 
 
 </div>

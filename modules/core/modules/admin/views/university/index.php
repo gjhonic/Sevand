@@ -6,9 +6,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 
-
 use kartik\dynagrid\DynaGrid;
-use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -56,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DynaGrid::widget([
         'gridOptions' => [
-            'resizeStorageKey' => 'clients',
+            'resizeStorageKey' => 'Universities',
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'pjax' => true,
@@ -94,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
         'options' => [
-            'id' => 'clients'
+            'id' => 'Universities'
         ],
         'columns' => $columns,
         ]);
