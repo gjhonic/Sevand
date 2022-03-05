@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * StudentController
+ * Контроллер для работы со студентами
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\base\Student;
@@ -8,7 +14,6 @@ use app\modules\core\models\search\StudentSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -150,12 +155,12 @@ class StudentController extends Controller
      * @return Student the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): Student
     {
         if (($model = Student::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Module::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Module::t('error', 'The requested page does not exist.'));
     }
 }

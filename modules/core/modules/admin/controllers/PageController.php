@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * PageController
+ * Основной Контроллер модуля core/admin
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\base\User;

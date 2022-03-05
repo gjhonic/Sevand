@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * UserController
+ * Контроллер для работы с пользователями
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\base\Direction;
@@ -151,12 +157,12 @@ class UserController extends Controller
      * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id)
     {
         if (($model = User::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Module::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Module::t('error', 'The requested page does not exist.'));
     }
 }

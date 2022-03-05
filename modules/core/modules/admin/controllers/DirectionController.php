@@ -167,6 +167,6 @@ class DirectionController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Module::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Module::t('error', 'The requested page does not exist.'));
     }
 }
