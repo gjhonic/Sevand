@@ -71,6 +71,9 @@ $config = [
     'modules' => [
         'core' => [
             'class' => 'app\modules\core\Module',
+            'modules' => [
+                'admin' => 'app\modules\core\modules\admin\AdminModule',
+            ],
         ],
         'konus' => [
             'class' => 'app\modules\konus\Module',
@@ -80,6 +83,14 @@ $config = [
         ],
         'attendance' => [
             'class' => 'app\modules\attendance\Module',
+        ],
+        'dynagrid'=> [
+            'class'=>'\kartik\dynagrid\Module',
+            // other module settings
+        ],
+        'gridview'=> [
+            'class'=>'\kartik\grid\Module',
+            // other module settings
         ],
     ],
     'params' => $params,

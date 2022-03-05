@@ -1,6 +1,12 @@
 <?php
-
-namespace app\modules\core\controllers;
+/**
+ * PageController
+ * Основной Контроллер модуля core/admin
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
+namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\base\User;
 use app\modules\core\services\user\StatusService;
@@ -11,11 +17,10 @@ use yii\helpers\Url;
 use yii\web\Controller;
 
 /**
- * Admin controller for the `core` module
+ * Default controller for the `core/admin` module
  */
-class AdminController extends Controller
+class PageController extends Controller
 {
-
     public function behaviors(): array
     {
         return [
@@ -53,6 +58,22 @@ class AdminController extends Controller
     }
 
     public $layout = 'admin';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
+    }
 
     /**
      * HomePage admin

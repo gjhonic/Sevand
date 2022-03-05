@@ -1,9 +1,7 @@
 <?php
 
-use app\modules\core\models\base\Department;
-use app\modules\core\models\base\University;
+use app\modules\core\models\base\Student;
 use app\modules\core\Module;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -11,18 +9,15 @@ use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $searchModel \app\modules\core\models\search\DepartmentSearch */
+/* @var $searchModel \app\modules\core\models\search\StudentSearch */
 
-$this->title = Module::t('app', 'Departments');
+$this->title = Module::t('app', 'Students');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="department-index">
+<div class="student-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Module::t('app', 'Create Department'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
 
     <?= GridView::widget([
@@ -31,20 +26,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'short_title',
-            'title',
-
+            'name',
+            'surname',
+            'patronymic',
             [
-                'attribute' => 'university_id',
-                'filter' => ArrayHelper::map(University::find()->all(), 'id', 'short_title'),
+                'attribute' => 'gender',
+                'filter' => Student::getGendersMap(),
                 'value' => function ($model) {
-                    return $model->university->short_title;
+                    return $model->genderTitle;
                 }
             ],
-
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Department $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Student $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

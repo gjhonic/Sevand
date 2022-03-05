@@ -14,14 +14,13 @@ use yii\data\ActiveDataProvider;
 
 class CourseSearch extends Course
 {
-    public $university_id;
-
     /**
      * @return array
      */
     public function rules(): array
     {
         return [
+            [['id'], 'integer'],
             [['title'], 'string', 'max' => 255],
         ];
     }
@@ -55,6 +54,7 @@ class CourseSearch extends Course
             return $dataProvider;
         }
 
+        $query->andFilterWhere(['=', 'id', $this->id]);
         $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;

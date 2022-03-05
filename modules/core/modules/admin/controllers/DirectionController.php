@@ -1,6 +1,12 @@
 <?php
-
-namespace app\modules\core\controllers;
+/**
+ * DirectionController
+ * Контроллер для работы с направлеениями
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
+namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\base\Direction;
 use app\modules\core\models\base\User;
@@ -38,7 +44,12 @@ class DirectionController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index', 'view'],
-                        'roles' => [User::ROLE_AUTHORIZED],
+                        'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_MODERATOR],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'update', 'delete'],
+                        'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN],
                     ],
                 ],
             ],
@@ -56,7 +67,7 @@ class DirectionController extends Controller
         return parent::beforeAction($action);
     }
 
-    public $layout = 'frontend';
+    public $layout = 'admin';
 
     /**
      * Lists all Direction models.
@@ -88,6 +99,62 @@ class DirectionController extends Controller
     }
 
     /**
+     * Creates a new Direction model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return string|\yii\web\Response
+     */
+    public function actionCreate()
+    {
+        $model = new Direction();
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Updates an existing Direction model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Deletes an existing Direction model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    /**
      * Finds the Direction model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
@@ -100,6 +167,6 @@ class DirectionController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException(Module::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Module::t('error', 'The requested page does not exist.'));
     }
 }

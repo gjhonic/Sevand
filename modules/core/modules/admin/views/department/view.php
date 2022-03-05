@@ -9,11 +9,11 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\core\models\base\Department */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = Module::t('app', 'Department') . ' ' . $this->title;
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Departments'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<section class="section-md">
-    <div class="container">
+<div class="department-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -58,4 +58,3 @@ $this->params['breadcrumbs'][] = Module::t('app', 'Department') . ' ' . $this->t
         <?=$model->description?>
     </div>
 </div>
-</section>

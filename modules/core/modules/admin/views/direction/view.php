@@ -6,19 +6,26 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\core\models\base\Department */
+/* @var $model app\modules\core\models\base\Direction */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = Module::t('app', 'Department') . ' ' . $this->title;
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Directions'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<section class="section-md">
-    <div class="container">
+<div class="direction-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a(Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
+                'method' => 'post',
+            ],
+        ]) ?>
     </p>
 
     <?= DetailView::widget([
@@ -28,12 +35,12 @@ $this->params['breadcrumbs'][] = Module::t('app', 'Department') . ' ' . $this->t
             'title',
             'short_title',
             [
-                'attribute' => 'university_id',
+                'attribute' => 'department_id',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->university->short_title,
-                        Url::to(['/university/view', 'id' => $model->university_id]),
-                        ['class' => 'btn btn-outline-secondary']);
+                    return Html::a($model->department->short_title,
+                        Url::to(['/department/view', 'id' => $model->department_id]),
+                        ['class' => 'btn btn-secondary']);
                 }
             ],
             [
@@ -58,4 +65,3 @@ $this->params['breadcrumbs'][] = Module::t('app', 'Department') . ' ' . $this->t
         <?=$model->description?>
     </div>
 </div>
-</section>
