@@ -33,6 +33,7 @@ return [
     //Меню
     "Menu" => "Меню",
     "Home page" => "Главная страница",
+    "Main" => "Главная",
     "Profile" => "Профиль",
     "Create a raffle" => "Создать конкурс",
     "Settings" => "Настройки",
@@ -40,7 +41,6 @@ return [
     "Admin panel" => "Админка",
     "Sign in" => "Войти",
     "Sign up" => "Зарегистрироваться",
-    "Public API" => "Публичное API",
 
     //Сущности
     "University" => "Университет",

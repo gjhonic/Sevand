@@ -1,4 +1,11 @@
 <?php
+/**
+ * UniversityController
+ * Контроллер для работы с университетом
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
 
 namespace app\modules\core\modules\admin\controllers;
 
@@ -14,9 +21,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * UniversityController
- */
 class UniversityController extends Controller
 {
     public function behaviors(): array
@@ -36,7 +40,7 @@ class UniversityController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'create', 'update'],
                         'roles' => [User::ROLE_ROOT],
                     ],
                 ],
@@ -129,27 +133,13 @@ class UniversityController extends Controller
     }
 
     /**
-     * Deletes an existing University model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
      * Finds the University model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
      * @return University the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): University
     {
         if (($model = University::findOne(['id' => $id])) !== null) {
             return $model;
