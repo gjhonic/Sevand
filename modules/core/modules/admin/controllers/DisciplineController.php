@@ -1,9 +1,17 @@
 <?php
-
+/**
+ * DisciplineController
+ * Контроллер для работы с дисциплинами
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\base\Discipline;
 use app\modules\core\models\base\User;
+use app\modules\core\models\search\DisciplineSearch;
+use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -35,7 +43,12 @@ class DisciplineController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view'],
+                        'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_MODERATOR],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'update', 'delete'],
                         'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN],
                     ],
                 ],
@@ -63,22 +76,12 @@ class DisciplineController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Discipline::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
-        ]);
+        $searchModel = new DisciplineSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 
@@ -158,12 +161,12 @@ class DisciplineController extends Controller
      * @return Discipline the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): Discipline
     {
         if (($model = Discipline::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Module::t('error', 'The requested page does not exist.'));
     }
 }

@@ -84,7 +84,7 @@ class DepartmentController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView(int $id)
+    public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -120,7 +120,7 @@ class DepartmentController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate(int $id)
+    public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 

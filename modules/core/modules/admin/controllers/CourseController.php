@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * CourseController
+ * Контроллер для работы с купсами
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\base\Course;
@@ -8,7 +14,6 @@ use app\modules\core\models\search\CourseSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -37,7 +42,7 @@ class CourseController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'create', 'update'],
                         'roles' => [User::ROLE_ROOT],
                     ],
                 ],
@@ -130,27 +135,13 @@ class CourseController extends Controller
     }
 
     /**
-     * Deletes an existing Course model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
      * Finds the Course model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
      * @return Course the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): Course
     {
         if (($model = Course::findOne(['id' => $id])) !== null) {
             return $model;

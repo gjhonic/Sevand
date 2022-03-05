@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * DirectionController
+ * Контроллер для работы с направлеениями
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\base\Direction;
@@ -37,7 +43,12 @@ class DirectionController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view'],
+                        'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_MODERATOR],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'update', 'delete'],
                         'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN],
                     ],
                 ],
@@ -150,7 +161,7 @@ class DirectionController extends Controller
      * @return Direction the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): Direction
     {
         if (($model = Direction::findOne(['id' => $id])) !== null) {
             return $model;

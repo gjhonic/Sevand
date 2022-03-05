@@ -3,6 +3,7 @@
 use app\modules\core\models\base\Department;
 use app\modules\core\models\base\Direction;
 use app\modules\core\Module;
+use kartik\dynagrid\DynaGrid;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -24,29 +25,88 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel'  => $searchModel,
-        'columns' => [
+    <?php
+     $columns = [
             ['class' => 'yii\grid\SerialColumn'],
 
+            'id',
             'title',
             'short_title',
             [
                 'attribute' => 'department_id',
-                'filter' => Department::getDepartmentGroup(),
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->department->short_title;
+                    return Html::a($model->department->short_title,
+                        Url::to(['/admin/department/view', 'id' => $model->department_id]),
+                        ['class' => 'btn btn-secondary']);
+                }
+            ],
+            [
+                'attribute' => 'created_at',
+                'value' => function ($model) {
+                    return date('j F, Y H:i:s', $model->created_at);
+                }
+            ],
+            [
+                'attribute' => 'updated_at',
+                'value' => function ($model) {
+                    return date('j F, Y H:i:s', $model->updated_at);
                 }
             ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Direction $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                }
+                },
+                'template'=>'{view}  {update}',
+            ],
+        ]; ?>
+
+    <?= DynaGrid::widget([
+        'gridOptions' => [
+            'resizeStorageKey' => 'Universities',
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'pjax' => true,
+            'toolbar' => [
+                [
+                    'content' =>
+                        Html::a(
+                            '<i class="glyphicon glyphicon-repeat"></i>',
+                            ['index'],
+                            [
+                                'data-pjax' => 0,
+                                'class' => 'btn btn-default',
+                                'title' => Module::t('app', 'Reset')
+                            ]
+                        ) .
+                        Html::a(
+                            '<i class="glyphicon glyphicon-print"></i>',
+                            ['#'],
+                            [
+                                'data-pjax' => 0,
+                                'class' => 'btn btn-default print-grid',
+                                'title' => Module::t('app', 'Print')
+                            ]
+                        ),
+                ],
+                ['content' => '{dynagridFilter}{dynagridSort}{dynagrid}'],
+                '{toggleData}',
+                '{export}',
+            ],
+            'panel' => [
+                'after' => false
+            ],
+            'exportConversions' => [
+                ['from_xls' => '-', 'to_xls' => '–'],
             ],
         ],
-    ]); ?>
+        'options' => [
+            'id' => 'Universities'
+        ],
+        'columns' => $columns,
+    ]);
+    ?>
 
 
 </div>

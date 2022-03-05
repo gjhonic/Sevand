@@ -1,27 +1,35 @@
 <?php
 /**
- * CourseSearch
- * Модель поиска факультетов
+ * DisciplineSearch
+ * Модель поиска дисциплин
  * @copyright Copyright (c) 2022 Eugene Andreev
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
 namespace app\modules\core\models\search;
 
-use app\modules\core\models\base\Course;
+use app\modules\core\models\base\Discipline;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
-class CourseSearch extends Course
+/**
+ * Class DisciplineSearch
+ * @package app\modules\core\models\search
+ *
+ * @property integer $department_id
+ */
+class DisciplineSearch extends Discipline
 {
+    public $department_id;
+
     /**
      * @return array
      */
     public function rules(): array
     {
         return [
-            [['id'], 'integer'],
-            [['title'], 'string', 'max' => 255],
+            [['title', 'short_title'], 'string', 'max' => 255],
+            [['id', 'department_id'], 'integer'],
         ];
     }
 
@@ -42,7 +50,7 @@ class CourseSearch extends Course
      */
     public function search($params)
     {
-        $query = Course::find();
+        $query = Discipline::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,8 +62,13 @@ class CourseSearch extends Course
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['=', 'id', $this->id]);
         $query->andFilterWhere(['like', 'title', $this->title]);
+        $query->andFilterWhere(['=', 'id', $this->id]);
+        $query->andFilterWhere(['like', 'short_title', $this->short_title]);
+
+        if(!empty($this->department_id)){
+            $query->andFilterWhere(['=', 'department_id', $this->department_id]);
+        }
 
         return $dataProvider;
     }
