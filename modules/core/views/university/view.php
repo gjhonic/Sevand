@@ -13,19 +13,13 @@ $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Universities'), '
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="university-view">
+<section class="section-md">
+    <div class="container">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a(Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
     </p>
 
     <?= DetailView::widget([
@@ -58,3 +52,4 @@ $this->params['breadcrumbs'][] = $this->title;
         <?=$model->description?>
     </div>
 </div>
+</section>
