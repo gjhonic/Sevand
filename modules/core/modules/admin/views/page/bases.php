@@ -54,4 +54,10 @@ use yii\helpers\Url;
         Url::to(['/admin/student/index']),
         ['class' => 'btn btn-primary btn-lg']
     );?>
+
+    <?=Html::a(
+        Module::t('app', 'Logs'),
+        Url::to(['/admin/log/index']),
+        ['class' => 'btn btn-primary btn-lg']
+    );?>
 </div>
