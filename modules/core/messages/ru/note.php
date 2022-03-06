@@ -16,4 +16,6 @@ return [
 
     "Do you really want to leave" => "Вы действительно хотите выйти",
     "Go to home page" => "Перейти на главную страницу",
+
+    "User successfully created" => "Пользователь успешно создан",
 ];

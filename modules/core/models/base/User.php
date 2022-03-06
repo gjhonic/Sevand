@@ -7,6 +7,7 @@ use app\modules\core\models\queries\UserQuery;
 use app\modules\core\Module;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class for table "user".
@@ -93,16 +94,20 @@ class User extends \yii\db\ActiveRecord
                 return UserError::ERROR_VALIDATE;
             }
         }
-
         $transaction = Yii::$app->db->beginTransaction();
         try {
-            //$this
             $this->status_id = self::STATUS_ACTIVE_ID;
-            $transaction->commit();
+            if($this->save(false)){
+                Yii::$app->authManager->assign(Yii::$app->authManager->getRole($this->role), $this->id);
+                $transaction->commit();
+                return UserError::SUCCESS_CREATE_USER;
+            }else{
+                $transaction->rollBack();
+            }
 
         } catch (\Exception $e) {
             $transaction->rollBack();
-            throw $e;
+            throw new NotFoundHttpException(UserError::getDescriptionError(UserError::ERROR_CREATE_USER));
         }
     }
 

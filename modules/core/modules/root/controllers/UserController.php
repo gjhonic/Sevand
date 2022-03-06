@@ -6,10 +6,12 @@
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
+
 namespace app\modules\core\modules\root\controllers;
 
 use app\modules\core\models\base\Direction;
 use app\modules\core\models\base\User;
+use app\modules\core\models\error\UserError;
 use app\modules\core\models\search\DirectionSearch;
 use app\modules\core\models\search\UserSearch;
 use app\modules\core\Module;
@@ -75,10 +77,12 @@ class UserController extends Controller
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
-        ]);
+        return $this->render(
+            'index', [
+                'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+            ]
+        );
     }
 
     /**
@@ -89,31 +93,42 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        return $this->render(
+            'view', [
+                'model' => $this->findModel($id),
+            ]
+        );
     }
 
     /**
      * Creates a new Direction model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
+     * @throws \Exception
      */
     public function actionCreate()
     {
         $model = new User();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $codeCreateUser = $model->createUser();
+                if ($codeCreateUser === UserError::SUCCESS_CREATE_USER) {
+                    Yii::$app->session->setFlash('info', Module::t('note', 'User successfully created'));
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }else{
+                    Yii::$app->session->setFlash('warning', Module::t('note', UserError::getDescriptionError($codeCreateUser)));
+                }
             }
         } else {
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->render(
+            'create', [
+                'model' => $model,
+            ]
+        );
     }
 
     /**
@@ -131,9 +146,11 @@ class UserController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render(
+            'update', [
+                'model' => $model,
+            ]
+        );
     }
 
     /**
