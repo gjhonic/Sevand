@@ -72,7 +72,12 @@ $config = [
         'core' => [
             'class' => 'app\modules\core\Module',
             'modules' => [
-                'admin' => 'app\modules\core\modules\admin\AdminModule',
+                'admin' => [
+                    'class' => 'app\modules\core\modules\admin\AdminModule',
+                ],
+                'root' => [
+                    'class' => 'app\modules\core\modules\root\RootModule',
+                ],
             ],
         ],
         'konus' => [
