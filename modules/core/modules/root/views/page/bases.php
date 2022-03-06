@@ -9,55 +9,37 @@ use yii\helpers\Url;
 <div>
     <?=Html::a(
         Module::t('app', 'Universities'),
-        Url::to(['/admin/university/index']),
+        Url::to(['/root/university/index']),
         ['class' => 'btn btn-primary btn-lg']
     );?>
 
     <?=Html::a(
         Module::t('app', 'Departments'),
-        Url::to(['/admin/department/index']),
-        ['class' => 'btn btn-primary btn-lg']
-    );?>
-
-    <?=Html::a(
-        Module::t('app', 'Directions'),
-        Url::to(['/admin/direction/index']),
-        ['class' => 'btn btn-primary btn-lg']
-    );?>
-
-    <?=Html::a(
-        Module::t('app', 'Courses'),
-        Url::to(['/admin/course/index']),
+        Url::to(['/root/department/index']),
         ['class' => 'btn btn-primary btn-lg']
     );?>
 
     <?=Html::a(
         Module::t('app', 'Users'),
-        Url::to(['/admin/user/index']),
-        ['class' => 'btn btn-primary btn-lg']
-    );?>
-
-    <?=Html::a(
-        Module::t('app', 'Disciplines'),
-        Url::to(['/admin/discipline/index']),
+        Url::to(['/root/user/index']),
         ['class' => 'btn btn-primary btn-lg']
     );?>
 
     <?=Html::a(
         Module::t('app', 'Groups'),
-        Url::to(['/admin/group/index']),
+        Url::to(['/root/group/index']),
         ['class' => 'btn btn-primary btn-lg']
     );?>
 
     <?=Html::a(
         Module::t('app', 'Students'),
-        Url::to(['/admin/student/index']),
+        Url::to(['/root/student/index']),
         ['class' => 'btn btn-primary btn-lg']
     );?>
 
     <?=Html::a(
         Module::t('app', 'Logs'),
-        Url::to(['/admin/log/index']),
+        Url::to(['/root/log/index']),
         ['class' => 'btn btn-primary btn-lg']
     );?>
 </div>

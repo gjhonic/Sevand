@@ -6,7 +6,7 @@
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
-namespace app\modules\core\modules\admin\controllers;
+namespace app\modules\core\modules\root\controllers;
 
 use app\modules\core\models\base\Student;
 use app\modules\core\models\base\User;
@@ -61,7 +61,7 @@ class StudentController extends Controller
         return parent::beforeAction($action);
     }
 
-    public $layout = 'admin';
+    public $layout = 'root';
 
     /**
      * Lists all Student models.

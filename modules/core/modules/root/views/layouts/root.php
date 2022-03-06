@@ -4,7 +4,7 @@
 /** @var string $content */
 
 use app\modules\core\Module;
-use app\modules\core\modules\admin\assets\AdminAsset;
+use app\modules\core\modules\root\assets\RootAsset;
 use app\modules\core\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -14,7 +14,7 @@ use yii\widgets\Breadcrumbs;
 
 $nav = array_merge(require(__DIR__ . '/_nav/admin.php'));
 
-AdminAsset::register($this);
+RootAsset::register($this);
 ?>
 <?php
 $this->beginPage() ?>
@@ -35,7 +35,7 @@ $this->beginBody() ?>
     <?php
     NavBar::begin(
         [
-            'brandLabel' => Module::t('app', 'Admin panel') . ' ' . Yii::$app->name,
+            'brandLabel' => Module::t('app', 'Root panel') . ' ' . Yii::$app->name,
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar-inverse navbar-fixed-top',
@@ -56,7 +56,7 @@ $this->beginBody() ?>
             [
                 'homeLink' => [
                     'label' => Module::t('app', 'Main'),
-                    'url' => Url::to('/admin'),
+                    'url' => Url::to('/root'),
                     'title' => Module::t('app', 'Main'),
                 ],
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

@@ -7,7 +7,7 @@
  *
  */
 
-namespace app\modules\core\modules\admin\controllers;
+namespace app\modules\core\modules\root\controllers;
 
 use app\modules\core\models\base\University;
 use app\modules\core\models\base\User;
@@ -59,7 +59,7 @@ class UniversityController extends Controller
         return parent::beforeAction($action);
     }
 
-    public $layout = 'admin';
+    public $layout = 'root';
 
     /**
      * Lists all University models.

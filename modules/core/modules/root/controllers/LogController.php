@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\core\modules\admin\controllers;
+namespace app\modules\core\modules\root\controllers;
 
 use app\modules\core\models\base\Log;
 use app\modules\core\models\base\User;
@@ -56,7 +56,7 @@ class LogController extends Controller
         return parent::beforeAction($action);
     }
 
-    public $layout = 'admin';
+    public $layout = 'root';
 
     /**
      * Lists all Log models.

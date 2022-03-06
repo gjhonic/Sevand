@@ -6,7 +6,7 @@
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
-namespace app\modules\core\modules\admin\controllers;
+namespace app\modules\core\modules\root\controllers;
 
 use app\modules\core\models\base\User;
 use app\modules\core\services\user\StatusService;
@@ -38,7 +38,7 @@ class PageController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'base'],
+                        'actions' => ['index', 'bases', 'dictionaries'],
                         'roles' => [User::ROLE_ROOT],
                     ],
                 ],
@@ -57,7 +57,7 @@ class PageController extends Controller
         return parent::beforeAction($action);
     }
 
-    public $layout = 'admin';
+    public $layout = 'root';
 
     /**
      * {@inheritdoc}
@@ -84,8 +84,21 @@ class PageController extends Controller
         return $this->render('index');
     }
 
+    /**
+     * Показывает страницу баз
+     * @return string
+     */
     public function actionBases()
     {
         return $this->render('bases');
+    }
+
+    /**
+     * Показывает страницу словарей
+     * @return string
+     */
+    public function actionDictionaries()
+    {
+        return $this->render('dictionaries');
     }
 }
