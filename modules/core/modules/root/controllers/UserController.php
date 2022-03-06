@@ -101,7 +101,7 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Direction();
+        $model = new User();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {

@@ -2,6 +2,7 @@
 
 namespace app\modules\core\models\base;
 
+use app\modules\core\models\error\UserError;
 use app\modules\core\models\queries\UserQuery;
 use app\modules\core\Module;
 use Yii;
@@ -78,6 +79,31 @@ class User extends \yii\db\ActiveRecord
         return [
             TimestampBehavior::class,
         ];
+    }
+
+    /**
+     * Метод сохраняет пользователя
+     * @return bool
+     * @throws \Exception
+     */
+    public function createUser(bool $validate = true): bool
+    {
+        if($validate){
+            if(!$this->validate()){
+                return UserError::ERROR_VALIDATE;
+            }
+        }
+
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            //$this
+            $this->status_id = self::STATUS_ACTIVE_ID;
+            $transaction->commit();
+
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
     }
 
     /**
