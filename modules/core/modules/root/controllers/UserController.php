@@ -111,8 +111,8 @@ class UserController extends Controller
         $model = new User();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $codeCreateUser = $model->createUser();
+            if ($model->load($this->request->post()) && $model->validate()) {
+                $codeCreateUser = $model->createUser(false);
                 if ($codeCreateUser === UserError::SUCCESS_CREATE_USER) {
                     Yii::$app->session->setFlash('info', Module::t('note', 'User successfully created'));
                     return $this->redirect(['view', 'id' => $model->id]);

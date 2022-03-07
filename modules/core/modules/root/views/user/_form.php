@@ -13,7 +13,8 @@ use yii\widgets\ActiveForm;
 
 <div class="direction-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php
+    $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
@@ -21,7 +22,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
+    <?php
+    if ($model->isNewRecord) { ?>
+        <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
+    <?php
+    } ?>
 
     <?= $form->field($model, 'department_id')->dropDownList(Department::getDepartmentGroup()) ?>
 
@@ -31,6 +36,7 @@ use yii\widgets\ActiveForm;
         <?= Html::submitButton(Module::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php
+    ActiveForm::end(); ?>
 
 </div>

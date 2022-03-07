@@ -63,7 +63,7 @@ class User extends \yii\db\ActiveRecord
     public function rules(): array
     {
         return [
-            [['name', 'surname', 'username', 'password', 'role', 'status_id'], 'required'],
+            [['name', 'surname', 'username', 'password', 'role'], 'required'],
             [['status_id', 'department_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'surname'], 'string', 'max' => 50],
@@ -84,10 +84,10 @@ class User extends \yii\db\ActiveRecord
 
     /**
      * Метод сохраняет пользователя
-     * @return bool
+     * @return int
      * @throws \Exception
      */
-    public function createUser(bool $validate = true): bool
+    public function createUser(bool $validate = true): int
     {
         if($validate){
             if(!$this->validate()){
@@ -97,6 +97,7 @@ class User extends \yii\db\ActiveRecord
         $transaction = Yii::$app->db->beginTransaction();
         try {
             $this->status_id = self::STATUS_ACTIVE_ID;
+            $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
             if($this->save(false)){
                 Yii::$app->authManager->assign(Yii::$app->authManager->getRole($this->role), $this->id);
                 $transaction->commit();
