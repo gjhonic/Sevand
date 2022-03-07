@@ -9,7 +9,6 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\core\models\base\Department */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Departments'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -17,35 +16,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'title',
             'short_title',
             [
                 'attribute' => 'university_id',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->university->short_title,
-                        Url::to(['/university/view', 'id' => $model->university_id]),
-                        ['class' => 'btn btn-outline-secondary']);
-                }
-            ],
-            [
-                'attribute' => 'created_at',
-                'value' => function ($model) {
-                    return date('j F, Y H:i:s', $model->created_at);
-                }
-            ],
-            [
-                'attribute' => 'updated_at',
-                'value' => function ($model) {
-                    return date('j F, Y H:i:s', $model->updated_at);
+                    return $model->university->short_title;
                 }
             ]
         ],

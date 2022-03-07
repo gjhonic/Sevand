@@ -33,15 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'short_title',
             [
-                'attribute' => 'department_id',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return Html::a($model->department->short_title,
-                        Url::to(['/admin/department/view', 'id' => $model->department_id]),
-                        ['class' => 'btn btn-secondary']);
-                }
-            ],
-            [
                 'attribute' => 'created_at',
                 'value' => function ($model) {
                     return date('j F, Y H:i:s', $model->created_at);

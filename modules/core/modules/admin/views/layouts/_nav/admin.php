@@ -18,22 +18,23 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
 } else if (Yii::$app->user->identity->role === User::ROLE_ADMIN) {
     return [
         [
-            'label' => Module::t('app', 'Admin panel'),
-            'url' => Url::to('/admin'),
-            'ico' => '',
+            'label' => Module::t('app', 'Bases'),
+            'url' => Url::to('/admin/bases')
         ],
         [
             'label' => Module::t('app', 'Settings'),
-            'url' => ['/'],
-            'ico' => '',
+            'url' => ['/']
         ]
     ];
-} else {
+} elseif(Yii::$app->user->identity->role === User::ROLE_MODERATOR) {
     return [
         [
+            'label' => Module::t('app', 'Bases'),
+            'url' => Url::to('/admin/bases')
+        ],
+        [
             'label' => Module::t('app', 'Settings'),
-            'url' => ['/'],
-            'ico' => '',
+            'url' => ['/']
         ]
     ];
 }

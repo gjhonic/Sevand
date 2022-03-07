@@ -8,9 +8,9 @@
  */
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\models\base\Direction;
+use app\modules\core\modules\admin\models\base\Direction;
 use app\modules\core\models\base\User;
-use app\modules\core\models\search\DirectionSearch;
+use app\modules\core\modules\admin\models\search\DirectionSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
@@ -106,7 +106,7 @@ class DirectionController extends Controller
     public function actionCreate()
     {
         $model = new Direction();
-
+        $model->setDepartmentFromUser();
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);

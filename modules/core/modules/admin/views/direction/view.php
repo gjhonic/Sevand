@@ -39,8 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Html::a($model->department->short_title,
-                        Url::to(['/department/view', 'id' => $model->department_id]),
-                        ['class' => 'btn btn-secondary']);
+                        Url::to(['/admin/department/view']),
+                        ['class' => 'btn btn-primary']);
                 }
             ],
             [
