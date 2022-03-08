@@ -1,19 +1,19 @@
 <?php
 /**
- * CourseController
- * Контроллер для работы с купсами
+ * GroupController
+ * Контроллер для работы с группами
  * @copyright Copyright (c) 2022 Eugene Andreev
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
-namespace app\modules\core\modules\admin\controllers;
+namespace app\modules\core\modules\root\controllers;
 
-use app\modules\core\models\base\Course;
+use app\modules\core\models\base\Group;
 use app\modules\core\models\base\User;
-use app\modules\core\models\search\CourseSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -21,9 +21,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CourseController implements the CRUD actions for Course model.
+ * GroupController implements the CRUD actions for Group model.
  */
-class CourseController extends Controller
+class GroupController extends Controller
 {
     public function behaviors(): array
     {
@@ -42,7 +42,7 @@ class CourseController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'roles' => [User::ROLE_ROOT],
                     ],
                 ],
@@ -61,26 +61,26 @@ class CourseController extends Controller
         return parent::beforeAction($action);
     }
 
-    public $layout = 'admin';
+    public $layout = 'root';
 
     /**
-     * Lists all Course models.
+     * Lists all Group models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new CourseSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Group::find(),
+        ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
         ]);
     }
 
     /**
-     * Displays a single Course model.
+     * Displays a single Group model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -93,13 +93,13 @@ class CourseController extends Controller
     }
 
     /**
-     * Creates a new Course model.
+     * Creates a new Group model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Course();
+        $model = new Group();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -115,7 +115,7 @@ class CourseController extends Controller
     }
 
     /**
-     * Updates an existing Course model.
+     * Updates an existing Group model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -135,15 +135,29 @@ class CourseController extends Controller
     }
 
     /**
-     * Finds the Course model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
+     * Deletes an existing Group model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
-     * @return Course the loaded model
+     * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel(int $id): Course
+    public function actionDelete($id)
     {
-        if (($model = Course::findOne(['id' => $id])) !== null) {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the Group model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param int $id ID
+     * @return Group the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel(int $id): Group
+    {
+        if (($model = Group::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

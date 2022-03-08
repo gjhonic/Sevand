@@ -15,4 +15,8 @@ return [
     "Authorization failed" => "Авторизация не удалась",
     "Invalid username or password!" => "Неверный логин или пароль!",
 
+    //UserError
+    "Error validation" => "Ошибка валидации",
+    "User creation error" => "Ошибка создания пользователя",
+
 ];

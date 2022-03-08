@@ -1,13 +1,13 @@
 <?php
 
-namespace app\modules\core\assets;
+namespace app\modules\core\modules\root\assets;
 
 use yii\web\AssetBundle;
 
-class AdminAsset extends AssetBundle
+class RootAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/media/core/admin';
+    public $baseUrl = '@web/media/core/root';
     public $css = [
         'css/site.css',
     ];
@@ -15,6 +15,6 @@ class AdminAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap4\BootstrapAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
 }

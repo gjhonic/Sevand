@@ -8,26 +8,8 @@ use yii\helpers\Url;
 
 <div>
     <?=Html::a(
-        Module::t('app', 'Universities'),
-        Url::to(['/admin/university/index']),
-        ['class' => 'btn btn-primary btn-lg']
-    );?>
-
-    <?=Html::a(
-        Module::t('app', 'Departments'),
-        Url::to(['/admin/department/index']),
-        ['class' => 'btn btn-primary btn-lg']
-    );?>
-
-    <?=Html::a(
         Module::t('app', 'Directions'),
         Url::to(['/admin/direction/index']),
-        ['class' => 'btn btn-primary btn-lg']
-    );?>
-
-    <?=Html::a(
-        Module::t('app', 'Courses'),
-        Url::to(['/admin/course/index']),
         ['class' => 'btn btn-primary btn-lg']
     );?>
 
@@ -52,6 +34,12 @@ use yii\helpers\Url;
     <?=Html::a(
         Module::t('app', 'Students'),
         Url::to(['/admin/student/index']),
+        ['class' => 'btn btn-primary btn-lg']
+    );?>
+
+    <?=Html::a(
+        Module::t('app', 'Logs'),
+        Url::to(['/admin/log/index']),
         ['class' => 'btn btn-primary btn-lg']
     );?>
 </div>

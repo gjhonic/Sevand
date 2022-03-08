@@ -18,8 +18,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'short_title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'department_id')->dropDownList(Department::getDepartmentGroup()) ?>
-
     <div class="form-group">
         <?= Html::submitButton(Module::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>

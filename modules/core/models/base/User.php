@@ -2,10 +2,12 @@
 
 namespace app\modules\core\models\base;
 
+use app\modules\core\models\error\UserError;
 use app\modules\core\models\queries\UserQuery;
 use app\modules\core\Module;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class for table "user".
@@ -61,7 +63,7 @@ class User extends \yii\db\ActiveRecord
     public function rules(): array
     {
         return [
-            [['name', 'surname', 'username', 'password', 'role', 'status_id'], 'required'],
+            [['name', 'surname', 'username', 'password', 'role'], 'required'],
             [['status_id', 'department_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'surname'], 'string', 'max' => 50],
@@ -78,6 +80,36 @@ class User extends \yii\db\ActiveRecord
         return [
             TimestampBehavior::class,
         ];
+    }
+
+    /**
+     * Метод сохраняет пользователя
+     * @return int
+     * @throws \Exception
+     */
+    public function createUser(bool $validate = true): int
+    {
+        if($validate){
+            if(!$this->validate()){
+                return UserError::ERROR_VALIDATE;
+            }
+        }
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $this->status_id = self::STATUS_ACTIVE_ID;
+            $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+            if($this->save(false)){
+                Yii::$app->authManager->assign(Yii::$app->authManager->getRole($this->role), $this->id);
+                $transaction->commit();
+                return UserError::SUCCESS_CREATE_USER;
+            }else{
+                $transaction->rollBack();
+            }
+
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            throw new NotFoundHttpException(UserError::getDescriptionError(UserError::ERROR_CREATE_USER));
+        }
     }
 
     /**

@@ -18,7 +18,6 @@ return [
     "Title" => "Название",
     "Short title" => "Короткое название",
     "Description" => "Описание",
-    "Bases" => "Базы",
     "Created at" => "Добавлен",
     "Updated at" => "Изменен",
     "Log in as a guest" => "Войти как гость",
@@ -29,6 +28,7 @@ return [
     "Active" => "Активный",
     "Archive" => "Архивный",
     "Action column" => "Колонка действий",
+    "Message" => "Сообщение",
 
     //Меню
     "Menu" => "Меню",
@@ -40,7 +40,8 @@ return [
     "Sign out" => "Выход",
     "Admin panel" => "Админка",
     "Sign in" => "Войти",
-    "Sign up" => "Зарегистрироваться",
+    "Bases" => "Базы",
+    "Dictionaries" => "Словари",
 
     //Сущности
     "University" => "Университет",
@@ -60,6 +61,8 @@ return [
     "Students" => "Студенты",
     "Module" => "Модуль",
     "Modules" => "Модули",
+    "Log" => "Лог",
+    "Logs" => "Логи",
 
     //Про Университет
     "Create University" => "Добавить университет",

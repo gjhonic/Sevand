@@ -3,7 +3,7 @@
 use app\modules\core\Module;
 use app\modules\core\widgets\Alert;
 use yii\helpers\Html;
-use yii\bootstrap4\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 $this->title = Module::t('app', 'Sign in');
 $this->params['breadcrumbs'][] = $this->title;
