@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="direction-form">
+<div class="user-form">
 
     <?php
     $form = ActiveForm::begin(); ?>
@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'department_id')->dropDownList(Department::getDepartmentGroup()) ?>
 
-    <?= $form->field($model, 'role')->dropDownList(User::getRoles()) ?>
+    <?= $form->field($model, 'role')->dropDownList(User::getRolesForAdmin()) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Module::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

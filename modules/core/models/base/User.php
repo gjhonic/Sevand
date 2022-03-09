@@ -149,6 +149,18 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
+     * Возврщает мап ролей для добавления новых пользователей админом
+     * @return array
+     */
+    public static function getRolesForAdmin(): array
+    {
+        return [
+            self::ROLE_MODERATOR => Module::t('app', 'Moderator'),
+            self::ROLE_CURATOR => Module::t('app', 'Curator'),
+        ];
+    }
+
+    /**
      * Возврщает мап статусов
      * @return array
      */

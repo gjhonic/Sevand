@@ -8,8 +8,8 @@
  */
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\models\base\Direction;
-use app\modules\core\models\base\User;
+use app\modules\core\models\error\UserError;
+use app\modules\core\modules\admin\models\base\User;
 use app\modules\core\modules\admin\models\search\UserSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
@@ -105,13 +105,18 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Direction();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+        $model = new User();
+        $model->setDepartmentFromUser();
+        if ($model->load($this->request->post()) && $model->validate()) {
+            $codeCreateUser = $model->createUser(false);
+            if ($codeCreateUser === UserError::SUCCESS_CREATE_USER) {
+                Yii::$app->session->setFlash('info', Module::t('note', 'User successfully created'));
                 return $this->redirect(['view', 'id' => $model->id]);
+            }else{
+                Yii::$app->session->setFlash('warning', Module::t('note', UserError::getDescriptionError($codeCreateUser)));
             }
-        } else {
+        }
+         else {
             $model->loadDefaultValues();
         }
 
@@ -163,7 +168,12 @@ class UserController extends Controller
      */
     protected function findModel(int $id)
     {
-        if (($model = User::findOne(['id' => $id])) !== null) {
+        $model = User::findOne([
+            'id' => $id,
+            'department_id' => Yii::$app->user->identity->department_id,
+        ]);
+
+        if ($model !== null) {
             return $model;
         }
 

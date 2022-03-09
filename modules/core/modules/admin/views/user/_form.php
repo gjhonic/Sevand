@@ -19,11 +19,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'surname')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'department_id')->dropDownList(Department::getDepartmentGroup()) ?>
+    <?php
+        if ($model->isNewRecord) { ?>
+            <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
+    <?php } ?>
 
-    <?= $form->field($model, 'role')->dropDownList(User::getRoles()) ?>
+    <?= $form->field($model, 'role')->dropDownList(User::getRolesForAdmin()) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Module::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
