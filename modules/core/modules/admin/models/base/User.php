@@ -2,10 +2,10 @@
 
 namespace app\modules\core\modules\admin\models\base;
 
-use app\modules\core\models\base\Direction as BaseDirection;
+use app\modules\core\models\base\User as BaseUser;
 use Yii;
 
-class Direction extends BaseDirection
+class User extends BaseUser
 {
 
     public function beforeSave($insert)

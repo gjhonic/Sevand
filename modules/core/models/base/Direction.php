@@ -40,7 +40,7 @@ class Direction extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['department_id'], 'integer'],
             [['title'], 'string', 'max' => 255],
-            [['short_title'], 'string', 'max' => 10],
+            [['short_title'], 'string', 'max' => 100],
             [['created_at', 'updated_at'], 'safe'],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
         ];

@@ -6,14 +6,22 @@
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
-namespace app\modules\core\models\search;
+namespace app\modules\core\modules\admin\models\search;
 
-use app\modules\core\models\base\User;
+use app\modules\core\modules\admin\models\base\User;
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
+/**
+ * Class UserSearch
+ * @package app\modules\core\modules\admin\models\search
+ *
+ * @property integer $department_id
+ */
 class UserSearch extends User
 {
+
     /**
      * @return array
      */
@@ -49,6 +57,7 @@ class UserSearch extends User
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        $query->andWhere(['=', 'department_id', Yii::$app->user->identity->department_id]);
 
         $dataProvider->sort->defaultOrder = ['id' => SORT_DESC];
 
@@ -61,10 +70,6 @@ class UserSearch extends User
         $query->andFilterWhere(['like', 'surname', $this->surname]);
         $query->andFilterWhere(['=', 'role', $this->role]);
         $query->andFilterWhere(['=', 'status_id', $this->status_id]);
-
-        if(!empty($this->department_id)){
-            $query->andFilterWhere(['=', 'department_id.id', $this->department_id]);
-        }
 
         return $dataProvider;
     }

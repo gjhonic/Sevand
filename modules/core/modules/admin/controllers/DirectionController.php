@@ -163,7 +163,12 @@ class DirectionController extends Controller
      */
     protected function findModel(int $id): Direction
     {
-        if (($model = Direction::findOne(['id' => $id])) !== null) {
+        $model = Direction::findOne([
+            'id' => $id,
+            'department_id' => Yii::$app->user->identity->department_id,
+        ]);
+
+        if ($model !== null) {
             return $model;
         }
 

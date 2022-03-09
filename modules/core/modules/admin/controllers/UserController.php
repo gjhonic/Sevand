@@ -1,7 +1,7 @@
 <?php
 /**
  * UserController
- * Контроллер для работы с пользователями
+ * Контроллер для работы с пользователями в модуле core\admin
  * @copyright Copyright (c) 2022 Eugene Andreev
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
@@ -10,8 +10,7 @@ namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\base\Direction;
 use app\modules\core\models\base\User;
-use app\modules\core\models\search\DirectionSearch;
-use app\modules\core\models\search\UserSearch;
+use app\modules\core\modules\admin\models\search\UserSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
@@ -44,8 +43,13 @@ class UserController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'user', 'view', 'create', 'update'],
+                        'actions' => ['index', 'view'],
                         'roles' => [User::ROLE_MODERATOR, User::ROLE_ADMIN, User::ROLE_ROOT],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'update', 'delete'],
+                        'roles' => [User::ROLE_ADMIN, User::ROLE_ROOT],
                     ],
                 ],
             ],

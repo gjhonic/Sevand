@@ -15,7 +15,7 @@ class m220220_132850_create_direction_table extends Migration
         $this->createTable('{{%core_direction}}', [
             'id' => $this->primaryKey(),
             'title' => $this->string(255)->notNull(),
-            'short_title' => $this->string(10)->notNull(),
+            'short_title' => $this->string(100)->notNull(),
             'description' => $this->text()->null(),
             'department_id' => $this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
