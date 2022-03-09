@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h3>
         <?=Module::t('app', 'Description')?>
     </h3>
-    <div class="jumbotron">
+    <p>
         <?=$model->description?>
-    </div>
+    </p>
 </div>

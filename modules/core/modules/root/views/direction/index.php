@@ -34,11 +34,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'short_title',
             [
                 'attribute' => 'department_id',
+                'filter' => Department::getDepartmentGroup(),
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Html::a($model->department->short_title,
                         Url::to(['/admin/department/view', 'id' => $model->department_id]),
-                        ['class' => 'btn btn-secondary']);
+                        ['class' => 'btn btn-primary']);
                 }
             ],
             [

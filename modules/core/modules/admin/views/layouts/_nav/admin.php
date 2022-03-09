@@ -13,6 +13,10 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         [
             'label' => Module::t('app', 'Settings'),
             'url' => ['/']
+        ],
+        [
+        'label' => Module::t('app', 'Sign out'),
+        'url' => ['/signout']
         ]
     ];
 } else if (Yii::$app->user->identity->role === User::ROLE_ADMIN) {
@@ -24,6 +28,10 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         [
             'label' => Module::t('app', 'Settings'),
             'url' => ['/']
+        ],
+        [
+            'label' => Module::t('app', 'Sign out'),
+            'url' => ['/signout']
         ]
     ];
 } elseif(Yii::$app->user->identity->role === User::ROLE_MODERATOR) {
@@ -35,6 +43,10 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         [
             'label' => Module::t('app', 'Settings'),
             'url' => ['/']
+        ],
+        [
+            'label' => Module::t('app', 'Sign out'),
+            'url' => ['/signout']
         ]
     ];
 }

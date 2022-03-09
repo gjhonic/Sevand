@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     return Html::a($model->department->short_title,
                         Url::to(['/department/view', 'id' => $model->department_id]),
-                        ['class' => 'btn btn-secondary']);
+                        ['class' => 'btn btn-primary']);
                 }
             ],
             [
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h3>
         <?=Module::t('app', 'Description')?>
     </h3>
-    <div class="jumbotron">
+    <p>
         <?=$model->description?>
-    </div>
+    </p>
 </div>

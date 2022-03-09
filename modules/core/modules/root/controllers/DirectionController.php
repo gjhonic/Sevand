@@ -1,7 +1,7 @@
 <?php
 /**
  * DirectionController
- * Контроллер для работы с направлеениями
+ * Контроллер для работы с направлеениями в модуле core/root
  * @copyright Copyright (c) 2022 Eugene Andreev
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
