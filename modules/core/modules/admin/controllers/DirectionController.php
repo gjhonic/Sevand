@@ -1,11 +1,12 @@
 <?php
 /**
  * DirectionController
- * Контроллер для работы с направлеениями
+ * Контроллер для работы с направлеениями для модуля core/admin
  * @copyright Copyright (c) 2022 Eugene Andreev
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
+
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\modules\admin\models\base\Direction;
@@ -14,7 +15,6 @@ use app\modules\core\modules\admin\models\search\DirectionSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
