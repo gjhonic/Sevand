@@ -19,4 +19,7 @@ return [
     "Error validation" => "Ошибка валидации",
     "User creation error" => "Ошибка создания пользователя",
 
+    //Ошибки логов
+    "Error adding log" => "Ошибка добавления лога",
+    "The log was not created because the user was not found." => "Лог не был создан т.к пользователь не найден.",
 ];

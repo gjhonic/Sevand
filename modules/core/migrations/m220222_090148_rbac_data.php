@@ -35,18 +35,35 @@ class m220222_090148_rbac_data extends Migration
         $auth->add($rootRole);
         $auth->addChild($rootRole, $adminRole);
 
-        //Добавляю рута
-        $user = new User();
-        $user->name = "Админ";
-        $user->surname = "Админов";
-        $user->username = "root";
-        $user->password = Yii::$app->getSecurity()->generatePasswordHash('123456');
-        $user->role = User::ROLE_ROOT;
-        $user->status_id = User::STATUS_ACTIVE_ID;
-        $user->department_id = 1;
-        $user->save();
+        $systemRole = $auth->createRole(User::ROLE_SYSTEM);
+        $auth->add($systemRole);
+        $auth->addChild($systemRole, $rootRole);
 
-        $auth->assign($rootRole, $user->id);
+        //Добавляем бота
+        $userSystem = new User();
+        $userSystem->name = "System";
+        $userSystem->surname = "System";
+        $userSystem->username = "system";
+        $userSystem->password = Yii::$app->getSecurity()->generatePasswordHash('*3af4s342#@dfsSdFf4');
+        $userSystem->role = User::ROLE_SYSTEM;
+        $userSystem->status_id = User::STATUS_ACTIVE_ID;
+        $userSystem->department_id = 1;
+        $userSystem->save();
+
+        $auth->assign($systemRole, $userSystem->id);
+
+        //Добавляю рута
+        $userRoot = new User();
+        $userRoot->name = "Админ";
+        $userRoot->surname = "Админов";
+        $userRoot->username = "root";
+        $userRoot->password = Yii::$app->getSecurity()->generatePasswordHash('123456');
+        $userRoot->role = User::ROLE_ROOT;
+        $userRoot->status_id = User::STATUS_ACTIVE_ID;
+        $userRoot->department_id = 1;
+        $userRoot->save();
+
+        $auth->assign($rootRole, $userRoot->id);
     }
 
 }

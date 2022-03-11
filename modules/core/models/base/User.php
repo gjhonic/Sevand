@@ -28,6 +28,9 @@ use yii\web\NotFoundHttpException;
 class User extends \yii\db\ActiveRecord
 {
     //Роли пользователей
+    const ROLE_SYSTEM = "system"; //Системный бот приложения
+    const USER_SYSTEM_ID = 1;
+
     const ROLE_ROOT = "root";
     const ROLE_ADMIN = "admin";
     const ROLE_MODERATOR = "moderator";

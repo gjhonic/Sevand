@@ -11,7 +11,7 @@ use yii\grid\ActionColumn;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $searchModel \app\modules\core\models\search\LogSearch */
 
-$this->title = Yii::t('app', 'Logs');
+$this->title = Module::t('app', 'Logs');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="log-index">
@@ -24,17 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
         'id',
         'message',
-        [
-            'attribute' => 'department_id',
-            'format' => 'raw',
-            'value' => function ($model) {
-                return Html::a(
-                    $model->department->short_title,
-                    Url::to(['/admin/department/view', 'id' => $model->department_id]),
-                    ['class' => 'btn btn-secondary']
-                );
-            }
-        ],
         [
             'attribute' => 'created_at',
             'value' => function ($model) {
