@@ -1,34 +1,34 @@
 <?php
+/**
+ * LogController
+ * Контроллер для работы с логами в модуле core/admin
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
 
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\models\base\Log;
 use app\modules\core\models\base\User;
-use app\modules\core\models\search\LogSearch;
+use app\modules\core\modules\admin\models\base\Direction;
+use app\modules\core\modules\admin\models\base\Log;
+use app\modules\core\modules\admin\models\search\LogSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
- * LogController implements the CRUD actions for Log model.
+ * LogController  for Log model.
  */
 class LogController extends Controller
 {
     public function behaviors(): array
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'denyCallback' => function () {
@@ -82,9 +82,12 @@ class LogController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        return $this->render(
+            'view',
+            [
+                'model' => $this->findModel($id),
+            ]
+        );
     }
 
     /**
@@ -96,7 +99,12 @@ class LogController extends Controller
      */
     protected function findModel(int $id): Log
     {
-        if (($model = Log::findOne(['id' => $id])) !== null) {
+        $model = Log::findOne([
+            'id' => $id,
+            'department_id' => Yii::$app->user->identity->department_id,
+        ]);
+
+        if ($model !== null) {
             return $model;
         }
 

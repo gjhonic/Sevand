@@ -14,7 +14,6 @@ use app\modules\core\modules\admin\models\search\UserSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -166,7 +165,7 @@ class UserController extends Controller
      * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel(int $id)
+    protected function findModel(int $id): User
     {
         $model = User::findOne([
             'id' => $id,
