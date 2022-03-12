@@ -10,7 +10,6 @@ namespace app\modules\core\services;
 
 use app\modules\core\models\base\Log;
 use app\modules\core\models\base\User;
-use app\modules\core\Module;
 use Yii;
 use yii\web\NotFoundHttpException;
 
@@ -25,7 +24,25 @@ class LogService
 
 
     //Сообщения Warning логов
-    const WARNING_MESSAGE_USET_NULL = 1;
+    const WARNING_MESSAGE_STATUS_NOT_FOUND = 1;
+    const WARNING_MESSAGE_USET_NULL = 2;
+    const WARNING_MESSAGE_LOG_NOT_CREATED = 3;
+
+
+    /**
+     * Возвращает массив статусов
+     * @return array
+     */
+    public static function getStatuses(): array
+    {
+        return [
+            self::STATUS_INFO,
+            self::STATUS_SUCCESS,
+            self::STATUS_WARNING,
+            self::STATUS_DANGER,
+            self::STATUS_CRAZY,
+        ];
+    }
 
     /**
      * Массив сообщений
@@ -34,7 +51,9 @@ class LogService
     public static function getMessages(): array
     {
         return [
+            self::WARNING_MESSAGE_STATUS_NOT_FOUND => 'Log not created because status not found.',
             self::WARNING_MESSAGE_USET_NULL => 'The log was not created because the user was not found.',
+            self::WARNING_MESSAGE_LOG_NOT_CREATED => 'The log was not created.',
         ];
     }
 
@@ -64,12 +83,24 @@ class LogService
         string $description = ''
     ): bool {
         $user = User::findOne(['id' => $user_id]);
+
+        if(!in_array($status_id, self::getStatuses())){
+            $resultSave = self::createWarningLog(self::WARNING_MESSAGE_STATUS_NOT_FOUND, 'status_id: ' . $status_id);
+            if ($resultSave) {
+                return false;
+            } else {
+                self::createWarningFileLog(self::getMessage(self::WARNING_MESSAGE_STATUS_NOT_FOUND).' status_id: ' . $status_id);
+                return false;
+            }
+        }
+
         if (!$user) {
             $resultSave = self::createWarningLog(self::WARNING_MESSAGE_USET_NULL, 'user_id: ' . $user_id);
             if ($resultSave) {
-                return true;
+                return false;
             } else {
-
+                self::createWarningFileLog(self::getMessage(self::WARNING_MESSAGE_USET_NULL).' user_id: ' . $user_id);
+                return false;
             }
         }
 
@@ -81,7 +112,10 @@ class LogService
         $log->description = $description;
 
         if (!$log->save()) {
-            self::createFileLog();
+            self::createWarningFileLog(self::getMessage(self::WARNING_MESSAGE_LOG_NOT_CREATED));
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -92,16 +126,16 @@ class LogService
         $logWarning->user_id = User::USER_SYSTEM_ID;
         $logWarning->department_id = 0;
         $logWarning->status_id = self::STATUS_WARNING;
-        $logWarning->message = self::getMessage($message_id);;
+        $logWarning->message = self::getMessage($message_id);
         $logWarning->description = $text;
 
         if (!$logWarning->save()) {
-            self::createFileLog();
+            self::createWarningFileLog();
         }
     }
 
-    private static function createFileLog(int $message_type, string $text): bool
+    private static function createWarningFileLog(string $text)
     {
-
+        Yii::warning($text);
     }
 }

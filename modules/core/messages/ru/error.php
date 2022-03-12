@@ -21,5 +21,7 @@ return [
 
     //Ошибки логов
     "Error adding log" => "Ошибка добавления лога",
+    "The log was not created because status not found." => "Лог не был создан т.к статус не найден.",
     "The log was not created because the user was not found." => "Лог не был создан т.к пользователь не найден.",
+    "The log was not created." => "Лог не был создан.",
 ];
