@@ -22,12 +22,10 @@ class LogService
     const STATUS_DANGER = 4;
     const STATUS_CRAZY = 5;
 
-
     //Сообщения Warning логов
     const WARNING_MESSAGE_STATUS_NOT_FOUND = 1;
     const WARNING_MESSAGE_USET_NULL = 2;
     const WARNING_MESSAGE_LOG_NOT_CREATED = 3;
-
 
     /**
      * Возвращает массив статусов
@@ -84,12 +82,14 @@ class LogService
     ): bool {
         $user = User::findOne(['id' => $user_id]);
 
-        if(!in_array($status_id, self::getStatuses())){
+        if (!in_array($status_id, self::getStatuses())) {
             $resultSave = self::createWarningLog(self::WARNING_MESSAGE_STATUS_NOT_FOUND, 'status_id: ' . $status_id);
             if ($resultSave) {
                 return false;
             } else {
-                self::createWarningFileLog(self::getMessage(self::WARNING_MESSAGE_STATUS_NOT_FOUND).' status_id: ' . $status_id);
+                self::createWarningFileLog(
+                    self::getMessage(self::WARNING_MESSAGE_STATUS_NOT_FOUND) . ' status_id: ' . $status_id
+                );
                 return false;
             }
         }
@@ -99,7 +99,7 @@ class LogService
             if ($resultSave) {
                 return false;
             } else {
-                self::createWarningFileLog(self::getMessage(self::WARNING_MESSAGE_USET_NULL).' user_id: ' . $user_id);
+                self::createWarningFileLog(self::getMessage(self::WARNING_MESSAGE_USET_NULL) . ' user_id: ' . $user_id);
                 return false;
             }
         }
@@ -119,7 +119,12 @@ class LogService
         }
     }
 
-
+    /**
+     * Метод создает warning лог
+     * @param int $message_id
+     * @param string $text
+     * @return bool
+     */
     private static function createWarningLog(int $message_id, string $text): bool
     {
         $logWarning = new Log();
@@ -130,10 +135,16 @@ class LogService
         $logWarning->description = $text;
 
         if (!$logWarning->save()) {
-            self::createWarningFileLog();
+            self::createWarningFileLog(self::getMessage(self::WARNING_MESSAGE_LOG_NOT_CREATED));
+            return false;
         }
+        return true;
     }
 
+    /**
+     * Метод пишет warning Лог в файл
+     * @param string $text
+     */
     private static function createWarningFileLog(string $text)
     {
         Yii::warning($text);
