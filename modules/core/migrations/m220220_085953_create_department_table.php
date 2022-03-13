@@ -42,7 +42,7 @@ class m220220_085953_create_department_table extends Migration
         $department = new Department();
         $department->title = "Институт Математики и Информатики";
         $department->short_title = "ИМИ";
-        $department->description = 1;
+        $department->description = '';
         $department->university_id = 1;
         $department->save();
     }

@@ -32,7 +32,41 @@ $config = [
                 ],
             ],
         ],
+        'i18n' => [
+            'translations' => [
+            ],
+        ],
         'db' => $db,
+    ],
+    'modules' => [
+        'core' => [
+            'class' => 'app\modules\core\Module',
+            'modules' => [
+                'admin' => [
+                    'class' => 'app\modules\core\modules\admin\AdminModule',
+                ],
+                'root' => [
+                    'class' => 'app\modules\core\modules\root\RootModule',
+                ],
+            ],
+        ],
+        'konus' => [
+            'class' => 'app\modules\konus\Module',
+        ],
+        'msk' => [
+            'class' => 'app\modules\msk\Module',
+        ],
+        'attendance' => [
+            'class' => 'app\modules\attendance\Module',
+        ],
+        'dynagrid'=> [
+            'class'=>'\kartik\dynagrid\Module',
+            // other module settings
+        ],
+        'gridview'=> [
+            'class'=>'\kartik\grid\Module',
+            // other module settings
+        ],
     ],
     'params' => $params,
     /*

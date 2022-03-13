@@ -58,6 +58,7 @@ class UserSearch extends User
             'query' => $query,
         ]);
         $query->andWhere(['=', 'department_id', Yii::$app->user->identity->department_id]);
+        $query->andWhere(['not in', 'role', [User::ROLE_SYSTEM,User::ROLE_ROOT]]);
 
         $dataProvider->sort->defaultOrder = ['id' => SORT_DESC];
 
