@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\core\models\base\University;
 use yii\db\Migration;
 
 /**
@@ -26,6 +27,13 @@ class m220220_070637_create_university_table extends Migration
             '{{%core_university}}',
             'id'
         );
+
+        //Добавляем университет по умолчанию
+        $university = new University();
+        $university->title = 'Бурятский Государственный Университет';
+        $university->short_title = 'БГУ';
+        $university->description = '';
+        $university->save();
     }
 
     /**

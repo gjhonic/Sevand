@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\core\models\base\Department;
 use yii\db\Migration;
 
 /**
@@ -36,6 +37,14 @@ class m220220_085953_create_department_table extends Migration
             'id',
             'RESTRICT'
         );
+
+        //Добавляем факультет по умолчанию
+        $department = new Department();
+        $department->title = "Институт Математики и Информатики";
+        $department->short_title = "ИМИ";
+        $department->description = 1;
+        $department->university_id = 1;
+        $department->save();
     }
 
     /**
