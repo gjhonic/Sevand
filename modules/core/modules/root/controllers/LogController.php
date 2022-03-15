@@ -2,13 +2,12 @@
 
 namespace app\modules\core\modules\root\controllers;
 
-use app\modules\core\models\base\Log;
+use app\modules\core\modules\root\models\base\Log;
 use app\modules\core\models\base\User;
-use app\modules\core\models\search\LogSearch;
+use app\modules\core\modules\root\models\search\LogSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
