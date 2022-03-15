@@ -22,11 +22,6 @@ class LogService
     const STATUS_DANGER = 4;
     const STATUS_CRAZY = 5;
 
-    //Сообщения Warning логов
-    const WARNING_MESSAGE_STATUS_NOT_FOUND = 1;
-    const WARNING_MESSAGE_USET_NULL = 2;
-    const WARNING_MESSAGE_LOG_NOT_CREATED = 3;
-
     /**
      * Возвращает массив статусов
      * @return array
@@ -43,63 +38,40 @@ class LogService
     }
 
     /**
-     * Массив сообщений
-     * @return array
-     */
-    public static function getMessages(): array
-    {
-        return [
-            self::WARNING_MESSAGE_STATUS_NOT_FOUND => 'Log not created because status not found.',
-            self::WARNING_MESSAGE_USET_NULL => 'The log was not created because the user was not found.',
-            self::WARNING_MESSAGE_LOG_NOT_CREATED => 'The log was not created.',
-        ];
-    }
-
-    /**
-     * Возвращает текст ошибки
-     * @param int $message_id
-     * @return string
-     */
-    public static function getMessage(int $message_id): string
-    {
-        return self::getMessages()[$message_id];
-    }
-
-    /**
      * Добавления лога
      * @param int $status_id тип лога (STATUS_INFO, STATUS_SUCCESS, STATUS_WARNING, STATUS_DANGER)
-     * @param int $user_id
+     * @param int $user_id id Пользователя
      * @param string $message короткое сообщение
      * @param string $description описание лога
      * @return bool
      * @throws NotFoundHttpException
      */
     public static function createLog(
-        int $status_id = self::STATUS_INFO,
-        int $user_id = User::USER_SYSTEM_ID,
-        string $message = '',
+        int $status_id,
+        int $user_id,
+        string $message,
         string $description = ''
     ): bool {
         $user = User::findOne(['id' => $user_id]);
 
         if (!in_array($status_id, self::getStatuses())) {
-            $resultSave = self::createWarningLog(self::WARNING_MESSAGE_STATUS_NOT_FOUND, 'status_id: ' . $status_id);
+            $resultSave = self::createWarningLog(LogMessage::WARNING_MESSAGE_STATUS_NOT_FOUND, 'status_id: ' . $status_id);
             if ($resultSave) {
                 return false;
             } else {
                 self::createWarningFileLog(
-                    self::getMessage(self::WARNING_MESSAGE_STATUS_NOT_FOUND) . ' status_id: ' . $status_id
+                    LogMessage::WARNING_MESSAGE_STATUS_NOT_FOUND. ' status_id: ' . $status_id
                 );
                 return false;
             }
         }
 
         if (!$user) {
-            $resultSave = self::createWarningLog(self::WARNING_MESSAGE_USET_NULL, 'user_id: ' . $user_id);
+            $resultSave = self::createWarningLog(LogMessage::WARNING_MESSAGE_USET_NULL, 'user_id: ' . $user_id);
             if ($resultSave) {
                 return false;
             } else {
-                self::createWarningFileLog(self::getMessage(self::WARNING_MESSAGE_USET_NULL) . ' user_id: ' . $user_id);
+                self::createWarningFileLog(LogMessage::WARNING_MESSAGE_USET_NULL . ' user_id: ' . $user_id);
                 return false;
             }
         }
@@ -111,11 +83,11 @@ class LogService
         $log->message = $message;
         $log->description = $description;
 
-        if (!$log->save()) {
-            self::createWarningFileLog(self::getMessage(self::WARNING_MESSAGE_LOG_NOT_CREATED));
-            return false;
-        } else {
+        if ($log->save()) {
             return true;
+        } else {
+            self::createWarningFileLog(LogMessage::WARNING_MESSAGE_LOG_NOT_CREATED);
+            return false;
         }
     }
 
@@ -125,17 +97,17 @@ class LogService
      * @param string $text
      * @return bool
      */
-    private static function createWarningLog(int $message_id, string $text): bool
+    private static function createWarningLog(string $message, string $text): bool
     {
         $logWarning = new Log();
         $logWarning->user_id = User::USER_SYSTEM_ID;
         $logWarning->department_id = 0;
         $logWarning->status_id = self::STATUS_WARNING;
-        $logWarning->message = self::getMessage($message_id);
+        $logWarning->message = $message;
         $logWarning->description = $text;
 
         if (!$logWarning->save()) {
-            self::createWarningFileLog(self::getMessage(self::WARNING_MESSAGE_LOG_NOT_CREATED));
+            self::createWarningFileLog(LogMessage::WARNING_MESSAGE_LOG_NOT_CREATED);
             return false;
         }
         return true;

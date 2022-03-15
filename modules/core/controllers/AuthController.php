@@ -5,6 +5,9 @@ namespace app\modules\core\controllers;
 use app\modules\core\models\base\User;
 use app\modules\core\models\forms\SigninForm;
 use app\modules\core\Module;
+use app\modules\core\services\LogMessage;
+use app\modules\core\services\LogService;
+use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -65,6 +68,7 @@ class AuthController extends Controller
         if ($model->set(Yii::$app->request->post())) {
             $resLogin = $model->login();
             if($resLogin == SigninForm::SUCCESS_AUTH){
+                LogService::createLog(LogService::STATUS_INFO, Yii::$app->user->identity->id, LogMessage::INFO_USER_LOGGED_IN);
                 Yii::$app->session->setFlash('info', Module::t('note', 'You have successfully signed in'));
                 return $this->redirect(Url::to(['/me']));
             }else{

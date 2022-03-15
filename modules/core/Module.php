@@ -47,7 +47,8 @@ class Module extends \yii\base\Module
             'fileMap' => [
                 'modules/core/app' => 'app.php',
                 'modules/core/note' => 'note.php',
-                'modules/core/error' => 'error.php'
+                'modules/core/error' => 'error.php',
+                'modules/core/log' => 'log.php'
             ],
         ];
     }
