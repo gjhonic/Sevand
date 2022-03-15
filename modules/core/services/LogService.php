@@ -29,12 +29,22 @@ class LogService
     public static function getStatuses(): array
     {
         return [
-            self::STATUS_INFO,
-            self::STATUS_SUCCESS,
-            self::STATUS_WARNING,
-            self::STATUS_DANGER,
-            self::STATUS_CRAZY,
+            self::STATUS_INFO => 'info',
+            self::STATUS_SUCCESS => 'success',
+            self::STATUS_WARNING => 'warning',
+            self::STATUS_DANGER => 'danger',
+            self::STATUS_CRAZY => 'crazy',
         ];
+    }
+
+    /**
+     * Возвращает int
+     * @param int $status_id
+     * @return string
+     */
+    public static function getStatus(int $status_id): string
+    {
+        return self::getStatuses()[$status_id];
     }
 
     /**

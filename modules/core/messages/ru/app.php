@@ -119,4 +119,6 @@ return [
     //Языки
     "English" => "Английский",
     "Russian" => "Русский",
+
+    "Message with translation" => "Соощение с переводом",
 ];
