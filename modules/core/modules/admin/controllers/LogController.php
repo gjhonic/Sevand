@@ -10,7 +10,6 @@
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\base\User;
-use app\modules\core\modules\admin\models\base\Direction;
 use app\modules\core\modules\admin\models\base\Log;
 use app\modules\core\modules\admin\models\search\LogSearch;
 use app\modules\core\Module;
@@ -82,9 +81,7 @@ class LogController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render(
-            'view',
-            [
+        return $this->render('view', [
                 'model' => $this->findModel($id),
             ]
         );

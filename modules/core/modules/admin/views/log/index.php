@@ -25,6 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'id',
         'message',
         [
+            'attribute' => 'message',
+            'label' => Module::t('app', 'Message with translation'),
+            'value' => function ($model){
+                return Module::t('log', $model->message);
+            }
+        ],
+        [
             'attribute' => 'created_at',
             'value' => function ($model) {
                 return date('j F, Y H:i:s', $model->created_at);
@@ -86,6 +93,4 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
     );
     ?>
-
-
 </div>
