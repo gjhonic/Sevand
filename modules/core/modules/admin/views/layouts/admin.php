@@ -37,7 +37,7 @@ AdminAsset::register($this);
                 }
             }
         </style>
-        <script src="/media/core/admin/js/jquery/jquery.min.js"></script>
+        <script src="\media\core\admin\js\jquery\jquery.min.js"></script>
         <link rel="shortcut icon" href="https://img.icons8.com/ios/50/000000/admin-settings-male.png" type="image/png">
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
@@ -96,8 +96,8 @@ AdminAsset::register($this);
                             </button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Остаться</button>
-                            <a type="button" class="btn btn-warning" href="?r=sevand/core/auth/logout">Выйти</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=Module::t('app', 'Cancel')?></button>
+                            <a type="button" class="btn btn-warning" href="<?=Url::to('sigout')?>"><?=Module::t('app', 'Sign out')?></a>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ AdminAsset::register($this);
                         'itemTemplate' => "<li class='breadcrumb-item'>{link}</li>\n",
                         'activeItemTemplate' => "<li class='breadcrumb-item active'>{link}</li>\n",
                         'homeLink' => [
-                            'label' => 'Главная ',
+                            'label' => Module::t('app', 'Main'),
                             'url' => Url::to('admin'),
                             'title' => 'Перейти на главную страницу',
                         ],
