@@ -4,54 +4,79 @@ use app\modules\core\Module;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+/* @var $countUser int */
+/* @var $countStudent int */
+/* @var $countGroup int */
+/* @var $countDirection int */
+/* @var $countDiscipline int */
+
 ?>
 <div class="block-bases">
     <h1><?= Module::t('app', 'Base') ?>
         <a href="<?= Url::to('/admin/department/view') ?>"><?= Yii::$app->user->identity->department->short_title ?></a>
     </h1>
 
-
     <table class="table table-bordered table-linght">
         <thead class="thead-light">
         <tr>
             <td colspan="2" align="center">
-                <strong><?=Module::t('app', 'User base')?></strong>
+                <strong>
+                    <?=Module::t('app', 'User base')?>
+                </strong>
             </td>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td rowspan="3"><img src="" class="td_image" alt="" width="60%"></td>
-
-
-        </tr>
-        <tr>
-            <td><?= Html::a(
-                    Module::t('app', 'Go'),
-                    Url::to('/admin/user/index'),
-                    ['class' => 'btn btn-outline-primary btn-block']
-                ) ?></td>
-        </tr>
+            <tr>
+                <td rowspan="2">
+                    <img src="" class="td_image" alt="" width="60%">
+                </td>
+                <td width="60%">
+                    <?=Module::t('app', 'Count user')?>:
+                    <i>
+                        <?=$countUser?>
+                    </i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?= Html::a(
+                        Module::t('app', 'Go'),
+                        Url::to('/admin/user/index'),
+                        ['class' => 'btn btn-outline-primary btn-block']
+                    ) ?>
+                </td>
+            </tr>
         </tbody>
     </table>
     <br>
 
-    <!-- Панель базы групп -->
     <table class="table table-bordered table-linght">
         <thead class="thead-light">
             <tr>
                 <td colspan="2" align="center">
-                    <strong><?=Module::t('app', 'Group base')?></strong>
+                    <strong>
+                        <?=Module::t('app', 'Group base')?>
+                    </strong>
                 </td>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td rowspan="3"><img src="" class="td_image" alt="" width="60%"></td>
+                <td rowspan="3">
+                    <img src="" class="td_image" alt="" width="60%">
+                </td>
 
                 <td width="60%">
-                    Групп: <i></i> <br>
-                    Направлений: <i></i>
+                    <?=Module::t('app', 'Count groups')?>:
+                    <i>
+                        <?=$countGroup?>
+                    </i>
+                    <br>
+                    <?=Module::t('app', 'Count direction')?>:
+                    <i>
+                        <?=$countDirection?>
+                    </i>
                 </td>
             </tr>
             <tr>
@@ -77,22 +102,32 @@ use yii\helpers\Url;
         <thead class="thead-light">
             <tr>
                 <td colspan="2" align="center">
-                    <strong><?=Module::t('app', 'Student base')?></strong>
+                    <strong>
+                        <?=Module::t('app', 'Student base')?>
+                    </strong>
                 </td>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td rowspan="2">
-                    <img src="" class="td_image" alt="" width="60%"></td>
-                <td width="60%">Студентов: </td>
+                    <img src="" class="td_image" alt="" width="60%">
+                </td>
+                <td width="60%">
+                    <?=Module::t('app', 'Count students')?>:
+                    <i>
+                        <?=$countStudent?>
+                    </i>
+                </td>
             </tr>
             <tr>
-                <td><?= Html::a(
+                <td>
+                    <?= Html::a(
                         Module::t('app', 'Go'),
                         Url::to('/admin/student/index'),
                         ['class' => 'btn btn-outline-primary btn-block']
-                    ) ?></td>
+                    ) ?>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -100,26 +135,35 @@ use yii\helpers\Url;
 
     <table class="table table-bordered table-linght">
         <thead class="thead-light">
-        <tr>
-            <td colspan="2" align="center">
-                <strong><?=Module::t('app', 'Discipline base')?></strong>
-            </td>
-        </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <strong>
+                        <?=Module::t('app', 'Discipline base')?>
+                    </strong>
+                </td>
+            </tr>
         </thead>
         <tbody>
-        <tr>
-            <td rowspan="3"><img src="https://img.icons8.com/cotton/300/000000/physics--v2.png" class="td_image" alt=""
-                                 width="60%"></td>
-
-            <td width="60%">Дисциплин: <i></i></td>
-        </tr>
-        <tr>
-            <td><?= Html::a(
-                    Module::t('app', 'Go'),
-                    Url::to('/admin/discipline/index'),
-                    ['class' => 'btn btn-outline-primary btn-block']
-                ) ?></td>
-        </tr>
+            <tr>
+                <td rowspan="3">
+                    <img src="" class="td_image" alt="" width="60%">
+                </td>
+                <td width="60%">
+                    <?=Module::t('app', 'Count discipline')?>:
+                    <i>
+                        <?=$countDiscipline?>
+                    </i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?= Html::a(
+                        Module::t('app', 'Go'),
+                        Url::to('/admin/discipline/index'),
+                        ['class' => 'btn btn-outline-primary btn-block']
+                    ) ?>
+                </td>
+            </tr>
         </tbody>
     </table>
     <br>

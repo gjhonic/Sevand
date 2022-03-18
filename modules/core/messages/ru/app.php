@@ -48,12 +48,18 @@ return [
 
     //Базы
     "User base" => "База пользователей",
+    "Count user" => "Количество студентов",
     "Student base" => "База студентов",
+    "Count students" => "Количество студентов",
     "Group base" => "База групп",
+    "Count groups" => "Количество групп",
     "Watch groups" => "Смотреть группы",
     "Discipline base" => "База дисциплин",
+    "Count discipline" => "Количество дисциплин",
     "Direction base" => "База направлений",
+    "Count direction" => "Количество направлений",
     "Watch direction" => "Смотреть направления",
+
 
     //Сущности
     "University" => "Университет",
