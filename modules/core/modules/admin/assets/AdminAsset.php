@@ -13,7 +13,7 @@ class AdminAsset extends AssetBundle
         'css/dashboard.css',
 
         //доп иконки
-        'css/font/font-awesome.css',
+        'css/font/css/font-awesome.css',
     ];
     public $js = [
         "js\bootstrap\bootstrap.bundle.js",

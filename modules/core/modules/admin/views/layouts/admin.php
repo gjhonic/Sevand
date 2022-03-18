@@ -72,16 +72,17 @@ $this->beginPage() ?>
                             $isActive = '';
                             if (Yii::$app->controller->action->id == $elem['action'] && Yii::$app->controller->id == $elem['controller']) {
                                 $isActive = 'active';
-                            }
-                            ?>
+                            } ?>
                             <li class="nav-item">
-                                <a class="nav-link <?= $isActive ?>" href="<?= $elem['url'] ?>"><?= $elem['label'] ?>
+                                <a class="nav-link <?= $isActive ?>" href="<?= $elem['url'] ?>">
+                                    <i class="fa <?=$elem['ico']?>" aria-hidden="true"></i>
+                                    <?= $elem['label'] ?>
                                 </a>
                             </li>
-                        <?php
-                        } ?>
+                        <?php } ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
                                 <?=Module::t('app', 'Sign out')?>
                             </a>
                         </li>
@@ -95,7 +96,7 @@ $this->beginPage() ?>
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Вы действительно хотите выйти</h5>
+                            <h5 class="modal-title" id="exampleModalLabel"><?=Module::t('note', 'Do you really want to leave')?></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -122,7 +123,7 @@ $this->beginPage() ?>
                         'homeLink' => [
                             'label' => Module::t('app', 'Main'),
                             'url' => Url::to('admin'),
-                            'title' => 'Перейти на главную страницу',
+                            'title' => Module::t('app', 'Go to home page'),
                         ],
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                         'options' => ['class' => 'breadcrumb', 'style' => ''],
