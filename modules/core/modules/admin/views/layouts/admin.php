@@ -14,7 +14,8 @@ $nav = array_merge(require(__DIR__ . '/_nav/admin.php'));
 
 AdminAsset::register($this);
 ?>
-<?php $this->beginPage() ?>
+<?php
+$this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
     <head>
@@ -40,13 +41,16 @@ AdminAsset::register($this);
         <script src="\media\core\admin\js\jquery\jquery.min.js"></script>
         <link rel="shortcut icon" href="https://img.icons8.com/ios/50/000000/admin-settings-male.png" type="image/png">
         <title><?= Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
+        <?php
+        $this->head() ?>
     </head>
     <body>
-    <?php $this->beginBody() ?>
+    <?php
+    $this->beginBody() ?>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="<?= Yii::$app->homeUrl ?>" title="<?=Module::t('app', 'Admin panel')?>">
-            <?=Module::t('app', 'Admin panel')?>
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="<?= Yii::$app->homeUrl ?>"
+           title="<?= Module::t('app', 'Admin panel') ?>">
+            <?= Module::t('app', 'Admin panel') ?>
         </a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
                 data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
@@ -66,7 +70,7 @@ AdminAsset::register($this);
 
                         foreach ($nav as $elem) {
                             $isActive = '';
-                            if (Yii::$app->controller->action->id == $elem['action'] && Yii::$app->controller->id == $elem['controller']){
+                            if (Yii::$app->controller->action->id == $elem['action'] && Yii::$app->controller->id == $elem['controller']) {
                                 $isActive = 'active';
                             }
                             ?>
@@ -74,17 +78,18 @@ AdminAsset::register($this);
                                 <a class="nav-link <?= $isActive ?>" href="<?= $elem['url'] ?>"><?= $elem['label'] ?>
                                 </a>
                             </li>
-                        <?php } ?>
+                        <?php
+                        } ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
-                                Выйти
+                                <?=Module::t('app', 'Sign out')?>
                             </a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-            <!-- Modal -->
+            <!-- Sign out Modal -->
             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -96,15 +101,22 @@ AdminAsset::register($this);
                             </button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=Module::t('app', 'Cancel')?></button>
-                            <a type="button" class="btn btn-warning" href="<?=Url::to('sigout')?>"><?=Module::t('app', 'Sign out')?></a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= Module::t(
+                                    'app',
+                                    'Cancel'
+                                ) ?></button>
+                            <a type="button" class="btn btn-warning" href="<?= Url::to('sigout') ?>"><?= Module::t(
+                                    'app',
+                                    'Sign out'
+                                ) ?></a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                <?= Breadcrumbs::widget([
+                <?= Breadcrumbs::widget(
+                    [
                         'itemTemplate' => "<li class='breadcrumb-item'>{link}</li>\n",
                         'activeItemTemplate' => "<li class='breadcrumb-item active'>{link}</li>\n",
                         'homeLink' => [
@@ -114,7 +126,8 @@ AdminAsset::register($this);
                         ],
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                         'options' => ['class' => 'breadcrumb', 'style' => ''],
-                    ]); ?>
+                    ]
+                ); ?>
 
                 <?= Alert::widget() ?>
                 <?= $content ?>
@@ -122,10 +135,9 @@ AdminAsset::register($this);
         </div>
     </div>
 
-    <script src="/media\core\admin\js\bootstrap\bootstrap.bundle.js"></script>
-    <script src="/media\core\admin\js\dashboard.js"></script>
-
-    <?php $this->endBody() ?>
+    <?php
+    $this->endBody() ?>
     </body>
     </html>
-<?php $this->endPage() ?>
+<?php
+$this->endPage() ?>

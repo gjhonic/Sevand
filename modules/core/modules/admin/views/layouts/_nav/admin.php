@@ -3,6 +3,7 @@
 use app\modules\core\models\base\User;
 use app\modules\core\Module;
 use yii\helpers\Url;
+
 if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
     return [
         [
@@ -16,12 +17,6 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
             'url' => ['/'],
             'controller' => 'settings',
             'action' => 'index'
-        ],
-        [
-            'label' => Module::t('app', 'Sign out'),
-            'url' => ['/signout'],
-            'controller' => '',
-            'action' => ''
         ]
     ];
 } else if (Yii::$app->user->identity->role === User::ROLE_ADMIN) {
@@ -36,12 +31,6 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
             'label' => Module::t('app', 'Settings'),
             'url' => ['/'],
             'controller' => 'settings',
-            'action' => 'index'
-        ],
-        [
-            'label' => Module::t('app', 'Sign out'),
-            'url' => ['/signout'],
-            'controller' => 'page',
             'action' => 'index'
         ]
     ];
@@ -58,12 +47,6 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
             'url' => ['/'],
             'controller' => 'settings',
             'action' => 'index'
-        ],
-        [
-            'label' => Module::t('app', 'Sign out'),
-            'url' => ['/signout'],
-            'controller' => '',
-            'action' => ''
         ]
     ];
 }
