@@ -3,6 +3,7 @@
 
 namespace app\modules\core\models\auth;
 
+use app\modules\core\models\base\Department;
 use app\modules\core\models\base\User;
 use Yii;
 use yii\web\IdentityInterface;
@@ -21,6 +22,7 @@ use yii\web\IdentityInterface;
  * @property int $department_id
  * @property string $role
  * @property string groupRole
+ * @property Department $department
  */
 class UserIdentity extends User implements IdentityInterface
 {

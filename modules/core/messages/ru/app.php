@@ -30,6 +30,7 @@ return [
     "Action column" => "Колонка действий",
     "Message" => "Сообщение",
     "Cancel" => "Отмена",
+    "Go" => "Перейти",
 
     //Меню
     "Menu" => "Меню",
@@ -41,8 +42,18 @@ return [
     "Sign out" => "Выход",
     "Admin panel" => "Админка",
     "Sign in" => "Войти",
-    "Bases" => "Базы",
     "Dictionaries" => "Словари",
+    "Base" => "База",
+    "Bases" => "Базы",
+
+    //Базы
+    "User base" => "База пользователей",
+    "Student base" => "База студентов",
+    "Group base" => "База групп",
+    "Watch groups" => "Смотреть группы",
+    "Discipline base" => "База дисциплин",
+    "Direction base" => "База направлений",
+    "Watch direction" => "Смотреть направления",
 
     //Сущности
     "University" => "Университет",
