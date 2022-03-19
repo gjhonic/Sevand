@@ -1,13 +1,11 @@
 <?php
 
-use app\modules\core\models\base\Department;
 use app\modules\core\models\base\User;
 use app\modules\core\Module;
 use kartik\dynagrid\DynaGrid;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */

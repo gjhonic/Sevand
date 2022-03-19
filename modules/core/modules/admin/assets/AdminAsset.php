@@ -20,5 +20,7 @@ class AdminAsset extends AssetBundle
         "js\dashboard.js"
     ];
     public $depends = [
+        //'yii\web\YiiAsset',
+        //'yii\bootstrap\BootstrapAsset',
     ];
 }

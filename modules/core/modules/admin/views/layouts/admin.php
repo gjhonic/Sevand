@@ -16,8 +16,8 @@ AdminAsset::register($this);
 ?>
 <?php
 $this->beginPage() ?>
-    <!DOCTYPE html>
-    <html lang="<?= Yii::$app->language ?>">
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>">
     <head>
         <meta charset="<?= Yii::$app->charset ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,100 +45,100 @@ $this->beginPage() ?>
         $this->head() ?>
     </head>
     <body>
-    <?php
-    $this->beginBody() ?>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="<?= Yii::$app->homeUrl ?>"
-           title="<?= Module::t('app', 'Admin panel') ?>">
-            <?= Module::t('app', 'Admin panel') ?>
-        </a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
-                data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <?php
+        $this->beginBody() ?>
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="<?= Yii::$app->homeUrl ?>"
+               title="<?= Module::t('app', 'Admin panel') ?>">
+                <?= Module::t('app', 'Admin panel') ?>
+            </a>
+            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+                    data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    </nav>
+        </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="sidebar-sticky pt-3">
-                    <ul class="nav flex-column">
+        <div class="container-fluid">
+            <div class="row">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="sidebar-sticky pt-3">
+                        <ul class="nav flex-column">
 
-                        <?php
+                            <?php
 
-                        foreach ($nav as $elem) {
-                            $isActive = '';
-                            if (Yii::$app->controller->action->id == $elem['action'] && Yii::$app->controller->id == $elem['controller']) {
-                                $isActive = 'active';
-                            } ?>
+                            foreach ($nav as $elem) {
+                                $isActive = '';
+                                if (Yii::$app->controller->action->id == $elem['action'] && Yii::$app->controller->id == $elem['controller']) {
+                                    $isActive = 'active';
+                                } ?>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= $isActive ?>" href="<?= $elem['url'] ?>">
+                                        <i class="fa <?=$elem['ico']?>" aria-hidden="true"></i>
+                                        <?= $elem['label'] ?>
+                                    </a>
+                                </li>
+                            <?php } ?>
                             <li class="nav-item">
-                                <a class="nav-link <?= $isActive ?>" href="<?= $elem['url'] ?>">
-                                    <i class="fa <?=$elem['ico']?>" aria-hidden="true"></i>
-                                    <?= $elem['label'] ?>
+                                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    <?=Module::t('app', 'Sign out')?>
                                 </a>
                             </li>
-                        <?php } ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                <?=Module::t('app', 'Sign out')?>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                        </ul>
+                    </div>
+                </nav>
 
-            <!-- Sign out Modal -->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><?=Module::t('note', 'Do you really want to leave')?></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= Module::t(
-                                    'app',
-                                    'Cancel'
-                                ) ?></button>
-                            <a type="button" class="btn btn-warning" href="<?= Url::to('sigout') ?>"><?= Module::t(
-                                    'app',
-                                    'Sign out'
-                                ) ?></a>
+                <!-- Sign out Modal -->
+                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"><?=Module::t('note', 'Do you really want to leave')?></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= Module::t(
+                                        'app',
+                                        'Cancel'
+                                    ) ?></button>
+                                <a type="button" class="btn btn-warning" href="<?= Url::to('sigout') ?>"><?= Module::t(
+                                        'app',
+                                        'Sign out'
+                                    ) ?></a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                    <?= Breadcrumbs::widget(
+                        [
+                            'itemTemplate' => "<li class='breadcrumb-item'>{link}</li>\n",
+                            'activeItemTemplate' => "<li class='breadcrumb-item active'>{link}</li>\n",
+                            'homeLink' => [
+                                'label' => Module::t('app', 'Main'),
+                                'url' => Url::to('admin'),
+                                'title' => Module::t('app', 'Go to home page'),
+                            ],
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                            'options' => ['class' => 'breadcrumb', 'style' => ''],
+                        ]
+                    ); ?>
+
+                    <?= Alert::widget() ?>
+                    <?= $content ?>
+                </main>
             </div>
-
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                <?= Breadcrumbs::widget(
-                    [
-                        'itemTemplate' => "<li class='breadcrumb-item'>{link}</li>\n",
-                        'activeItemTemplate' => "<li class='breadcrumb-item active'>{link}</li>\n",
-                        'homeLink' => [
-                            'label' => Module::t('app', 'Main'),
-                            'url' => Url::to('admin'),
-                            'title' => Module::t('app', 'Go to home page'),
-                        ],
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                        'options' => ['class' => 'breadcrumb', 'style' => ''],
-                    ]
-                ); ?>
-
-                <?= Alert::widget() ?>
-                <?= $content ?>
-            </main>
         </div>
-    </div>
 
-    <?php
-    $this->endBody() ?>
-    </body>
+        <?php
+        $this->endBody() ?>
+        </body>
     </html>
 <?php
 $this->endPage() ?>

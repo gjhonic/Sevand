@@ -10,6 +10,9 @@ use yii\helpers\Url;
 /* @var $countDirection int */
 /* @var $countDiscipline int */
 
+$this->title = Module::t('app', 'Bases');
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="block-bases">
     <h1><?= Module::t('app', 'Base') ?>

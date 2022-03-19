@@ -9,15 +9,22 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         [
             'label' => Module::t('app', 'Bases'),
             'url' => Url::to('/admin/bases'),
-            'ico' => 'fa-database',
+            'ico' => 'fa-sort',
             'controller' => 'page',
             'action' => 'bases'
         ],
         [
             'label' => Module::t('app', 'Settings'),
-            'url' => ['/'],
+            'url' => Url::to('/settings/index'),
             'ico' => 'fa-wrench',
             'controller' => 'settings',
+            'action' => 'index'
+        ],
+        [
+            'label' => Module::t('app', 'Logs'),
+            'url' => Url::to('/admin/log'),
+            'ico' => 'fa-book',
+            'controller' => 'log',
             'action' => 'index'
         ]
     ];
@@ -32,9 +39,16 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         ],
         [
             'label' => Module::t('app', 'Settings'),
-            'url' => ['/'],
+            'url' => Url::to('/settings/index'),
             'ico' => 'fa-wrench',
             'controller' => 'settings',
+            'action' => 'index'
+        ],
+        [
+            'label' => Module::t('app', 'Logs'),
+            'url' => Url::to('/admin/log'),
+            'ico' => 'fa-book',
+            'controller' => 'log',
             'action' => 'index'
         ]
     ];
@@ -49,7 +63,7 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         ],
         [
             'label' => Module::t('app', 'Settings'),
-            'url' => ['/'],
+            'url' => Url::to('/settings/index'),
             'ico' => 'fa-wrench',
             'controller' => 'settings',
             'action' => 'index'
