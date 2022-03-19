@@ -41,6 +41,7 @@ return [
     "Settings" => "Настройки",
     "Sign out" => "Выход",
     "Admin panel" => "Админка",
+    "Root panel" => "Root панель",
     "Sign in" => "Войти",
     "Dictionaries" => "Словари",
     "Base" => "База",
@@ -48,7 +49,7 @@ return [
 
     //Базы
     "User base" => "База пользователей",
-    "Count user" => "Количество студентов",
+    "Count user" => "Количество пользователей",
     "Student base" => "База студентов",
     "Count students" => "Количество студентов",
     "Group base" => "База групп",

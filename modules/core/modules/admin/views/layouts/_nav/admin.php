@@ -7,9 +7,23 @@ use yii\helpers\Url;
 if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
     return [
         [
+            'label' => Module::t('app', 'Home page'),
+            'url' => Url::to('/admin/index'),
+            'ico' => 'fa-home',
+            'controller' => 'page',
+            'action' => 'index'
+        ],
+        [
+            'label' => Module::t('app', 'Root panel'),
+            'url' => Url::to('/root/index'),
+            'ico' => 'fa-lock',
+            'controller' => 'root',
+            'action' => 'index'
+        ],
+        [
             'label' => Module::t('app', 'Bases'),
             'url' => Url::to('/admin/bases'),
-            'ico' => 'fa-sort',
+            'ico' => 'fa-database',
             'controller' => 'page',
             'action' => 'bases'
         ],
@@ -30,6 +44,13 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
     ];
 } else if (Yii::$app->user->identity->role === User::ROLE_ADMIN) {
     return [
+        [
+            'label' => Module::t('app', 'Home page'),
+            'url' => Url::to('/admin/index'),
+            'ico' => 'fa-home',
+            'controller' => 'page',
+            'action' => 'index'
+        ],
         [
             'label' => Module::t('app', 'Bases'),
             'url' => Url::to('/admin/bases'),
@@ -54,6 +75,13 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
     ];
 } elseif(Yii::$app->user->identity->role === User::ROLE_MODERATOR) {
     return [
+        [
+            'label' => Module::t('app', 'Home page'),
+            'url' => Url::to('/admin/index'),
+            'ico' => 'fa-home',
+            'controller' => 'page',
+            'action' => 'index'
+        ],
         [
             'label' => Module::t('app', 'Bases'),
             'url' => Url::to('/admin/bases'),

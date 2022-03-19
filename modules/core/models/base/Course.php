@@ -63,7 +63,7 @@ class Course extends \yii\db\ActiveRecord
 
     public static function getCourseMap(): array
     {
-        $courses = Group::find()->all();
+        $courses = Course::find()->all();
         return ArrayHelper::map($courses, 'id', 'title');
     }
 }

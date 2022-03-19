@@ -42,13 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
         [
-            'attribute' => 'department_id',
-            'filter' => Department::getDepartmentGroup(),
-            'value' => function ($model) {
-                return $model->department->short_title;
-            }
-        ],
-        [
             'attribute' => 'direction_id',
             'filter' => Direction::getDirectionMap(),
             'value' => function ($model) {

@@ -122,7 +122,7 @@ $this->beginPage() ?>
                             'activeItemTemplate' => "<li class='breadcrumb-item active'>{link}</li>\n",
                             'homeLink' => [
                                 'label' => Module::t('app', 'Main'),
-                                'url' => Url::to('admin'),
+                                'url' => Url::to('/admin/index'),
                                 'title' => Module::t('app', 'Go to home page'),
                             ],
                             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
