@@ -8,12 +8,12 @@
  */
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\models\base\Group;
 use app\modules\core\models\base\User;
 use app\modules\core\Module;
+use app\modules\core\modules\admin\models\search\GroupSearch;
+use app\modules\core\modules\admin\models\base\Group;
 use app\modules\core\services\user\StatusService;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -42,7 +42,12 @@ class GroupController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view'],
+                        'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_MODERATOR],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'update', 'delete'],
                         'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN],
                     ],
                 ],
@@ -70,12 +75,12 @@ class GroupController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Group::find(),
-        ]);
+        $searchModel = new GroupSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 
@@ -157,7 +162,9 @@ class GroupController extends Controller
      */
     protected function findModel(int $id): Group
     {
-        if (($model = Group::findOne(['id' => $id])) !== null) {
+        $model = Group::findOne(['id' => $id]);
+
+        if ($model !== null) {
             return $model;
         }
 
