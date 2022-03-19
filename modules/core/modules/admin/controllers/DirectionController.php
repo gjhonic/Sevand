@@ -13,6 +13,8 @@ use app\modules\core\modules\admin\models\base\Direction;
 use app\modules\core\modules\admin\models\base\User;
 use app\modules\core\modules\admin\models\search\DirectionSearch;
 use app\modules\core\Module;
+use app\modules\core\services\LogMessage;
+use app\modules\core\services\LogService;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
@@ -108,7 +110,15 @@ class DirectionController extends Controller
         $model = new Direction();
         $model->setDepartmentFromUser();
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post()) && $model->validate()) {
+                if ($model->save()) {
+                    LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_GROUP_CREATE, 'GroupId: ' . $model->id);
+                    Yii::$app->session->setFlash('success', Module::t('log', LogMessage::SUCCESS_GROUP_CREATE));
+                } else {
+                    LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_GROUP_CREATE);
+                    Yii::$app->session->setFlash('danger', Module::t('log', LogMessage::DANGER_GROUP_CREATE));
+                }
+
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {

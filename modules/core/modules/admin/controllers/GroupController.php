@@ -12,6 +12,7 @@ use app\modules\core\models\base\User;
 use app\modules\core\Module;
 use app\modules\core\modules\admin\models\search\GroupSearch;
 use app\modules\core\modules\admin\models\base\Group;
+use app\modules\core\services\LogService;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
@@ -105,6 +106,7 @@ class GroupController extends Controller
     public function actionCreate()
     {
         $model = new Group();
+        $model->setDepartmentFromUser();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {

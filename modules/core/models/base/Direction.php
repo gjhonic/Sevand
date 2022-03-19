@@ -82,9 +82,9 @@ class Direction extends \yii\db\ActiveRecord
         return $this->hasOne(Department::className(), ['id' => 'department_id']);
     }
 
-    public static function getDirectionMap(int $department_id): array
+    public static function getDirectionMap(): array
     {
-        $directions = self::find()->andFilterWhere([''])->all();
+        $directions = static::find()->all();
         return ArrayHelper::map($directions, 'id', 'short_title');
     }
 }

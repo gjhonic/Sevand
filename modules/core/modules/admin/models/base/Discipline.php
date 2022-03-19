@@ -24,6 +24,16 @@ class Discipline extends BaseDiscipline
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public static function find(): \yii\db\ActiveQuery
+    {
+        /* @var $user_identity User */
+        $user_identity = Yii::$app->user->identity;
+        return parent::find()->andWhere(['core_group.department_id' => $user_identity->department_id]);
+    }
+
+    /**
      * Устанавливает факультет пользователя
      */
     public function setDepartmentFromUser()

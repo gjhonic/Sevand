@@ -22,7 +22,7 @@ class Course extends \yii\db\ActiveRecord
      */
     public static function tableName(): string
     {
-        return 'core_course';
+        return '{{%core_course}}';
     }
 
     /**
