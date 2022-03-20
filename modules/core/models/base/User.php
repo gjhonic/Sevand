@@ -203,11 +203,6 @@ class User extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function find(): UserQuery
-    {
-        return new UserQuery(get_called_class());
-    }
-
     /**
      * Метод находит пользователя по логину.
      * @param string $username

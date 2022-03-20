@@ -6,10 +6,11 @@
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
+
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\models\error\UserError;
-use app\modules\core\modules\admin\models\base\User;
+use app\modules\core\modules\admin\models\User;
 use app\modules\core\modules\admin\models\search\UserSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
@@ -70,7 +71,6 @@ class UserController extends Controller
 
     /**
      * Lists all Direction models.
-     *
      * @return string
      */
     public function actionIndex()
@@ -78,10 +78,13 @@ class UserController extends Controller
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
-        ]);
+        return $this->render(
+            'index',
+            [
+                'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+            ]
+        );
     }
 
     /**
@@ -92,15 +95,19 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        return $this->render(
+            'view',
+            [
+                'model' => $this->findModel($id),
+            ]
+        );
     }
 
     /**
      * Creates a new Direction model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
+     * @throws \Exception
      */
     public function actionCreate()
     {
@@ -111,17 +118,22 @@ class UserController extends Controller
             if ($codeCreateUser === UserError::SUCCESS_CREATE_USER) {
                 Yii::$app->session->setFlash('info', Module::t('note', 'User successfully created'));
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else{
-                Yii::$app->session->setFlash('warning', Module::t('note', UserError::getDescriptionError($codeCreateUser)));
+            } else {
+                Yii::$app->session->setFlash(
+                    'warning',
+                    Module::t('note', UserError::getDescriptionError($codeCreateUser))
+                );
             }
-        }
-         else {
+        } else {
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->render(
+            'create',
+            [
+                'model' => $model,
+            ]
+        );
     }
 
     /**
@@ -139,9 +151,12 @@ class UserController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render(
+            'update',
+            [
+                'model' => $model,
+            ]
+        );
     }
 
     /**
@@ -168,9 +183,8 @@ class UserController extends Controller
     protected function findModel(int $id): User
     {
         $model = User::findOne([
-            'id' => $id,
-            'department_id' => Yii::$app->user->identity->department_id,
-        ]);
+                'id' => $id,
+            ]);
 
         if ($model !== null) {
             return $model;
