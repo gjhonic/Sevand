@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\core\modules\admin\models\base;
+namespace app\modules\core\modules\admin\models;
 
 use app\modules\core\models\base\Student as BaseStudent;
 use Yii;
