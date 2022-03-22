@@ -11,7 +11,7 @@ namespace app\modules\core\modules\admin\controllers;
 use app\modules\core\models\base\User;
 use app\modules\core\Module;
 use app\modules\core\modules\admin\models\search\GroupSearch;
-use app\modules\core\modules\admin\models\base\Group;
+use app\modules\core\modules\admin\models\Group;
 use app\modules\core\services\LogMessage;
 use app\modules\core\services\LogService;
 use app\modules\core\services\user\StatusService;

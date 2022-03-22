@@ -9,7 +9,7 @@
 
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\models\base\Discipline;
+use app\modules\core\modules\admin\models\Discipline;
 use app\modules\core\models\base\User;
 use app\modules\core\models\search\DisciplineSearch;
 use app\modules\core\Module;
