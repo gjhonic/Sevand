@@ -8,9 +8,7 @@
  */
 namespace app\modules\core\modules\root\models\search;
 
-use app\modules\core\modules\root\models\base\Log;
-use yii\base\Model;
-use yii\data\ActiveDataProvider;
+use app\modules\core\modules\root\models\Log;
 
 /**
  * Class LogSearch
