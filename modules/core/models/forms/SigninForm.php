@@ -58,7 +58,7 @@ class SigninForm extends Model
     /**
      * @return array - правила валидации.
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['username', 'password'], 'required'],

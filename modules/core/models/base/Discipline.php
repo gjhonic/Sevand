@@ -23,7 +23,7 @@ class Discipline extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%core_discipline}}';
     }
@@ -31,7 +31,7 @@ class Discipline extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['title', 'short_title', 'department_id'], 'required'],
@@ -56,7 +56,7 @@ class Discipline extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Module::t('app', 'ID'),

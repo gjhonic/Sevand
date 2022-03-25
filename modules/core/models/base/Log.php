@@ -26,7 +26,7 @@ class Log extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%core_log}}';
     }
@@ -34,7 +34,7 @@ class Log extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['user_id', 'department_id', 'status_id'], 'required'],

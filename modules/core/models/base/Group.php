@@ -37,7 +37,7 @@ class Group extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['title', 'course_id', 'department_id', 'direction_id', 'curator_id', 'headman_id'], 'required'],

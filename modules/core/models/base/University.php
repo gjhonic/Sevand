@@ -22,7 +22,7 @@ class University extends \yii\db\ActiveRecord
     /**
      * @return string
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%core_university}}';
     }
@@ -30,7 +30,7 @@ class University extends \yii\db\ActiveRecord
     /**
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['title', 'short_title'], 'required'],
