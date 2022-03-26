@@ -1,14 +1,14 @@
 <?php
 /**
  * UserSearch
- * Модель поиска пользователей
+ * Модель поиска пользователей в core/admin
  * @copyright Copyright (c) 2022 Eugene Andreev
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
 namespace app\modules\core\modules\admin\models\search;
 
-use app\modules\core\modules\admin\models\base\User;
+use app\modules\core\modules\admin\models\User;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;

@@ -25,7 +25,7 @@ class User extends BaseUser
     {
         /* @var $user_identity User */
         $user_identity = Yii::$app->user->identity;
-        return parent::find()->andWhere(['core_direction.department_id' => $user_identity->department_id]);
+        return parent::find()->andWhere(['core_user.department_id' => $user_identity->department_id]);
     }
 
     /**
