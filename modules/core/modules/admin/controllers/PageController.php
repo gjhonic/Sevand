@@ -8,7 +8,7 @@
  */
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\models\base\User;
+use app\modules\core\modules\admin\models\User;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;

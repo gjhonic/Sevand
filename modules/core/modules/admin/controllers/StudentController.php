@@ -8,9 +8,9 @@
  */
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\models\base\Student;
-use app\modules\core\models\base\User;
-use app\modules\core\models\search\StudentSearch;
+use app\modules\core\modules\admin\models\Student;
+use app\modules\core\modules\admin\models\User;
+use app\modules\core\modules\admin\models\search\StudentSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;

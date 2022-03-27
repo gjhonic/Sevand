@@ -9,8 +9,8 @@
 
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\models\base\User;
-use app\modules\core\modules\admin\models\base\Log;
+use app\modules\core\modules\admin\models\User;
+use app\modules\core\modules\admin\models\Log;
 use app\modules\core\modules\admin\models\search\LogSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
