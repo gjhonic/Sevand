@@ -10,15 +10,20 @@
 
 return [
 
-    //Ошибки логов
+    // - - - ERROR LOG - - -
     "Error adding log" => "Ошибка добавления лога",
 
-    //INFO LOGS
+    // - - - INFO LOGS - - -
     "User logged in" => "Пользователь авторизавался",
 
-    //Success LOGS
-    "Group successfully created" => "Группа успешно создана",
+    // - - - SUCCESS LOGS - - -
+    //user
     "User successfully created" => "Пользователь успешно создан",
+
+    //group
+    "Group successfully created" => "Группа успешно создана",
+
+
 
     //WARNING LOGS
     "The log was not created because status not found" => "Лог не был создан т.к статус не найден",

@@ -45,7 +45,7 @@ class UserController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'tag-'],
+                        'actions' => ['index', 'view', 'enable', 'disable'],
                         'roles' => [User::ROLE_MODERATOR, User::ROLE_ADMIN, User::ROLE_ROOT],
                     ],
                     [
@@ -172,6 +172,46 @@ class UserController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Enable user
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionEnable($id)
+    {
+        $user = $this->findModel($id);
+        if ($user->enable()) {
+            LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_USER_ENABLE, 'UserId: ' . $user->id);
+            Yii::$app->session->setFlash('success', Module::t('note', 'User successfully enabled'));
+        } else {
+            LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_USER_ENABLE, 'UserId: ' . $user->id);
+            Yii::$app->session->setFlash('danger', Module::t('note', 'User not enabled'));
+        }
+
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
+    /**
+     * Enable user
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDisable($id)
+    {
+        $user = $this->findModel($id);
+        if ($user->disable()) {
+            LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_USER_DISABLE, 'UserId: ' . $user->id);
+            Yii::$app->session->setFlash('success', Module::t('note', 'User successfully enabled'));
+        } else {
+            LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_USER_DISABLE, 'UserId: ' . $user->id);
+            Yii::$app->session->setFlash('danger', Module::t('note', 'User not disabled'));
+        }
+
+        return $this->redirect(['view', 'id' => $id]);
     }
 
     /**

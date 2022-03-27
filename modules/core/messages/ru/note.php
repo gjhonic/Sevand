@@ -18,4 +18,6 @@ return [
     "Go to home page" => "Перейти на главную страницу",
 
     "User successfully created" => "Пользователь успешно создан",
+    "User successfully enabled" => "Пользователь успешно активирован",
+    "User successfully disabled" => "Пользователь успешно отключен",
 ];

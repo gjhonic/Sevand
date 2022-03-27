@@ -19,6 +19,7 @@ use yii\web\NotFoundHttpException;
  * @property string $password
  * @property string $role
  * @property int $status_id
+ * @property int $activity
  * @property int $department_id
  * @property string|null $auth_key
  * @property string|null $access_token
@@ -55,6 +56,13 @@ class User extends \yii\db\ActiveRecord
     const STATUS_BAN = "ban";
     const STATUS_BAN_ID = 3;
 
+    //Активность пользователей
+    const ACTIVITY_ENABLE_ID = 1;
+    const ACTIVITY_ENABLE = 'active';
+
+    const ACTIVITY_DISABLE_ID = 2;
+    const ACTIVITY_DISABLE = 'not active';
+
     /**
      * @return string
      */
@@ -67,7 +75,7 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'surname', 'username', 'password', 'role'], 'required'],
-            [['status_id', 'department_id'], 'integer'],
+            [['status_id', 'department_id', 'activity_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'surname'], 'string', 'max' => 50],
             [['username', 'password'], 'string', 'max' => 255],
@@ -247,5 +255,25 @@ class User extends \yii\db\ActiveRecord
     public function getStatus(): string
     {
         return self::getStatuses()[$this->status_id];
+    }
+
+    /**
+     * Метод активирует пользователя
+     * @return bool
+     */
+    public function enable(): bool
+    {
+        $this->activity = self::ACTIVITY_ENABLE_ID;
+        return $this->save(false);
+    }
+
+    /**
+     * Метод деактивирует пользователя
+     * @return bool
+     */
+    public function disable(): bool
+    {
+        $this->activity = self::ACTIVITY_DISABLE_ID;
+        return $this->save(false);
     }
 }
