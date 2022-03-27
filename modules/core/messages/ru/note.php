@@ -12,6 +12,8 @@ return [
     "SEVAND - a system for collecting information about visits, achievements (cultural, social, sports, scientific), physical standards, consultations." => "СЕВАНД - система сбора информации о посещении, достижений (культурной, общественной, спортивной, научной), физических нормативов, проведенных консультаций.",
 
     "Are you sure you want to delete this item?" => "Вы уверены, что хотите удалить этот элемент?",
+    "Are you sure you want to archive the user?" => "Вы действительно хотите архивировать пользователя?",
+    "Are you sure you want to activate the user?" => "Вы действительно хотите активировать пользователя?",
     "You have successfully signed in" => "Вы успешно выполнили вход",
 
     "Do you really want to leave" => "Вы действительно хотите выйти",

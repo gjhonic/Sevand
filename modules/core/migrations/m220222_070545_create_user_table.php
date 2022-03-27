@@ -20,7 +20,7 @@ class m220222_070545_create_user_table extends Migration
             'password' => $this->string(255)->notNull(),
             'role' => $this->string(15)->notNull(),
             'status_id' => $this->integer()->notNull(),
-            'activity' => $this->integer(1)->defaultValue(1)->notNull(),
+            'activity_id' => $this->integer(1)->defaultValue(1)->notNull(),
             'department_id' => $this->integer()->notNull(),
             'auth_key' => $this->string(32),
             'access_token' => $this->string(32),

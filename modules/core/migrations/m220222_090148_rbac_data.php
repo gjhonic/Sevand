@@ -47,7 +47,7 @@ class m220222_090148_rbac_data extends Migration
         $userSystem->password = Yii::$app->getSecurity()->generatePasswordHash('*3af4s342#@dfsSdFf4');
         $userSystem->role = User::ROLE_SYSTEM;
         $userSystem->status_id = User::STATUS_ACTIVE_ID;
-        $userSystem->activity = User::ACTIVITY_ENABLE_ID;
+        $userSystem->activity_id = User::ACTIVITY_ENABLE_ID;
         $userSystem->department_id = 1;
         $userSystem->save();
 
@@ -61,7 +61,7 @@ class m220222_090148_rbac_data extends Migration
         $userRoot->password = Yii::$app->getSecurity()->generatePasswordHash('123456');
         $userRoot->role = User::ROLE_ROOT;
         $userRoot->status_id = User::STATUS_ACTIVE_ID;
-        $userSystem->activity = User::ACTIVITY_ENABLE_ID;
+        $userSystem->activity_id = User::ACTIVITY_ENABLE_ID;
         $userRoot->department_id = 1;
         $userRoot->save();
 

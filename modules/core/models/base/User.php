@@ -19,7 +19,7 @@ use yii\web\NotFoundHttpException;
  * @property string $password
  * @property string $role
  * @property int $status_id
- * @property int $activity
+ * @property int $activity_id
  * @property int $department_id
  * @property string|null $auth_key
  * @property string|null $access_token
@@ -47,21 +47,21 @@ class User extends \yii\db\ActiveRecord
     const GROUP_ROLE_USER = 'user';
 
     //Статусы пользователей
-    const STATUS_ACTIVE = "active";
+    const STATUS_ACTIVE = "Active";
     const STATUS_ACTIVE_ID = 1;
 
-    const STATUS_TAG_TO_BAN = "tag to ban";
+    const STATUS_TAG_TO_BAN = "Tag to ban";
     const STATUS_TAG_TO_BAN_ID = 2;
 
-    const STATUS_BAN = "ban";
+    const STATUS_BAN = "Ban";
     const STATUS_BAN_ID = 3;
 
     //Активность пользователей
     const ACTIVITY_ENABLE_ID = 1;
-    const ACTIVITY_ENABLE = 'active';
+    const ACTIVITY_ENABLE = 'Active';
 
     const ACTIVITY_DISABLE_ID = 2;
-    const ACTIVITY_DISABLE = 'not active';
+    const ACTIVITY_DISABLE = 'Not active';
 
     /**
      * @return string
@@ -136,6 +136,7 @@ class User extends \yii\db\ActiveRecord
             'password' => Module::t('app', 'Password'),
             'role' => Module::t('app', 'Role'),
             'status_id' => Module::t('app', 'Status'),
+            'activity_id' => Module::t('app', 'Activity'),
             'department_id' => Module::t('app', 'Department'),
             'auth_key' => 'Auth Key',
             'access_token' => 'Access Token',
@@ -181,6 +182,18 @@ class User extends \yii\db\ActiveRecord
             self::STATUS_ACTIVE_ID => self::STATUS_ACTIVE,
             self::STATUS_TAG_TO_BAN_ID => self::STATUS_TAG_TO_BAN,
             self::STATUS_BAN_ID => self::STATUS_BAN,
+        ];
+    }
+
+    /**
+     * Возврщает мап активности
+     * @return array
+     */
+    public static function getAtivities(): array
+    {
+        return [
+            self::ACTIVITY_ENABLE_ID => self::ACTIVITY_ENABLE,
+            self::ACTIVITY_DISABLE_ID => self::ACTIVITY_DISABLE,
         ];
     }
 
@@ -258,12 +271,21 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
+     * Возвращает статус пользователя
+     * @return string
+     */
+    public function getActivity(): string
+    {
+        return self::getAtivities()[$this->activity_id];
+    }
+
+    /**
      * Метод активирует пользователя
      * @return bool
      */
     public function enable(): bool
     {
-        $this->activity = self::ACTIVITY_ENABLE_ID;
+        $this->activity_id = self::ACTIVITY_ENABLE_ID;
         return $this->save(false);
     }
 
@@ -273,7 +295,7 @@ class User extends \yii\db\ActiveRecord
      */
     public function disable(): bool
     {
-        $this->activity = self::ACTIVITY_DISABLE_ID;
+        $this->activity_id = self::ACTIVITY_DISABLE_ID;
         return $this->save(false);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
@@ -19,6 +20,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?php
+            if($model->activity_id === User::ACTIVITY_ENABLE_ID){
+                echo Html::a(Module::t('app', 'Deactivate'), ['disable', 'id' => $model->id], [
+                    'class' => 'btn btn-warning',
+                    'data' => [
+                        'confirm' => Module::t('note', 'Are you sure you want to archive the user?'),
+                        'method' => 'post',
+                    ],
+                ]);
+            }elseif($model->activity_id === User::ACTIVITY_ENABLE_ID){
+                echo Html::a(Module::t('app', 'Activate'), ['enable', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => Module::t('note', 'Are you sure you want to activate the user?'),
+                        'method' => 'post',
+                    ],
+                ]);
+            }
+
+        ?>
+
         <?= Html::a(Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -35,6 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'username',
             'surname',
             'name',
+
             [
                 'attribute' => 'department_id',
                 'format' => 'raw',
@@ -48,6 +71,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'created_at',
                 'value' => function ($model) {
                     return date('j F, Y H:i:s', $model->created_at);
+                }
+            ],
+            [
+                'attribute' => 'status_id',
+                'value' => function ($model) {
+                    return Module::t('app', $model->status);
+                }
+            ],
+            [
+                'attribute' => 'activity_id',
+                'value' => function ($model) {
+                    return Module::t('app', $model->activity);
                 }
             ],
             [
