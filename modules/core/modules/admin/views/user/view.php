@@ -26,15 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'btn btn-warning',
                     'data' => [
                         'confirm' => Module::t('note', 'Are you sure you want to archive the user?'),
-                        'method' => 'post',
                     ],
                 ]);
-            }elseif($model->activity_id === User::ACTIVITY_ENABLE_ID){
+            }elseif($model->activity_id === User::ACTIVITY_DISABLE_ID){
                 echo Html::a(Module::t('app', 'Activate'), ['enable', 'id' => $model->id], [
-                    'class' => 'btn btn-danger',
+                    'class' => 'btn btn-warning',
                     'data' => [
                         'confirm' => Module::t('note', 'Are you sure you want to activate the user?'),
-                        'method' => 'post',
                     ],
                 ]);
             }

@@ -2,7 +2,7 @@
 
 use app\modules\core\Module;
 use app\modules\core\modules\admin\assets\AdminAsset;
-use app\modules\core\widgets\Alert;
+use app\modules\core\widgets\Alert4;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
@@ -130,7 +130,7 @@ $this->beginPage() ?>
                         ]
                     ); ?>
 
-                    <?= Alert::widget() ?>
+                    <?= Alert4::widget() ?>
                     <?= $content ?>
                 </main>
             </div>
