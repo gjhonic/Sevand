@@ -72,15 +72,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
+                'attribute' => 'role',
+                'value' => function ($model) {
+                    return $model->roleTitle;
+                }
+            ],
+            [
                 'attribute' => 'status_id',
                 'value' => function ($model) {
-                    return Module::t('app', $model->status);
+                    return $model->status;
                 }
             ],
             [
                 'attribute' => 'activity_id',
                 'value' => function ($model) {
-                    return Module::t('app', $model->activity);
+                    return $model->activity;
                 }
             ],
             [

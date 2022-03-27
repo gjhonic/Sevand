@@ -38,10 +38,17 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
         [
+            'attribute' => 'activity_id',
+            'filter' => User::getAtivities(),
+            'value' => function ($model) {
+                return $model->activity;
+            }
+        ],
+        [
             'attribute' => 'role',
             'filter' => User::getRoles(),
             'value' => function ($model) {
-                return $model->role;
+                return $model->roleTitle;
             }
         ],
         [

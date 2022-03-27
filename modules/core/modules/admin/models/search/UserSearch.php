@@ -30,7 +30,7 @@ class UserSearch extends User
         return [
             [['name', 'surname'], 'string', 'max' => 50],
             [['username'], 'string', 'max' => 255],
-            [['status_id', 'department_id'], 'integer'],
+            [['status_id', 'department_id', 'activity_id'], 'integer'],
             [['role'], 'string', 'max' => 15],
         ];
     }
@@ -71,6 +71,7 @@ class UserSearch extends User
         $query->andFilterWhere(['like', 'surname', $this->surname]);
         $query->andFilterWhere(['=', 'role', $this->role]);
         $query->andFilterWhere(['=', 'status_id', $this->status_id]);
+        $query->andFilterWhere(['=', 'activity_id', $this->activity_id]);
 
         return $dataProvider;
     }

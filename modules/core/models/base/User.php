@@ -179,9 +179,9 @@ class User extends \yii\db\ActiveRecord
     public static function getStatuses(): array
     {
         return [
-            self::STATUS_ACTIVE_ID => self::STATUS_ACTIVE,
-            self::STATUS_TAG_TO_BAN_ID => self::STATUS_TAG_TO_BAN,
-            self::STATUS_BAN_ID => self::STATUS_BAN,
+            self::STATUS_ACTIVE_ID => Module::t('app', self::STATUS_ACTIVE),
+            self::STATUS_TAG_TO_BAN_ID => Module::t('app', self::STATUS_TAG_TO_BAN),
+            self::STATUS_BAN_ID => Module::t('app', self::STATUS_BAN),
         ];
     }
 
@@ -192,8 +192,8 @@ class User extends \yii\db\ActiveRecord
     public static function getAtivities(): array
     {
         return [
-            self::ACTIVITY_ENABLE_ID => self::ACTIVITY_ENABLE,
-            self::ACTIVITY_DISABLE_ID => self::ACTIVITY_DISABLE,
+            self::ACTIVITY_ENABLE_ID => Module::t('app', self::ACTIVITY_ENABLE),
+            self::ACTIVITY_DISABLE_ID => Module::t('app', self::ACTIVITY_DISABLE),
         ];
     }
 
@@ -259,6 +259,15 @@ class User extends \yii\db\ActiveRecord
     public function getGroupRole(): string
     {
         return self::mapGroupRoles()[$this->role];
+    }
+
+    /**
+     * Возвращает title роли
+     * @return string
+     */
+    public function getRoleTitle(): string
+    {
+        return self::getRoles()[$this->role];
     }
 
     /**
