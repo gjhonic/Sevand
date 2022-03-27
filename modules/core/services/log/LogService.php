@@ -6,7 +6,7 @@
  * @author Eugene Andreev <gjhonic@gmail.com>
  */
 
-namespace app\modules\core\services;
+namespace app\modules\core\services\log;
 
 use app\modules\core\models\base\Log;
 use app\modules\core\models\base\User;
@@ -61,7 +61,8 @@ class LogService
         int $user_id,
         string $message,
         string $description = ''
-    ): bool {
+    ): bool
+    {
         $user = User::findOne(['id' => $user_id]);
 
         if (!in_array($status_id, self::getStatuses())) {
@@ -70,7 +71,7 @@ class LogService
                 return false;
             } else {
                 self::createWarningFileLog(
-                    LogMessage::WARNING_MESSAGE_STATUS_NOT_FOUND. ' status_id: ' . $status_id
+                    LogMessage::WARNING_MESSAGE_STATUS_NOT_FOUND . ' status_id: ' . $status_id
                 );
                 return false;
             }

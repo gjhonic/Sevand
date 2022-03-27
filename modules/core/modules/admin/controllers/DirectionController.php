@@ -9,12 +9,12 @@
 
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\modules\admin\models\base\Direction;
-use app\modules\core\modules\admin\models\base\User;
+use app\modules\core\modules\admin\models\Direction;
+use app\modules\core\modules\admin\models\User;
 use app\modules\core\modules\admin\models\search\DirectionSearch;
 use app\modules\core\Module;
-use app\modules\core\services\LogMessage;
-use app\modules\core\services\LogService;
+use app\modules\core\services\log\LogMessage;
+use app\modules\core\services\log\LogService;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
@@ -175,7 +175,6 @@ class DirectionController extends Controller
     {
         $model = Direction::findOne([
             'id' => $id,
-            'department_id' => Yii::$app->user->identity->department_id,
         ]);
 
         if ($model !== null) {

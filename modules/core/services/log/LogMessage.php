@@ -6,7 +6,7 @@
  * @author Eugene Andreev <gjhonic@gmail.com>
  */
 
-namespace app\modules\core\services;
+namespace app\modules\core\services\log;
 
 class LogMessage
 {

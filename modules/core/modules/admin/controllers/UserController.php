@@ -13,6 +13,7 @@ use app\modules\core\models\error\UserError;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\modules\admin\models\search\UserSearch;
 use app\modules\core\Module;
+use app\modules\core\services\LogService;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
@@ -183,8 +184,8 @@ class UserController extends Controller
     protected function findModel(int $id): User
     {
         $model = User::findOne([
-                'id' => $id,
-            ]);
+            'id' => $id,
+        ]);
 
         if ($model !== null) {
             return $model;
