@@ -13,7 +13,8 @@ use app\modules\core\models\error\UserError;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\modules\admin\models\search\UserSearch;
 use app\modules\core\Module;
-use app\modules\core\services\LogService;
+use app\modules\core\services\log\LogMessage;
+use app\modules\core\services\log\LogService;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
@@ -44,7 +45,7 @@ class UserController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view'],
+                        'actions' => ['index', 'view', 'tag-'],
                         'roles' => [User::ROLE_MODERATOR, User::ROLE_ADMIN, User::ROLE_ROOT],
                     ],
                     [
@@ -117,13 +118,12 @@ class UserController extends Controller
         if ($model->load($this->request->post()) && $model->validate()) {
             $codeCreateUser = $model->createUser(false);
             if ($codeCreateUser === UserError::SUCCESS_CREATE_USER) {
+                LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_USER_CREATE, 'UserId: ' . $model->id);
                 Yii::$app->session->setFlash('info', Module::t('note', 'User successfully created'));
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
-                Yii::$app->session->setFlash(
-                    'warning',
-                    Module::t('note', UserError::getDescriptionError($codeCreateUser))
-                );
+                LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_USER_CREATE);
+                Yii::$app->session->setFlash('warning', Module::t('note', UserError::getDescriptionError($codeCreateUser)));
             }
         } else {
             $model->loadDefaultValues();

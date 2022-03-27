@@ -18,9 +18,14 @@ return [
 
     //Success LOGS
     "Group successfully created" => "Группа успешно создана",
+    "User successfully created" => "Пользователь успешно создан",
 
     //WARNING LOGS
     "The log was not created because status not found" => "Лог не был создан т.к статус не найден",
     "The log was not created because the user was not found" => "Лог не был создан т.к пользователь не найден",
     "The log was not created" => "Лог не был создан",
+
+    //DANGER
+    "Group not created" => "Группа не создана",
+    "User not created" => "Пользователь не создан",
 ];

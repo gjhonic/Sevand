@@ -15,6 +15,7 @@ class LogMessage
 
     //Сообщение Succes логов
     const SUCCESS_GROUP_CREATE = 'Group successfully created';
+    const SUCCESS_USER_CREATE = 'User successfully created';
 
     //Сообщения WARNING логов
     const WARNING_MESSAGE_STATUS_NOT_FOUND = 'Log not created because status not found';
@@ -23,4 +24,6 @@ class LogMessage
 
     //Собщение DANGER лого (ошибка создание обьекта)
     const DANGER_GROUP_CREATE = "Group not created";
+    const DANGER_USER_CREATE = "User not created";
+
 }
