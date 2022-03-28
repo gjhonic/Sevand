@@ -10,6 +10,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\core\models\base\User */
 
 $this->title = Module::t('app', 'User') . ': ' . $model->username;
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);

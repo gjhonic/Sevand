@@ -12,6 +12,7 @@ use yii\grid\ActionColumn;
 /* @var $searchModel \app\modules\core\modules\admin\models\search\UserSearch */
 
 $this->title = Module::t('app', 'Users');
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
