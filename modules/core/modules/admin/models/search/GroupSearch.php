@@ -1,7 +1,7 @@
 <?php
 /**
  * GroupSearch
- * Модель поиска групп
+ * Модель поиска групп в core/admin
  * @copyright Copyright (c) 2022 Eugene Andreev
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
@@ -9,7 +9,7 @@
 
 namespace app\modules\core\modules\admin\models\search;
 
-use app\modules\core\modules\admin\models\base\Group;
+use app\modules\core\modules\admin\models\Group;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;

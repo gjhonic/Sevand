@@ -1,9 +1,8 @@
 <?php
 
 use app\modules\core\models\base\Course;
-use app\modules\core\models\base\Department;
-use app\modules\core\modules\admin\models\base\Direction;
-use app\modules\core\modules\admin\models\base\Group;
+use app\modules\core\modules\admin\models\Direction;
+use app\modules\core\modules\admin\models\Group;
 use app\modules\core\Module;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -17,6 +16,7 @@ use kartik\grid\GridView;
 /* @var $searchModel \app\modules\core\modules\admin\models\search\UserSearch */
 
 $this->title = Module::t('app', 'Groups');
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="group-index">
