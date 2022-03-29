@@ -49,6 +49,13 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
         [
+            'attribute' => 'activity_id',
+            'filter' => Group::getAtivities(),
+            'value' => function ($model) {
+                return $model->activity;
+            }
+        ],
+        [
             'class' => ActionColumn::className(),
             'urlCreator' => function ($action, Group $model, $key, $index, $column) {
                 return Url::toRoute([$action, 'id' => $model->id]);

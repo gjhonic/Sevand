@@ -29,7 +29,7 @@ class GroupSearch extends Group
     {
         return [
             [['title'], 'string', 'max' => 255],
-            [['id', 'course_id', 'direction_id'], 'integer'],
+            [['id', 'course_id', 'direction_id', 'activity_id'], 'integer'],
         ];
     }
 
@@ -64,6 +64,7 @@ class GroupSearch extends Group
         $query->andFilterWhere(['like', 'title', $this->title]);
         $query->andFilterWhere(['=', 'course_id', $this->course_id]);
         $query->andFilterWhere(['=', 'direction_id', $this->direction_id]);
+        $query->andFilterWhere(['=', 'activity_id', $this->activity_id]);
 
         return $dataProvider;
     }
