@@ -161,4 +161,24 @@ class Group extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'headman_id']);
     }
+
+    /**
+     * Метод активирует группу
+     * @return bool
+     */
+    public function enable(): bool
+    {
+        $this->activity_id = self::ACTIVITY_ENABLE_ID;
+        return $this->save(false);
+    }
+
+    /**
+     * Метод деактивирует группу
+     * @return bool
+     */
+    public function disable(): bool
+    {
+        $this->activity_id = self::ACTIVITY_DISABLE_ID;
+        return $this->save(false);
+    }
 }
