@@ -3,7 +3,6 @@
 namespace app\modules\core\models\base;
 
 use app\modules\core\models\error\UserError;
-use app\modules\core\models\queries\UserQuery;
 use app\modules\core\Module;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -25,6 +24,8 @@ use yii\web\NotFoundHttpException;
  * @property string|null $access_token
  * @property string $created_at
  * @property string $updated_at
+ *
+ * @property string $activity
  */
 class User extends \yii\db\ActiveRecord
 {

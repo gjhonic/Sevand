@@ -13,6 +13,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $course_id
  * @property int $department_id
  * @property int $direction_id
+ * @property int $activity_id
  * @property int $curator_id
  * @property int $headman_id
  * @property int|null $created_at
@@ -23,9 +24,18 @@ use yii\behaviors\TimestampBehavior;
  * @property Department $department
  * @property Direction $direction
  * @property User $headman
+ * @property string $activity
  */
 class Group extends \yii\db\ActiveRecord
 {
+
+    //Активность группы
+    const ACTIVITY_ENABLE_ID = 1;
+    const ACTIVITY_ENABLE = 'Active';
+
+    const ACTIVITY_DISABLE_ID = 2;
+    const ACTIVITY_DISABLE = 'Not active';
+
     /**
      * @return string
      */
@@ -41,7 +51,7 @@ class Group extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'course_id', 'department_id', 'direction_id', 'curator_id', 'headman_id'], 'required'],
-            [['course_id', 'department_id', 'direction_id', 'curator_id', 'headman_id'], 'integer'],
+            [['course_id', 'department_id', 'direction_id', 'curator_id', 'headman_id', 'activity_id'], 'integer'],
             [['title'], 'string', 'max' => 50],
             [['created_at', 'updated_at'], 'safe'],
             [['course_id'], 'exist', 'skipOnError' => true, 'targetClass' => Course::className(), 'targetAttribute' => ['course_id' => 'id']],
@@ -74,10 +84,32 @@ class Group extends \yii\db\ActiveRecord
             'department_id' => Module::t('app', 'Department'),
             'direction_id' => Module::t('app', 'Direction'),
             'curator_id' => Module::t('app', 'Curator'),
+            'activity_id' => Module::t('app', 'Activity'),
             'headman_id' => Module::t('app', 'Headman'),
             'created_at' => Module::t('app', 'Created at'),
             'updated_at' => Module::t('app', 'Updated at'),
         ];
+    }
+
+    /**
+     * Возврщает мап активности
+     * @return array
+     */
+    public static function getAtivities(): array
+    {
+        return [
+            self::ACTIVITY_ENABLE_ID => Module::t('app', self::ACTIVITY_ENABLE),
+            self::ACTIVITY_DISABLE_ID => Module::t('app', self::ACTIVITY_DISABLE),
+        ];
+    }
+
+    /**
+     * Возвращает статус пользователя
+     * @return string
+     */
+    public function getActivity(): string
+    {
+        return self::getAtivities()[$this->activity_id];
     }
 
     /**
