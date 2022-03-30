@@ -8,7 +8,7 @@
  */
 namespace app\modules\core\modules\admin\models\search;
 
-use app\modules\core\modules\admin\models\base\Log;
+use app\modules\core\modules\admin\models\Log;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
