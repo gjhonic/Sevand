@@ -19,8 +19,8 @@ class m220226_103811_create_group_table extends Migration
             'department_id' => $this->integer()->notNull(),
             'direction_id' => $this->integer()->notNull(),
             'activity_id' => $this->integer(1)->defaultValue(1)->notNull(),
-            'curator_id' => $this->integer()->notNull(),
-            'headman_id' => $this->integer()->notNull(),
+            'curator_id' => $this->integer()->null(),
+            'headman_id' => $this->integer()->null(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
         ]);

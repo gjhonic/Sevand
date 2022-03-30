@@ -50,7 +50,7 @@ class Group extends \yii\db\ActiveRecord
     public function rules(): array
     {
         return [
-            [['title', 'course_id', 'department_id', 'direction_id', 'curator_id', 'headman_id'], 'required'],
+            [['title', 'course_id', 'department_id', 'direction_id'], 'required'],
             [['course_id', 'department_id', 'direction_id', 'curator_id', 'headman_id', 'activity_id'], 'integer'],
             [['title'], 'string', 'max' => 50],
             [['created_at', 'updated_at'], 'safe'],
