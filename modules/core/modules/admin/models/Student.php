@@ -31,7 +31,7 @@ class Student extends BaseStudent
     {
         /* @var $user_identity self */
         $user_identity = Yii::$app->user->identity;
-        return parent::find()->andWhere(['core_group.department_id' => $user_identity->department_id]);
+        return parent::find()->andWhere(['core_student.department_id' => $user_identity->department_id]);
     }
 
     /**

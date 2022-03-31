@@ -8,7 +8,11 @@
  */
 namespace app\modules\core\modules\admin\controllers;
 
+use app\modules\core\modules\admin\models\Discipline;
+use app\modules\core\modules\admin\models\Student;
 use app\modules\core\modules\admin\models\User;
+use app\modules\core\modules\admin\models\Group;
+use app\modules\core\modules\admin\models\Direction;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
@@ -90,7 +94,19 @@ class PageController extends Controller
      */
     public function actionBases()
     {
-        return $this->render('bases');
+        $userCount = User::find()->count();
+        $groupCount = Group::find()->count();
+        $directionCount = Direction::find()->count();
+        $studentCount = Student::find()->count();
+        $disciplineCount = Discipline::find()->count();
+
+        return $this->render('bases',[
+            'userCount' => $userCount,
+            'groupCount' => $groupCount,
+            'directionCount' => $directionCount,
+            'studentCount' => $studentCount,
+            'disciplineCount' => $disciplineCount,
+        ]);
     }
 
     /**

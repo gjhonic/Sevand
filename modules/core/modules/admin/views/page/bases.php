@@ -4,11 +4,11 @@ use app\modules\core\Module;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-/* @var $countUser int */
-/* @var $countStudent int */
-/* @var $countGroup int */
-/* @var $countDirection int */
-/* @var $countDiscipline int */
+/* @var $userCount int */
+/* @var $groupCount int */
+/* @var $directionCount int */
+/* @var $studentCount int */
+/* @var $disciplineCount int */
 
 $this->title = Module::t('app', 'Bases');
 $this->params['breadcrumbs'][] = $this->title;
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td width="60%">
                     <?=Module::t('app', 'Count user')?>:
                     <i>
-                        <?=$countUser?>
+                        <?=$userCount?>
                     </i>
                 </td>
             </tr>
@@ -73,12 +73,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td width="60%">
                     <?=Module::t('app', 'Count groups')?>:
                     <i>
-                        <?=$countGroup?>
+                        <?=$groupCount?>
                     </i>
                     <br>
                     <?=Module::t('app', 'Count direction')?>:
                     <i>
-                        <?=$countDirection?>
+                        <?=$directionCount?>
                     </i>
                 </td>
             </tr>
@@ -119,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td width="60%">
                     <?=Module::t('app', 'Count students')?>:
                     <i>
-                        <?=$countStudent?>
+                        <?=$studentCount?>
                     </i>
                 </td>
             </tr>
@@ -154,7 +154,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td width="60%">
                     <?=Module::t('app', 'Count discipline')?>:
                     <i>
-                        <?=$countDiscipline?>
+                        <?=$disciplineCount?>
                     </i>
                 </td>
             </tr>
