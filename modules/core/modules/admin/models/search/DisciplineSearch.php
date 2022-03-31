@@ -8,8 +8,7 @@
  */
 namespace app\modules\core\modules\admin\models\search;
 
-use app\modules\core\models\base\Discipline;
-use app\modules\core\modules\admin\models\base\Direction;
+use app\modules\core\modules\admin\models\Discipline;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -19,7 +18,7 @@ use yii\data\ActiveDataProvider;
  *
  * @property integer $department_id
  */
-class DisciplineSearch extends Direction
+class DisciplineSearch extends Discipline
 {
     public $department_id;
 
@@ -56,6 +55,7 @@ class DisciplineSearch extends Direction
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        $query->andWhere(['=', 'department_id', $this->department_id]);
 
         $dataProvider->sort->defaultOrder = ['id' => SORT_DESC];
 
@@ -67,9 +67,6 @@ class DisciplineSearch extends Direction
         $query->andFilterWhere(['=', 'id', $this->id]);
         $query->andFilterWhere(['like', 'short_title', $this->short_title]);
 
-        if(!empty($this->department_id)){
-            $query->andFilterWhere(['=', 'department_id', $this->department_id]);
-        }
 
         return $dataProvider;
     }

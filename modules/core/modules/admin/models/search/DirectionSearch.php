@@ -8,7 +8,7 @@
  */
 namespace app\modules\core\modules\admin\models\search;
 
-use app\modules\core\modules\admin\models\base\Direction;
+use app\modules\core\modules\admin\models\Direction;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
