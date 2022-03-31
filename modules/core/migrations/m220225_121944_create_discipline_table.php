@@ -17,6 +17,7 @@ class m220225_121944_create_discipline_table extends Migration
             'title' => $this->string(255)->notNull(),
             'short_title' => $this->string(50)->notNull(),
             'department_id' => $this->integer()->notNull(),
+            'activity_id' => $this->integer(1)->defaultValue(1)->notNull(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
         ]);

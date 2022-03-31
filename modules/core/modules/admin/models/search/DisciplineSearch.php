@@ -29,7 +29,7 @@ class DisciplineSearch extends Discipline
     {
         return [
             [['title', 'short_title'], 'string', 'max' => 255],
-            [['id', 'department_id'], 'integer'],
+            [['id', 'department_id', 'activity_id'], 'integer'],
         ];
     }
 
@@ -66,7 +66,7 @@ class DisciplineSearch extends Discipline
         $query->andFilterWhere(['like', 'title', $this->title]);
         $query->andFilterWhere(['=', 'id', $this->id]);
         $query->andFilterWhere(['like', 'short_title', $this->short_title]);
-
+        $query->andFilterWhere(['=', 'activity_id', $this->activity_id]);
 
         return $dataProvider;
     }

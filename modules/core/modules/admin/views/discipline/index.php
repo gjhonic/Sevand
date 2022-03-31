@@ -31,6 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'title',
         'short_title',
         [
+            'attribute' => 'activity_id',
+            'filter' => Discipline::getAtivities(),
+            'value' => function ($model) {
+                return $model->activity;
+            }
+        ],
+        [
             'attribute' => 'created_at',
             'value' => function ($model) {
                 return date('j F, Y H:i:s', $model->created_at);
