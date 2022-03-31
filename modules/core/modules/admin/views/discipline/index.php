@@ -12,6 +12,7 @@ use yii\grid\ActionColumn;
 /* @var $searchModel \app\modules\core\models\search\DisciplineSearch */
 
 $this->title = Module::t('app', 'Disciplines');
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="discipline-index">

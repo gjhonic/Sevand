@@ -52,6 +52,7 @@ class Group extends \yii\db\ActiveRecord
         return [
             [['title', 'course_id', 'department_id', 'direction_id'], 'required'],
             [['course_id', 'department_id', 'direction_id', 'curator_id', 'headman_id', 'activity_id'], 'integer'],
+            ['activity_id', 'default', 'value' => 1],
             [['title'], 'string', 'max' => 50],
             [['created_at', 'updated_at'], 'safe'],
             [['course_id'], 'exist', 'skipOnError' => true, 'targetClass' => Course::className(), 'targetAttribute' => ['course_id' => 'id']],

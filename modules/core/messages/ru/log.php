@@ -23,14 +23,22 @@ return [
     //group
     "Group successfully created" => "Группа успешно создана",
 
+    //discipline
+    "Discipline successfully created" => "Дисциплина успешно создана",
 
 
-    //WARNING LOGS
+    // - - - WARNING LOGS - - -
     "The log was not created because status not found" => "Лог не был создан т.к статус не найден",
     "The log was not created because the user was not found" => "Лог не был создан т.к пользователь не найден",
     "The log was not created" => "Лог не был создан",
 
-    //DANGER
-    "Group not created" => "Группа не создана",
+    // - - - DANGER LOGS - - -
+    //user
     "User not created" => "Пользователь не создан",
+
+    //group
+    "Group not created" => "Группа не создана",
+
+    //discipline
+    "Discipline not created" => "Дисциплина не создана",
 ];

@@ -7,6 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\modules\core\models\base\Discipline */
 
 $this->title = Module::t('app', 'Create Discipline');
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Disciplines'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

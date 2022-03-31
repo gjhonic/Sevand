@@ -44,6 +44,7 @@ class Discipline extends \yii\db\ActiveRecord
         return [
             [['title', 'short_title', 'department_id'], 'required'],
             [['department_id', 'activity_id'], 'integer'],
+            ['activity_id', 'default', 'value' => 1],
             [['title'], 'string', 'max' => 255],
             [['short_title'], 'string', 'max' => 50],
             [[ 'created_at', 'updated_at'], 'safe'],

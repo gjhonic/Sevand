@@ -13,6 +13,8 @@ use app\modules\core\modules\admin\models\Discipline;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\modules\admin\models\search\DisciplineSearch;
 use app\modules\core\Module;
+use app\modules\core\services\log\LogMessage;
+use app\modules\core\services\log\LogService;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
@@ -108,8 +110,12 @@ class DisciplineController extends Controller
         $model = new Discipline();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->save()) {
+                LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_CREATED, 'DisciplineId: ' . $model->id);
+                Yii::$app->session->setFlash('success', Module::t('log', LogMessage::SUCCESS_DISCIPLINE_CREATED));
+            } else {
+                LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_CREATED);
+                Yii::$app->session->setFlash('danger', Module::t('log', LogMessage::DANGER_DISCIPLINE_CREATED));
             }
         } else {
             $model->loadDefaultValues();

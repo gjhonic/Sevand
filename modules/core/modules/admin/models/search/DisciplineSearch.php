@@ -55,7 +55,6 @@ class DisciplineSearch extends Discipline
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-        $query->andWhere(['=', 'department_id', $this->department_id]);
 
         $dataProvider->sort->defaultOrder = ['id' => SORT_DESC];
 

@@ -22,6 +22,9 @@ class LogMessage
     //group
     const SUCCESS_GROUP_CREATE = 'Group successfully created';
 
+    //discipline
+    const SUCCESS_DISCIPLINE_CREATED = 'Discipline successfully created';
+
 
     //Сообщения WARNING логов
     const WARNING_MESSAGE_STATUS_NOT_FOUND = 'Log not created because status not found';
@@ -36,6 +39,9 @@ class LogMessage
 
     //group
     const DANGER_GROUP_CREATE = "Group not created";
+
+    //discipline
+    const DANGER_DISCIPLINE_CREATED = "Discipline not created";
 
 
 }
