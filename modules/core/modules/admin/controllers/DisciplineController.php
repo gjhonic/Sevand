@@ -108,11 +108,12 @@ class DisciplineController extends Controller
     public function actionCreate()
     {
         $model = new Discipline();
-
-        if ($this->request->isPost) {
+        $model->setDepartmentFromUser();
+        if ($model->load($this->request->post()) && $model->validate()) {
             if ($model->save()) {
                 LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_CREATED, 'DisciplineId: ' . $model->id);
                 Yii::$app->session->setFlash('success', Module::t('note', 'Discipline successfully created'));
+                return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_CREATED);
                 Yii::$app->session->setFlash('danger', Module::t('error', 'Discipline creation error'));

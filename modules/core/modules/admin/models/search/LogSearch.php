@@ -54,7 +54,6 @@ class LogSearch extends Log
         $dataProvider = new ActiveDataProvider([
             'query' => $query
         ]);
-        $query->andWhere(['=', 'department_id', Yii::$app->user->identity->department_id]);
 
         $dataProvider->sort->defaultOrder = ['id' => SORT_DESC];
 

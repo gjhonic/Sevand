@@ -18,6 +18,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $updated_at
  *
  * @property Department $department
+ * @property string $activity
  */
 class Discipline extends \yii\db\ActiveRecord
 {
@@ -47,7 +48,7 @@ class Discipline extends \yii\db\ActiveRecord
             ['activity_id', 'default', 'value' => 1],
             [['title'], 'string', 'max' => 255],
             [['short_title'], 'string', 'max' => 50],
-            [[ 'created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
         ];
     }
