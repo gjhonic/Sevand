@@ -2,6 +2,7 @@
 
 use app\modules\core\models\base\Log;
 use app\modules\core\Module;
+use app\modules\core\services\log\LogService;
 use kartik\dynagrid\DynaGrid;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -25,10 +26,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'id',
         'message',
         [
-            'attribute' => 'message',
             'label' => Module::t('app', 'Message with translation'),
             'value' => function ($model){
                 return Module::t('log', $model->message);
+            }
+        ],
+        [
+            'attribute' => 'status_id',
+            'filter' => Log::getStatuses(),
+            'value' => function ($model) {
+                return $model->status;
+            }
+        ],
+        [
+            'attribute' => 'user_id',
+            'value' => function ($model) {
+                return $model->user->username;
             }
         ],
         [

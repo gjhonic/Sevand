@@ -9,6 +9,7 @@
 
 namespace app\modules\core\modules\admin\controllers;
 
+use app\modules\core\models\base\Log;
 use app\modules\core\modules\admin\models\Discipline;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\modules\admin\models\search\DisciplineSearch;
@@ -111,11 +112,11 @@ class DisciplineController extends Controller
         $model->setDepartmentFromUser();
         if ($model->load($this->request->post()) && $model->validate()) {
             if ($model->save()) {
-                LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_CREATED, 'DisciplineId: ' . $model->id);
+                LogService::createLog(Log::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_CREATED, 'DisciplineId: ' . $model->id);
                 Yii::$app->session->setFlash('success', Module::t('note', 'Discipline successfully created'));
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
-                LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_CREATED);
+                LogService::createLog(Log::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_CREATED);
                 Yii::$app->session->setFlash('danger', Module::t('error', 'Discipline creation error'));
             }
         } else {
@@ -171,10 +172,10 @@ class DisciplineController extends Controller
     {
         $discipline = $this->findModel($id);
         if ($discipline->enable()) {
-            LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_ENABLED, 'DisciplineId: ' . $discipline->id);
+            LogService::createLog(Log::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_ENABLED, 'DisciplineId: ' . $discipline->id);
             Yii::$app->session->setFlash('success', Module::t('note', 'Discipline successfully enabled'));
         } else {
-            LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_ENABLED, 'DisciplineId: ' . $discipline->id);
+            LogService::createLog(Log::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_ENABLED, 'DisciplineId: ' . $discipline->id);
             Yii::$app->session->setFlash('danger', Module::t('error', 'Discipline not enabled'));
         }
 
@@ -191,10 +192,10 @@ class DisciplineController extends Controller
     {
         $discipline = $this->findModel($id);
         if ($discipline->disable()) {
-            LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_DISABLED, 'DisciplineId: ' . $discipline->id);
+            LogService::createLog(Log::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_DISABLED, 'DisciplineId: ' . $discipline->id);
             Yii::$app->session->setFlash('success', Module::t('note', 'Discipline successfully enabled'));
         } else {
-            LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_DISABLED, 'DisciplineId: ' . $discipline->id);
+            LogService::createLog(Log::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_DISABLED, 'DisciplineId: ' . $discipline->id);
             Yii::$app->session->setFlash('danger', Module::t('error', 'Discipline not disabled'));
         }
 

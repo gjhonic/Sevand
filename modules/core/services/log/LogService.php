@@ -15,53 +15,6 @@ use yii\web\NotFoundHttpException;
 
 class LogService
 {
-    //Статусы логов
-    const STATUS_INFO = 1;
-    const STATUS_SUCCESS = 2;
-    const STATUS_WARNING = 3;
-    const STATUS_DANGER = 4;
-    const STATUS_CRAZY = 5;
-
-    /**
-     * Возвращает массив статусов
-     * @return array
-     */
-    public static function getStatusesIds(): array
-    {
-        return [
-            self::STATUS_INFO,
-            self::STATUS_SUCCESS,
-            self::STATUS_WARNING,
-            self::STATUS_DANGER,
-            self::STATUS_CRAZY,
-        ];
-    }
-
-    /**
-     * Возвращает мап статусов
-     * @return array
-     */
-    public static function getStatuses(): array
-    {
-        return [
-            self::STATUS_INFO => 'info',
-            self::STATUS_SUCCESS => 'success',
-            self::STATUS_WARNING => 'warning',
-            self::STATUS_DANGER => 'danger',
-            self::STATUS_CRAZY => 'crazy',
-        ];
-    }
-
-    /**
-     * Возвращает int
-     * @param int $status_id
-     * @return string
-     */
-    public static function getStatus(int $status_id): string
-    {
-        return self::getStatuses()[$status_id];
-    }
-
     /**
      * Добавления лога
      * @param int $status_id тип лога (STATUS_INFO, STATUS_SUCCESS, STATUS_WARNING, STATUS_DANGER)
@@ -78,7 +31,7 @@ class LogService
         string $description = ''
     ): bool
     {
-        if (!in_array($status_id, self::getStatusesIds())) {
+        if (!in_array($status_id, Log::getStatusesIds())) {
             self::createWarningFileLog(
                 LogMessage::WARNING_MESSAGE_STATUS_NOT_FOUND . ' status_id: ' . $status_id
             );
