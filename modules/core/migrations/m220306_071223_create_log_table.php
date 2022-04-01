@@ -16,7 +16,7 @@ class m220306_071223_create_log_table extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'department_id' => $this->integer()->notNull(),
-            'message' => $this->text()->null(),
+            'message' => $this->text()->notNull(),
             'status_id' => $this->integer(1)->notNull(),
             'description' => $this->text()->null(),
             'created_at' => $this->integer(),

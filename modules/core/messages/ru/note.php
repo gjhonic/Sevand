@@ -23,8 +23,9 @@ return [
 
     "User successfully created" => "Пользователь успешно создан",
     "User successfully enabled" => "Пользователь успешно активирован",
-    "User successfully disabled" => "Пользователь успешно отключен",
+    "User successfully disabled" => "Пользователь успешно заархивирован",
 
     "Discipline successfully created" => "Дисциплина успешно создана",
-
+    "Discipline successfully enabled" => "Дисциплина успешно активирована",
+    "Discipline successfully disabled" => "Дисциплина успешно заархивирована",
 ];

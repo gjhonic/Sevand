@@ -3,7 +3,6 @@
 namespace app\modules\core\models\base;
 
 use app\modules\core\Module;
-use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
@@ -37,7 +36,7 @@ class Log extends \yii\db\ActiveRecord
     public function rules(): array
     {
         return [
-            [['user_id', 'department_id', 'status_id'], 'required'],
+            [['user_id', 'department_id', 'status_id', 'message'], 'required'],
             [['user_id', 'department_id', 'status_id'], 'default', 'value' => null],
             [['user_id', 'department_id', 'status_id'], 'integer'],
             [['message', 'description'], 'string'],

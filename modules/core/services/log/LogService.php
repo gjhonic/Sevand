@@ -26,6 +26,21 @@ class LogService
      * Возвращает массив статусов
      * @return array
      */
+    public static function getStatusesIds(): array
+    {
+        return [
+            self::STATUS_INFO,
+            self::STATUS_SUCCESS,
+            self::STATUS_WARNING,
+            self::STATUS_DANGER,
+            self::STATUS_CRAZY,
+        ];
+    }
+
+    /**
+     * Возвращает мап статусов
+     * @return array
+     */
     public static function getStatuses(): array
     {
         return [
@@ -51,7 +66,7 @@ class LogService
      * Добавления лога
      * @param int $status_id тип лога (STATUS_INFO, STATUS_SUCCESS, STATUS_WARNING, STATUS_DANGER)
      * @param int $user_id id Пользователя
-     * @param string $message короткое сообщение
+     * @param string $message короткое сообщение из LogMessage
      * @param string $description описание лога
      * @return bool
      * @throws NotFoundHttpException
@@ -63,28 +78,18 @@ class LogService
         string $description = ''
     ): bool
     {
-        $user = User::findOne(['id' => $user_id]);
-
-        if (!in_array($status_id, self::getStatuses())) {
-            $resultSave = self::createWarningLog(LogMessage::WARNING_MESSAGE_STATUS_NOT_FOUND, 'status_id: ' . $status_id);
-            if ($resultSave) {
-                return false;
-            } else {
-                self::createWarningFileLog(
-                    LogMessage::WARNING_MESSAGE_STATUS_NOT_FOUND . ' status_id: ' . $status_id
-                );
-                return false;
-            }
+        if (!in_array($status_id, self::getStatusesIds())) {
+            self::createWarningFileLog(
+                LogMessage::WARNING_MESSAGE_STATUS_NOT_FOUND . ' status_id: ' . $status_id
+            );
+            return false;
         }
 
+        $user = User::findOne(['id' => $user_id]);
+
         if (!$user) {
-            $resultSave = self::createWarningLog(LogMessage::WARNING_MESSAGE_USET_NULL, 'user_id: ' . $user_id);
-            if ($resultSave) {
-                return false;
-            } else {
-                self::createWarningFileLog(LogMessage::WARNING_MESSAGE_USET_NULL . ' user_id: ' . $user_id);
-                return false;
-            }
+            self::createWarningFileLog(LogMessage::WARNING_MESSAGE_USET_NULL . ' user_id: ' . $user_id);
+            return false;
         }
 
         $log = new Log();
@@ -100,28 +105,6 @@ class LogService
             self::createWarningFileLog(LogMessage::WARNING_MESSAGE_LOG_NOT_CREATED);
             return false;
         }
-    }
-
-    /**
-     * Метод создает warning лог
-     * @param int $message_id
-     * @param string $text
-     * @return bool
-     */
-    private static function createWarningLog(string $message, string $text): bool
-    {
-        $logWarning = new Log();
-        $logWarning->user_id = User::USER_SYSTEM_ID;
-        $logWarning->department_id = 0;
-        $logWarning->status_id = self::STATUS_WARNING;
-        $logWarning->message = $message;
-        $logWarning->description = $text;
-
-        if (!$logWarning->save()) {
-            self::createWarningFileLog(LogMessage::WARNING_MESSAGE_LOG_NOT_CREATED);
-            return false;
-        }
-        return true;
     }
 
     /**
