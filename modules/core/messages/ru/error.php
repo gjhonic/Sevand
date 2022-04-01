@@ -18,4 +18,10 @@ return [
     //UserError
     "Error validation" => "Ошибка валидации",
     "User creation error" => "Ошибка создания пользователя",
+
+    //DisciplineError
+    "Discipline creation error" => "Ошибка создания дисциплины",
+    "Discipline not enabled" => "Дисциплина не активирована",
+    "Discipline not disable" => "Дисциплина не отключена",
+
 ];

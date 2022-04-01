@@ -25,6 +25,8 @@ class LogMessage
 
     //discipline
     const SUCCESS_DISCIPLINE_CREATED = 'Discipline successfully created';
+    const SUCCESS_DISCIPLINE_ENABLED = 'Discipline successfully enabled';
+    const SUCCESS_DISCIPLINE_DISABLED = 'Discipline successfully disabled';
 
 
     //// - - - MESSAGES WARNING LOGS - - -
@@ -43,6 +45,8 @@ class LogMessage
 
     //discipline
     const DANGER_DISCIPLINE_CREATED = "Discipline not created";
+    const DANGER_DISCIPLINE_ENABLED = "Discipline not enabled";
+    const DANGER_DISCIPLINE_DISABLED = "Discipline not disabled";
 
 
 }

@@ -25,6 +25,8 @@ return [
 
     //discipline
     "Discipline successfully created" => "Дисциплина успешно создана",
+    "Discipline successfully enabled" => "Дисциплина успешно активирована",
+    "Discipline successfully disabled" => "Дисциплина успешно заархивирован",
 
 
     // - - - WARNING LOGS - - -
@@ -40,5 +42,7 @@ return [
     "Group not created" => "Группа не создана",
 
     //discipline
+    "Discipline not created" => "Дисциплина не создана",
+    "Discipline not created" => "Дисциплина не создана",
     "Discipline not created" => "Дисциплина не создана",
 ];

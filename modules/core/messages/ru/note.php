@@ -14,6 +14,8 @@ return [
     "Are you sure you want to delete this item?" => "Вы уверены, что хотите удалить этот элемент?",
     "Are you sure you want to archive the user?" => "Вы действительно хотите архивировать пользователя?",
     "Are you sure you want to activate the user?" => "Вы действительно хотите активировать пользователя?",
+    "Are you sure you want to archive the discipline?" => "Вы действительно хотите архивировать дисциплину?",
+    "Are you sure you want to activate the discipline?" => "Вы действительно хотите активировать дисциплину?",
     "You have successfully signed in" => "Вы успешно выполнили вход",
 
     "Do you really want to leave" => "Вы действительно хотите выйти",
@@ -22,4 +24,7 @@ return [
     "User successfully created" => "Пользователь успешно создан",
     "User successfully enabled" => "Пользователь успешно активирован",
     "User successfully disabled" => "Пользователь успешно отключен",
+
+    "Discipline successfully created" => "Пользователь успешно создан",
+
 ];

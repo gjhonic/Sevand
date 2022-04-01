@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\models\Discipline;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
@@ -27,6 +28,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?php
+        if($model->activity_id === Discipline::ACTIVITY_ENABLE_ID){
+            echo Html::a(Module::t('app', 'Deactivate'), ['disable', 'id' => $model->id], [
+                'class' => 'btn btn-warning',
+                'data' => [
+                    'confirm' => Module::t('note', 'Are you sure you want to archive the discipline?'),
+                ],
+            ]);
+        }elseif($model->activity_id === Discipline::ACTIVITY_DISABLE_ID){
+            echo Html::a(Module::t('app', 'Activate'), ['enable', 'id' => $model->id], [
+                'class' => 'btn btn-warning',
+                'data' => [
+                    'confirm' => Module::t('note', 'Are you sure you want to activate the discipline?'),
+                ],
+            ]);
+        }
+        ?>
     </p>
 
     <?= DetailView::widget([
@@ -36,12 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'short_title',
             [
-                'attribute' => 'department_id',
-                'format' => 'raw',
+                'attribute' => 'activity_id',
                 'value' => function ($model) {
-                    return Html::a($model->department->short_title,
-                        Url::to(['/department/view', 'id' => $model->department_id]),
-                        ['class' => 'btn btn-outline-secondary']);
+                    return $model->activity;
                 }
             ],
             [

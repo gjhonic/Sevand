@@ -45,7 +45,7 @@ class DisciplineController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view'],
+                        'actions' => ['index', 'view', 'enable', 'disable'],
                         'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_MODERATOR],
                     ],
                     [
@@ -112,10 +112,10 @@ class DisciplineController extends Controller
         if ($this->request->isPost) {
             if ($model->save()) {
                 LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_CREATED, 'DisciplineId: ' . $model->id);
-                Yii::$app->session->setFlash('success', Module::t('log', LogMessage::SUCCESS_DISCIPLINE_CREATED));
+                Yii::$app->session->setFlash('success', Module::t('note', 'Discipline successfully created'));
             } else {
                 LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_CREATED);
-                Yii::$app->session->setFlash('danger', Module::t('log', LogMessage::DANGER_DISCIPLINE_CREATED));
+                Yii::$app->session->setFlash('danger', Module::t('error', 'Discipline creation error'));
             }
         } else {
             $model->loadDefaultValues();
@@ -158,6 +158,46 @@ class DisciplineController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Enable discipline
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionEnable($id)
+    {
+        $discipline = $this->findModel($id);
+        if ($discipline->enable()) {
+            LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_ENABLED, 'DisciplineId: ' . $discipline->id);
+            Yii::$app->session->setFlash('success', Module::t('note', 'Discipline successfully enabled'));
+        } else {
+            LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_ENABLED, 'DisciplineId: ' . $discipline->id);
+            Yii::$app->session->setFlash('danger', Module::t('error', 'Discipline not enabled'));
+        }
+
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
+    /**
+     * Enable discipline
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDisable($id)
+    {
+        $discipline = $this->findModel($id);
+        if ($discipline->disable()) {
+            LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_DISABLED, 'DisciplineId: ' . $discipline->id);
+            Yii::$app->session->setFlash('success', Module::t('note', 'Discipline successfully enabled'));
+        } else {
+            LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_DISABLED, 'DisciplineId: ' . $discipline->id);
+            Yii::$app->session->setFlash('danger', Module::t('error', 'Discipline not disabled'));
+        }
+
+        return $this->redirect(['view', 'id' => $id]);
     }
 
     /**

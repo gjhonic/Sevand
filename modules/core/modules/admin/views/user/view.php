@@ -37,7 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]);
             }
-
         ?>
 
         <?= Html::a(Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
