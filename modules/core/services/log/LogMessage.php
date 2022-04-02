@@ -27,6 +27,7 @@ class LogMessage
     const SUCCESS_DISCIPLINE_CREATED = 'Discipline successfully created';
     const SUCCESS_DISCIPLINE_ENABLED = 'Discipline successfully enabled';
     const SUCCESS_DISCIPLINE_DISABLED = 'Discipline successfully disabled';
+    const SUCCESS_DISCIPLINE_DELETED = 'Discipline successfully deleted';
 
 
     //// - - - MESSAGES WARNING LOGS - - -

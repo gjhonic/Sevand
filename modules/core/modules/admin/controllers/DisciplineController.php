@@ -157,9 +157,24 @@ class DisciplineController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $discipline = $this->findModel($id);
+        $disciplineTitle = $discipline->title;
+        $disciplineId = $discipline->id;
 
-        return $this->redirect(['index']);
+        if($discipline->delete()){
+            LogService::createLog(LogStatus::STATUS_SUCCESS,
+                Yii::$app->user->identity->id,
+                LogMessage::SUCCESS_DISCIPLINE_DELETED,
+                'DisciplineId: ' . $disciplineId . 'DisciplineTitle' . $disciplineTitle) ;
+            Yii::$app->session->setFlash('success', Module::t('note', 'Discipline successfully deleted'));
+        } else {
+            LogService::createLog(LogStatus::STATUS_DANGER,
+                Yii::$app->user->identity->id,
+                LogMessage::DANGER_DISCIPLINE_CREATED);
+            Yii::$app->session->setFlash('danger', Module::t('error', 'Discipline creation error'));
+        }
+
+        return $this->redirect(Url::to('/admin/discipline/index'));
     }
 
     /**

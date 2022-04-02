@@ -2,10 +2,10 @@
 
 use app\modules\core\models\base\Discipline;
 use app\modules\core\Module;
+use app\modules\core\modules\admin\models\User;
 use kartik\dynagrid\DynaGrid;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -20,7 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Module::t('app', 'Create Discipline'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php if(Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
+            <?= Html::a(Module::t('app', 'Create Discipline'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php } ?>
     </p>
 
 
@@ -41,21 +43,34 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'created_at',
             'value' => function ($model) {
-                return date('j F, Y H:i:s', $model->created_at);
+                return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
             }
         ],
         [
             'attribute' => 'updated_at',
             'value' => function ($model) {
-                return date('j F, Y H:i:s', $model->updated_at);
+                return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
             }
         ],
         [
-            'class' => ActionColumn::className(),
-            'urlCreator' => function ($action, Discipline $model, $key, $index, $column) {
-                return Url::toRoute([$action, 'id' => $model->id]);
-            },
-            'template'=>'{view}  {update}',
+            'label' => Module::t('app', 'Action column'),
+            'format' => 'raw',
+            'value' => function ($model) {
+                $html = Html::a(Module::t('app', 'Show'), Url::to(['view', 'id' => $model->id]), ['class' => 'btn btn-success btn-block']);
+
+                if(Yii::$app->user->identity->role !== User::ROLE_MODERATOR){
+                    $html .= ' ' . Html::a(Module::t('app', 'Edit'), Url::to(['update', 'id' => $model->id]), ['class' => 'btn btn-primary btn-block']);
+                    $html .= ' ' . Html::a(Module::t('app', 'Delete'), Url::to(['delete', 'id' => $model->id]), [
+                            'class' => 'btn btn-danger btn-block',
+                            'data' => [
+                                'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
+                                'method' => 'post',
+                            ],
+                        ]);
+                }
+
+                return $html;
+            }
         ],
     ]; ?>
 

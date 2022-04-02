@@ -2,6 +2,7 @@
 
 use app\modules\core\Module;
 use app\modules\core\modules\admin\models\Discipline;
+use app\modules\core\modules\admin\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
@@ -20,23 +21,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
+            <?= Html::a(Module::t('app', 'Edit'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php } ?>
         <?php
-        if($model->activity_id === Discipline::ACTIVITY_ENABLE_ID){
+        if ($model->activity_id === Discipline::ACTIVITY_ENABLE_ID) {
             echo Html::a(Module::t('app', 'To archive'), ['disable', 'id' => $model->id], [
                 'class' => 'btn btn-warning',
                 'data' => [
                     'confirm' => Module::t('note', 'Are you sure you want to archive the discipline?'),
                 ],
             ]);
-        }elseif($model->activity_id === Discipline::ACTIVITY_DISABLE_ID){
+        } elseif ($model->activity_id === Discipline::ACTIVITY_DISABLE_ID) {
             echo Html::a(Module::t('app', 'Activate'), ['enable', 'id' => $model->id], [
                 'class' => 'btn btn-warning',
                 'data' => [
