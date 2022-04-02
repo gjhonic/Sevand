@@ -163,6 +163,18 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
+     * Возврщает мап ролей
+     * @return array
+     */
+    public static function getAllRoles(): array
+    {
+        return array_merge([
+            self::ROLE_ROOT => Module::t('app', 'Root'),
+        ],
+        self::getRoles());
+    }
+
+    /**
      * Возврщает мап ролей для добавления новых пользователей админом
      * @return array
      */
@@ -267,9 +279,9 @@ class User extends \yii\db\ActiveRecord
      * Возвращает title роли
      * @return string
      */
-    public function getRoleTitle(): string
+    public function getRoleTitle(): ?string
     {
-        return self::getRoles()[$this->role];
+        return self::getAllRoles()[$this->role];
     }
 
     /**
