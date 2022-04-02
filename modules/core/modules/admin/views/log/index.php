@@ -40,14 +40,18 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         [
             'attribute' => 'user_id',
+            'format' => 'raw',
             'value' => function ($model) {
-                return $model->user->username;
+                $user = $model->user;
+                if($user){
+                    return Html::a($model->user->username, Url::to(['/admin/user/view', 'id' => $model->user_id]), ['class' => 'btn btn-secondary btn-block']);
+                }
             }
         ],
         [
             'attribute' => 'created_at',
             'value' => function ($model) {
-                return date('j F, Y H:i:s', $model->created_at);
+                return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
             }
         ],
         [
@@ -55,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'urlCreator' => function ($action, Log $model, $key, $index, $column) {
                 return Url::toRoute([$action, 'id' => $model->id]);
             },
-            'template' => '{view}  {update}',
+            'template' => '{view}',
         ],
     ]; ?>
 
