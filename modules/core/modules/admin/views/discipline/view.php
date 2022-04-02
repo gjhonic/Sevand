@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
         <?php
         if($model->activity_id === Discipline::ACTIVITY_ENABLE_ID){
-            echo Html::a(Module::t('app', 'Deactivate'), ['disable', 'id' => $model->id], [
+            echo Html::a(Module::t('app', 'To archive'), ['disable', 'id' => $model->id], [
                 'class' => 'btn btn-warning',
                 'data' => [
                     'confirm' => Module::t('note', 'Are you sure you want to archive the discipline?'),

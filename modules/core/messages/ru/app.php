@@ -28,6 +28,7 @@ return [
     "Active" => "Активный",
     "Not active" => "Не активный",
     "Archive" => "Архивный",
+    "To archive" => "Архивировать",
     "Action column" => "Колонка действий",
     "Message" => "Сообщение",
     "Cancel" => "Отмена",

@@ -78,11 +78,41 @@ class Log extends \yii\db\ActiveRecord
     }
 
     /**
+     * Возвращает массив статусов
+     * @return array
+     */
+    public static function getStatusesIds(): array
+    {
+        return [
+            LogStatus::STATUS_INFO,
+            LogStatus::STATUS_SUCCESS,
+            LogStatus::STATUS_WARNING,
+            LogStatus::STATUS_DANGER,
+            LogStatus::STATUS_CRAZY,
+        ];
+    }
+
+    /**
+     * Возвращает мап статусов
+     * @return array
+     */
+    public static function getStatuses(): array
+    {
+        return [
+            LogStatus::STATUS_INFO => 'info',
+            LogStatus::STATUS_SUCCESS => 'success',
+            LogStatus::STATUS_WARNING => 'warning',
+            LogStatus::STATUS_DANGER => 'danger',
+            LogStatus::STATUS_CRAZY => 'crazy',
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getStatus(): ?string
     {
-        return LogStatus::getStatuses()[$this->status_id];
+        return self::getStatuses()[$this->status_id];
     }
 
     /**
