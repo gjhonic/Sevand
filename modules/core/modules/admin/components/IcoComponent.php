@@ -1,4 +1,7 @@
 <?php
+
+namespace app\modules\core\modules\admin\components;
+
 /**
  * IcoComponent
  * Компонент для вставки иконок
@@ -10,6 +13,8 @@ class IcoComponent
 {
 
     const VIEW_ICO = 'fa-eye';
+    const EDIT_ICO = 'fa-pencil';
+    const DELETE_ICO = 'fa-trash';
 
     /**
      * Возвращает иконку глазика
@@ -18,6 +23,24 @@ class IcoComponent
     public static function view(): string
     {
         return self::layout(self::VIEW_ICO);
+    }
+
+    /**
+     * Возвращает иконку ручки
+     * @return string
+     */
+    public static function edit(): string
+    {
+        return self::layout(self::EDIT_ICO);
+    }
+
+    /**
+     * Возвращает иконку корзины
+     * @return string
+     */
+    public static function delete(): string
+    {
+        return self::layout(self::DELETE_ICO);
     }
 
     /**

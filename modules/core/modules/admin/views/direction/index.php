@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\modules\admin\models\Direction;
 use app\modules\core\modules\admin\models\User;
 use kartik\dynagrid\DynaGrid;
@@ -52,26 +53,26 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
                 }
             ],
-         [
-             'label' => Module::t('app', 'Action column'),
-             'format' => 'raw',
-             'value' => function ($model) {
-                 $html = Html::a(Module::t('app', 'Show'), Url::to(['view', 'id' => $model->id]), ['class' => 'btn btn-success btn-block']);
+            [
+                 'label' => Module::t('app', 'Action column'),
+                 'format' => 'raw',
+                 'value' => function ($model) {
+                     $html = Html::a(IcoComponent::view() . ' ' . Module::t('app', 'Show'), Url::to(['view', 'id' => $model->id]), ['class' => 'btn btn-success btn-block']);
 
-                 if(Yii::$app->user->identity->role !== User::ROLE_MODERATOR){
-                     $html .= ' ' . Html::a(Module::t('app', 'Edit'), Url::to(['update', 'id' => $model->id]), ['class' => 'btn btn-primary btn-block']);
-                     $html .= ' ' . Html::a(Module::t('app', 'Delete'), Url::to(['delete', 'id' => $model->id]), [
-                             'class' => 'btn btn-danger btn-block',
-                             'data' => [
-                                 'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
-                                 'method' => 'post',
-                             ],
-                         ]);
+                     if(Yii::$app->user->identity->role !== User::ROLE_MODERATOR){
+                         $html .= ' ' . Html::a(IcoComponent::edit() . ' ' .Module::t('app', 'Edit'), Url::to(['update', 'id' => $model->id]), ['class' => 'btn btn-primary btn-block']);
+                         $html .= ' ' . Html::a(IcoComponent::delete() . ' ' .Module::t('app', 'Delete'), Url::to(['delete', 'id' => $model->id]), [
+                                 'class' => 'btn btn-danger btn-block',
+                                 'data' => [
+                                     'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
+                                     'method' => 'post'
+                                 ],
+                             ]);
+                     }
+
+                     return $html;
                  }
-
-                 return $html;
-             }
-         ],
+            ],
         ]; ?>
 
     <?= DynaGrid::widget([
