@@ -118,4 +118,24 @@ class Direction extends \yii\db\ActiveRecord
         $directions = static::find()->all();
         return ArrayHelper::map($directions, 'id', 'short_title');
     }
+
+    /**
+     * Метод активирует направление
+     * @return bool
+     */
+    public function enable(): bool
+    {
+        $this->activity_id = self::ACTIVITY_ENABLE_ID;
+        return $this->save(false);
+    }
+
+    /**
+     * Метод деактивирует направление
+     * @return bool
+     */
+    public function disable(): bool
+    {
+        $this->activity_id = self::ACTIVITY_DISABLE_ID;
+        return $this->save(false);
+    }
 }

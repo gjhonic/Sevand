@@ -22,6 +22,11 @@ return [
     //DisciplineError
     "Discipline creation error" => "Ошибка создания дисциплины",
     "Discipline not enabled" => "Дисциплина не активирована",
-    "Discipline not disable" => "Дисциплина не отключена",
+    "Discipline not disable" => "Дисциплина не заархивирована",
+
+    //DirectionError
+    "Direction creation error" => "Ошибка создания направления",
+    "Direction not enabled" => "Направление не активировано",
+    "Direction not disable" => "Направление не заархивировано",
 
 ];

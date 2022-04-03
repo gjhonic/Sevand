@@ -6,12 +6,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\core\models\base\Direction */
 
-$this->title = Yii::t('app', 'Update Direction: {name}', [
-    'name' => $model->title,
+$this->title = Module::t('app', 'Editing Direction: {name}', [
+    'name' => $model->short_title,
 ]);
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Directions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->short_title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Module::t('app', 'Update');
+$this->params['breadcrumbs'][] = Module::t('app', 'Editing');
 ?>
 <div class="direction-update">
 

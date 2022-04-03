@@ -24,10 +24,16 @@ class LogMessage
     const SUCCESS_GROUP_CREATE = 'Group successfully created';
 
     //discipline
-    const SUCCESS_DISCIPLINE_CREATED = 'Discipline successfully created';
-    const SUCCESS_DISCIPLINE_ENABLED = 'Discipline successfully enabled';
+    const SUCCESS_DISCIPLINE_CREATED  = 'Discipline successfully created';
+    const SUCCESS_DISCIPLINE_ENABLED  = 'Discipline successfully enabled';
     const SUCCESS_DISCIPLINE_DISABLED = 'Discipline successfully disabled';
-    const SUCCESS_DISCIPLINE_DELETED = 'Discipline successfully deleted';
+    const SUCCESS_DISCIPLINE_DELETED  = 'Discipline successfully deleted';
+
+    //direction
+    const SUCCESS_DIRECTION_CREATED  = 'Direction successfully created';
+    const SUCCESS_DIRECTION_ENABLED  = 'Direction successfully enabled';
+    const SUCCESS_DIRECTION_DISABLED = 'Direction successfully disabled';
+    const SUCCESS_DIRECTION_DELETED  = 'Direction successfully deleted';
 
 
     //// - - - MESSAGES WARNING LOGS - - -
@@ -48,6 +54,11 @@ class LogMessage
     const DANGER_DISCIPLINE_CREATED = "Discipline not created";
     const DANGER_DISCIPLINE_ENABLED = "Discipline not enabled";
     const DANGER_DISCIPLINE_DISABLED = "Discipline not disabled";
+
+    //direction
+    const DANGER_DIRECTION_CREATED  = "Direction not created";
+    const DANGER_DIRECTION_ENABLED  = "Direction not enabled";
+    const DANGER_DIRECTION_DISABLED = "Direction not disabled";
 
 
 }

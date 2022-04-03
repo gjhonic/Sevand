@@ -24,10 +24,14 @@ return [
     "Group successfully created" => "Группа успешно создана",
 
     //discipline
-    "Discipline successfully created" => "Дисциплина успешно создана",
-    "Discipline successfully enabled" => "Дисциплина успешно активирована",
+    "Discipline successfully created"  => "Дисциплина успешно создана",
+    "Discipline successfully enabled"  => "Дисциплина успешно активирована",
     "Discipline successfully disabled" => "Дисциплина успешно заархивирована",
 
+    //direction
+    "Direction successfully created"  => "Направление успешно создано",
+    "Direction successfully enabled"  => "Направление успешно активировано",
+    "Direction successfully disabled" => "Направление успешно заархивировано",
 
     // - - - WARNING LOGS - - -
     "The log was not created because status not found" => "Лог не был создан т.к статус не найден",
@@ -42,7 +46,12 @@ return [
     "Group not created" => "Группа не создана",
 
     //discipline
-    "Discipline not created" => "Дисциплина не создана",
-    "Discipline not enabled" => "Дисциплина не активирована",
+    "Discipline not created"  => "Дисциплина не создана",
+    "Discipline not enabled"  => "Дисциплина не активирована",
     "Discipline not disabled" => "Дисциплина не заархивирована",
+
+    //direction
+    "Direction not created"  => "Направление не создано",
+    "Direction not enabled"  => "Направление не активировано",
+    "Direction not disabled" => "Направление не заархивировано",
 ];

@@ -1,6 +1,8 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\models\Direction;
+use app\modules\core\modules\admin\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
@@ -9,6 +11,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\core\models\base\Direction */
 
 $this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Directions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -18,14 +21,33 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
+            <?= Html::a(Module::t('app', 'Edit'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php } ?>
+        <?php
+        if ($model->activity_id === Direction::ACTIVITY_ENABLE_ID) {
+            echo Html::a(Module::t('app', 'To archive'), ['disable', 'id' => $model->id], [
+                'class' => 'btn btn-warning',
+                'data' => [
+                    'confirm' => Module::t('note', 'Are you sure you want to archive the discipline?'),
+                ],
+            ]);
+        } elseif ($model->activity_id === Direction::ACTIVITY_DISABLE_ID) {
+            echo Html::a(Module::t('app', 'Activate'), ['enable', 'id' => $model->id], [
+                'class' => 'btn btn-warning',
+                'data' => [
+                    'confirm' => Module::t('note', 'Are you sure you want to activate the discipline?'),
+                ],
+            ]);
+        }
+        ?>
     </p>
 
     <?= DetailView::widget([
@@ -34,6 +56,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'short_title',
+            [
+                'attribute' => 'activity_id',
+                'value' => function ($model) {
+                    return $model->activity;
+                }
+            ],
             [
                 'attribute' => 'department_id',
                 'format' => 'raw',
@@ -46,13 +74,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'created_at',
                 'value' => function ($model) {
-                    return date('j F, Y H:i:s', $model->created_at);
+                    return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
                 }
             ],
             [
                 'attribute' => 'updated_at',
                 'value' => function ($model) {
-                    return date('j F, Y H:i:s', $model->updated_at);
+                    return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
                 }
             ]
         ],
@@ -61,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h3>
         <?=Module::t('app', 'Description')?>
     </h3>
-    <p>
+    <div class="jumbotron">
         <?=$model->description?>
-    </p>
+    </div>
 </div>

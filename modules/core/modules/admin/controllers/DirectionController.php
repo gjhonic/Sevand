@@ -46,7 +46,7 @@ class DirectionController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view'],
+                        'actions' => ['index', 'view', 'enable', 'disable'],
                         'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_MODERATOR],
                     ],
                     [
@@ -113,13 +113,13 @@ class DirectionController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->validate()) {
                 if ($model->save()) {
-                    LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_GROUP_CREATE, 'GroupId: ' . $model->id);
-                    Yii::$app->session->setFlash('success', Module::t('log', LogMessage::SUCCESS_GROUP_CREATE));
+                    LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_CREATED, 'DirectionId: ' . $model->id);
+                    Yii::$app->session->setFlash('success', Module::t('note', 'Direction successfully created'));
+                    return $this->redirect(['view', 'id' => $model->id]);
                 } else {
-                    LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_GROUP_CREATE);
-                    Yii::$app->session->setFlash('danger', Module::t('log', LogMessage::DANGER_GROUP_CREATE));
+                    LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_CREATED);
+                    Yii::$app->session->setFlash('danger', Module::t('error', 'Direction creation error'));
                 }
-
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -163,6 +163,46 @@ class DirectionController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Enable direction
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionEnable($id)
+    {
+        $direction = $this->findModel($id);
+        if ($direction->enable()) {
+            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_ENABLED, 'DirectionId: ' . $direction->id);
+            Yii::$app->session->setFlash('success', Module::t('note', 'Direction successfully enabled'));
+        } else {
+            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_ENABLED, 'DirectionId: ' . $direction->id);
+            Yii::$app->session->setFlash('danger', Module::t('error', 'Direction not enabled'));
+        }
+
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
+    /**
+     * Disable direction
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDisable($id)
+    {
+        $direction = $this->findModel($id);
+        if ($direction->disable()) {
+            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_DISABLED, 'DirectionId: ' . $direction->id);
+            Yii::$app->session->setFlash('success', Module::t('note', 'Direction successfully enabled'));
+        } else {
+            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_DISABLED, 'DirectionId: ' . $direction->id);
+            Yii::$app->session->setFlash('danger', Module::t('error', 'Direction not disabled'));
+        }
+
+        return $this->redirect(['view', 'id' => $id]);
     }
 
     /**

@@ -100,7 +100,7 @@ return [
 
     //Про Направление
     "Create Direction" => "Добавить направление",
-    "Update Direction: {name}" => "Редактировать направление: {name}",
+    "Editing Direction: {name}" => "Редактирование направления: {name}",
 
     //Про Курс
     "Create Course" => "Добавить курс",

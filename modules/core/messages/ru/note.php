@@ -21,11 +21,19 @@ return [
     "Do you really want to leave" => "Вы действительно хотите выйти",
     "Go to home page" => "Перейти на главную страницу",
 
-    "User successfully created" => "Пользователь успешно создан",
-    "User successfully enabled" => "Пользователь успешно активирован",
+    //user
+    "User successfully created"  => "Пользователь успешно создан",
+    "User successfully enabled"  => "Пользователь успешно активирован",
     "User successfully disabled" => "Пользователь успешно заархивирован",
 
-    "Discipline successfully created" => "Дисциплина успешно создана",
-    "Discipline successfully enabled" => "Дисциплина успешно активирована",
+    //discipline
+    "Discipline successfully created"  => "Дисциплина успешно создана",
+    "Discipline successfully enabled"  => "Дисциплина успешно активирована",
     "Discipline successfully disabled" => "Дисциплина успешно заархивирована",
+
+    //direction
+    "Direction successfully created"  => "Направление успешно создано",
+    "Direction successfully enabled"  => "Направление успешно активировано",
+    "Direction successfully disabled" => "Направление успешно заархивировано",
+
 ];
