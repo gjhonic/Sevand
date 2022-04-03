@@ -15,13 +15,22 @@ use yii\helpers\ArrayHelper;
  * @property string $short_title
  * @property string $description
  * @property int $department_id
+ * @property int $activity_id
  * @property int $created_at
  * @property int $updated_at
  *
  * @property Department $department
+ * @property string $activity
  */
 class Direction extends \yii\db\ActiveRecord
 {
+    //Активность направления
+    const ACTIVITY_ENABLE_ID = 1;
+    const ACTIVITY_ENABLE = 'Active';
+
+    const ACTIVITY_DISABLE_ID = 2;
+    const ACTIVITY_DISABLE = 'Not active';
+
     /**
      * @return string
      */
@@ -38,7 +47,7 @@ class Direction extends \yii\db\ActiveRecord
         return [
             [['title', 'short_title', 'department_id'], 'required'],
             [['description'], 'string'],
-            [['department_id'], 'integer'],
+            [['department_id', 'activity_id'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['short_title'], 'string', 'max' => 100],
             [['created_at', 'updated_at'], 'safe'],
@@ -67,9 +76,31 @@ class Direction extends \yii\db\ActiveRecord
             'short_title' => Module::t('app', 'Short title'),
             'description' => Module::t('app', 'Description'),
             'department_id' => Module::t('app', 'Department'),
+            'activity_id' => Module::t('app', 'Activity'),
             'created_at' => Module::t('app', 'Created at'),
             'updated_at' => Module::t('app', 'Updated at'),
         ];
+    }
+
+    /**
+     * Возврщает мап активности
+     * @return array
+     */
+    public static function getAtivities(): array
+    {
+        return [
+            self::ACTIVITY_ENABLE_ID => Module::t('app', self::ACTIVITY_ENABLE),
+            self::ACTIVITY_DISABLE_ID => Module::t('app', self::ACTIVITY_DISABLE),
+        ];
+    }
+
+    /**
+     * Возвращает статус направления
+     * @return string
+     */
+    public function getActivity(): string
+    {
+        return self::getAtivities()[$this->activity_id];
     }
 
     /**

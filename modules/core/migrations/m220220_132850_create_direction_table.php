@@ -18,6 +18,7 @@ class m220220_132850_create_direction_table extends Migration
             'short_title' => $this->string(100)->notNull(),
             'description' => $this->text()->null(),
             'department_id' => $this->integer()->notNull(),
+            'activity_id' => $this->integer(1)->defaultValue(1)->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ]);

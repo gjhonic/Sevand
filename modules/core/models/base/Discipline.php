@@ -22,7 +22,7 @@ use yii\behaviors\TimestampBehavior;
  */
 class Discipline extends \yii\db\ActiveRecord
 {
-    //Активность группы
+    //Активность дисциплины
     const ACTIVITY_ENABLE_ID = 1;
     const ACTIVITY_ENABLE = 'Active';
 

@@ -15,6 +15,7 @@ use app\modules\core\modules\admin\models\search\DirectionSearch;
 use app\modules\core\Module;
 use app\modules\core\services\log\LogMessage;
 use app\modules\core\services\log\LogService;
+use app\modules\core\services\log\LogStatus;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
