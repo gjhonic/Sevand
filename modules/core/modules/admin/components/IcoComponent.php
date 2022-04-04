@@ -12,9 +12,12 @@ namespace app\modules\core\modules\admin\components;
 class IcoComponent
 {
 
-    const VIEW_ICO = 'fa-eye';
-    const EDIT_ICO = 'fa-pencil';
-    const DELETE_ICO = 'fa-trash';
+    const VIEW_ICO    = 'fa-eye';
+    const EDIT_ICO    = 'fa-pencil';
+    const DELETE_ICO  = 'fa-trash';
+    const ADD_ICO     = 'fa-plus';
+    const ENABLE_ICO  = 'fa-check';
+    const DISABLE_ICO = 'fa-ban';
 
     /**
      * Возвращает иконку глазика
@@ -41,6 +44,33 @@ class IcoComponent
     public static function delete(): string
     {
         return self::layout(self::DELETE_ICO);
+    }
+
+    /**
+     * Возвращает иконку плюсика
+     * @return string
+     */
+    public static function add(): string
+    {
+        return self::layout(self::ADD_ICO);
+    }
+
+    /**
+     * Возвращает иконку галочки
+     * @return string
+     */
+    public static function enable(): string
+    {
+        return self::layout(self::ENABLE_ICO);
+    }
+
+    /**
+     * Возвращает иконку крестика
+     * @return string
+     */
+    public static function disable(): string
+    {
+        return self::layout(self::DISABLE_ICO);
     }
 
     /**

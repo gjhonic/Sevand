@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?php if(Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
-            <?= Html::a(Module::t('app', 'Create Direction'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a(IcoComponent::add() . ' ' . Module::t('app', 'Create Direction'), ['create'], ['class' => 'btn btn-success']) ?>
         <?php } ?>
     </p>
 
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'updated_at',
                 'value' => function ($model) {
-                    return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
+                    return Yii::$app->formatter->asDatetime($model->updated_at, "php:d.m.Y H:i:s");
                 }
             ],
             [
@@ -60,8 +60,8 @@ $this->params['breadcrumbs'][] = $this->title;
                      $html = Html::a(IcoComponent::view() . ' ' . Module::t('app', 'Show'), Url::to(['view', 'id' => $model->id]), ['class' => 'btn btn-success btn-block']);
 
                      if(Yii::$app->user->identity->role !== User::ROLE_MODERATOR){
-                         $html .= ' ' . Html::a(IcoComponent::edit() . ' ' .Module::t('app', 'Edit'), Url::to(['update', 'id' => $model->id]), ['class' => 'btn btn-primary btn-block']);
-                         $html .= ' ' . Html::a(IcoComponent::delete() . ' ' .Module::t('app', 'Delete'), Url::to(['delete', 'id' => $model->id]), [
+                         $html .= ' ' . Html::a(IcoComponent::edit() . ' ' . Module::t('app', 'Edit'), Url::to(['update', 'id' => $model->id]), ['class' => 'btn btn-primary btn-block']);
+                         $html .= ' ' . Html::a(IcoComponent::delete() . ' ' . Module::t('app', 'Delete'), Url::to(['delete', 'id' => $model->id]), [
                                  'class' => 'btn btn-danger btn-block',
                                  'data' => [
                                      'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
