@@ -9,7 +9,7 @@ class AdminAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web/media/core/admin';
     public $css = [
-        'css/bootstrap/bootstrap.min.css',
+        //'css/bootstrap/bootstrap.min.css',
         'css/dashboard.css',
 
         //доп иконки
@@ -21,6 +21,6 @@ class AdminAsset extends AssetBundle
     ];
     public $depends = [
         //'yii\web\YiiAsset',
-        //'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap4\BootstrapAsset',
     ];
 }
