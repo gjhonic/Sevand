@@ -1,9 +1,11 @@
 <?php
 
 use app\modules\core\models\base\Course;
+use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\modules\admin\models\Direction;
 use app\modules\core\modules\admin\models\Group;
 use app\modules\core\Module;
+use app\modules\core\modules\admin\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -24,7 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Module::t('app', 'Create Group'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php if(Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
+            <?= Html::a(IcoComponent::add() . ' ' . Module::t('app', 'Create Group'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php } ?>
     </p>
 
     <?php
@@ -56,11 +60,25 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
         [
-            'class' => ActionColumn::className(),
-            'urlCreator' => function ($action, Group $model, $key, $index, $column) {
-                return Url::toRoute([$action, 'id' => $model->id]);
+            'label' => Module::t('app', 'Action column'),
+            'format' => 'raw',
+            'value' => function ($model) {
+                $html = Html::a(IcoComponent::view() . ' ' . Module::t('app', 'Show'), Url::to(['view', 'id' => $model->id]), ['class' => 'btn btn-success btn-block']);
+
+                if(Yii::$app->user->identity->role !== User::ROLE_MODERATOR){
+                    $html .= ' ' . Html::a(IcoComponent::edit() . ' ' .Module::t('app', 'Edit'), Url::to(['update', 'id' => $model->id]), ['class' => 'btn btn-primary btn-block']);
+                    $html .= ' ' . Html::a(IcoComponent::delete() . ' ' . Module::t('app', 'Delete'), Url::to(['delete', 'id' => $model->id]), [
+                            'class' => 'btn btn-danger btn-block',
+                            'data' => [
+                                'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
+                                'method' => 'post',
+                            ],
+                        ]);
+                }
+
+                return $html;
             }
-        ]
+        ],
     ]; ?>
 
     <?= DynaGrid::widget(

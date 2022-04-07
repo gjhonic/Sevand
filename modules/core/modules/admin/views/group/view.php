@@ -1,6 +1,9 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\IcoComponent;
+use app\modules\core\modules\admin\models\Group;
+use app\modules\core\modules\admin\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
@@ -18,14 +21,33 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
+            <?= Html::a(IcoComponent::edit() . ' ' . Module::t('app', 'Edit'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(IcoComponent::delete() . ' ' . Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php } ?>
+        <?php
+        if ($model->activity_id === Group::ACTIVITY_ENABLE_ID) {
+            echo Html::a(IcoComponent::disable() . ' ' . Module::t('app', 'To archive'), ['disable', 'id' => $model->id], [
+                'class' => 'btn btn-warning',
+                'data' => [
+                    'confirm' => Module::t('note', 'Are you sure you want to archive the discipline?'),
+                ],
+            ]);
+        } elseif ($model->activity_id === Group::ACTIVITY_DISABLE_ID) {
+            echo Html::a(IcoComponent::enable() . ' ' .Module::t('app', 'Activate'), ['enable', 'id' => $model->id], [
+                'class' => 'btn btn-warning',
+                'data' => [
+                    'confirm' => Module::t('note', 'Are you sure you want to activate the discipline?'),
+                ],
+            ]);
+        }
+        ?>
     </p>
 
     <?= DetailView::widget([
