@@ -53,6 +53,12 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
         [
+            'attribute' => 'created_at',
+            'value' => function ($model) {
+                return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
+            }
+        ],
+        [
             'attribute' => 'activity_id',
             'filter' => Group::getAtivities(),
             'value' => function ($model) {
