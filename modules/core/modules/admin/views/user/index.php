@@ -6,7 +6,6 @@ use app\modules\core\modules\admin\models\User;
 use kartik\dynagrid\DynaGrid;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -53,6 +52,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'filter' => User::getRoles(),
             'value' => function ($model) {
                 return $model->roleTitle;
+            }
+        ],
+        [
+            'attribute' => 'created_at',
+            'value' => function ($model) {
+                return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
+            }
+        ],
+        [
+            'attribute' => 'updated_at',
+            'value' => function ($model) {
+                return Yii::$app->formatter->asDatetime($model->updated_at, "php:d.m.Y H:i:s");
             }
         ],
         [

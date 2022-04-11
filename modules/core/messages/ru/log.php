@@ -41,6 +41,8 @@ return [
     // - - - DANGER LOGS - - -
     //user
     "User not created" => "Пользователь не создан",
+    "User successfully enabled"  => "Пользователь успешно активирован",
+    "User successfully disabled" => "Пользователь успешно заархивирован",
 
     //group
     "Group not created" => "Группа не создана",

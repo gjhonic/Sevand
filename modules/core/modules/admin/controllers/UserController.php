@@ -15,6 +15,7 @@ use app\modules\core\modules\admin\models\search\UserSearch;
 use app\modules\core\Module;
 use app\modules\core\services\log\LogMessage;
 use app\modules\core\services\log\LogService;
+use app\modules\core\services\log\LogStatus;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
@@ -118,11 +119,11 @@ class UserController extends Controller
         if ($model->load($this->request->post()) && $model->validate()) {
             $codeCreateUser = $model->createUser(false);
             if ($codeCreateUser === UserError::SUCCESS_CREATE_USER) {
-                LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_USER_CREATED, 'UserId: ' . $model->id);
+                LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_USER_CREATED, 'UserId: ' . $model->id);
                 Yii::$app->session->setFlash('info', Module::t('note', 'User successfully created'));
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
-                LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_USER_CREATED);
+                LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_USER_CREATED);
                 Yii::$app->session->setFlash('warning', Module::t('note', UserError::getDescriptionError($codeCreateUser)));
             }
         } else {
@@ -184,10 +185,10 @@ class UserController extends Controller
     {
         $user = $this->findModel($id);
         if ($user->enable()) {
-            LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_USER_ENABLED, 'UserId: ' . $user->id);
+            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_USER_ENABLED, 'UserId: ' . $user->id);
             Yii::$app->session->setFlash('success', Module::t('note', 'User successfully enabled'));
         } else {
-            LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_USER_ENABLED, 'UserId: ' . $user->id);
+            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_USER_ENABLED, 'UserId: ' . $user->id);
             Yii::$app->session->setFlash('danger', Module::t('note', 'User not enabled'));
         }
 
@@ -204,10 +205,10 @@ class UserController extends Controller
     {
         $user = $this->findModel($id);
         if ($user->disable()) {
-            LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_USER_DISABLED, 'UserId: ' . $user->id);
+            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_USER_DISABLED, 'UserId: ' . $user->id);
             Yii::$app->session->setFlash('success', Module::t('note', 'User successfully enabled'));
         } else {
-            LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_USER_DISABLED, 'UserId: ' . $user->id);
+            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_USER_DISABLED, 'UserId: ' . $user->id);
             Yii::$app->session->setFlash('danger', Module::t('note', 'User not disabled'));
         }
 

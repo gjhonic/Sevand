@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'created_at',
                 'value' => function ($model) {
-                    return date('j F, Y H:i:s', $model->created_at);
+                    return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
                 }
             ],
             [
@@ -92,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'updated_at',
                 'value' => function ($model) {
-                    return date('j F, Y H:i:s', $model->updated_at);
+                    return Yii::$app->formatter->asDatetime($model->updated_at, "php:d.m.Y H:i:s");
                 }
             ]
         ],
