@@ -2,6 +2,7 @@
 
 use app\modules\core\models\base\Log;
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\services\log\LogService;
 use kartik\dynagrid\DynaGrid;
 use yii\helpers\Html;
@@ -55,11 +56,11 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
         [
-            'class' => ActionColumn::className(),
-            'urlCreator' => function ($action, Log $model, $key, $index, $column) {
-                return Url::toRoute([$action, 'id' => $model->id]);
-            },
-            'template' => '{view}',
+            'label' => Module::t('app', 'Action column'),
+            'format' => 'raw',
+            'value' => function ($model) {
+                return Html::a(IcoComponent::view() . ' ' . Module::t('app', 'Show'), Url::to(['view', 'id' => $model->id]), ['class' => 'btn btn-success btn-block']);
+            }
         ],
     ]; ?>
 
