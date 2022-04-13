@@ -2,6 +2,7 @@
 
 use app\modules\core\models\base\Department;
 use app\modules\core\Module;
+use app\modules\core\modules\admin\models\Discipline;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -17,6 +18,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'short_title')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'activity_id')->dropDownList(Discipline::getAtivities()) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Module::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
