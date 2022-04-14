@@ -26,9 +26,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?php if(Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
-            <?= Html::a(IcoComponent::add() . ' ' . Module::t('app', 'Create Group'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?php } ?>
+        <?php
+        if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
+            <?= Html::a(
+                IcoComponent::add() . ' ' . Module::t('app', 'Create Group'),
+                ['create'],
+                ['class' => 'btn btn-success']
+            ) ?>
+        <?php
+        } ?>
     </p>
 
     <?php
@@ -48,8 +54,16 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'direction_id',
             'filter' => Direction::getDirectionMap(),
+            'format' => 'raw',
             'value' => function ($model) {
-                return $model->direction->short_title;
+                $direction = $model->direction;
+                if ($direction) {
+                    return Html::a(
+                        $model->direction->short_title,
+                        Url::to(['/admin/direction/view', 'id' => $model->direction_id]),
+                        ['class' => 'btn btn-secondary btn-block']
+                    );
+                }
             }
         ],
         [
@@ -69,17 +83,29 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => Module::t('app', 'Action column'),
             'format' => 'raw',
             'value' => function ($model) {
-                $html = Html::a(IcoComponent::view() . ' ' . Module::t('app', 'Show'), Url::to(['view', 'id' => $model->id]), ['class' => 'btn btn-success btn-block']);
+                $html = Html::a(
+                    IcoComponent::view() . ' ' . Module::t('app', 'Show'),
+                    Url::to(['view', 'id' => $model->id]),
+                    ['class' => 'btn btn-success btn-block']
+                );
 
-                if(Yii::$app->user->identity->role !== User::ROLE_MODERATOR){
-                    $html .= ' ' . Html::a(IcoComponent::edit() . ' ' .Module::t('app', 'Edit'), Url::to(['update', 'id' => $model->id]), ['class' => 'btn btn-primary btn-block']);
-                    $html .= ' ' . Html::a(IcoComponent::delete() . ' ' . Module::t('app', 'Delete'), Url::to(['delete', 'id' => $model->id]), [
-                            'class' => 'btn btn-danger btn-block',
-                            'data' => [
-                                'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
-                                'method' => 'post',
-                            ],
-                        ]);
+                if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) {
+                    $html .= ' ' . Html::a(
+                            IcoComponent::edit() . ' ' . Module::t('app', 'Edit'),
+                            Url::to(['update', 'id' => $model->id]),
+                            ['class' => 'btn btn-primary btn-block']
+                        );
+                    $html .= ' ' . Html::a(
+                            IcoComponent::delete() . ' ' . Module::t('app', 'Delete'),
+                            Url::to(['delete', 'id' => $model->id]),
+                            [
+                                'class' => 'btn btn-danger btn-block',
+                                'data' => [
+                                    'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
+                                    'method' => 'post',
+                                ],
+                            ]
+                        );
                 }
 
                 return $html;
