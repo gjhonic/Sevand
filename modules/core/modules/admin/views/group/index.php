@@ -1,6 +1,5 @@
 <?php
 
-use app\modules\core\models\base\Course;
 use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\modules\admin\models\Direction;
 use app\modules\core\modules\admin\models\Group;
@@ -8,10 +7,7 @@ use app\modules\core\Module;
 use app\modules\core\modules\admin\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\ActionColumn;
-
 use kartik\dynagrid\DynaGrid;
-use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -46,9 +42,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'title',
         [
             'attribute' => 'course_id',
-            'filter' => Course::getCourseMap(),
+            'filter' => Direction::getDirectionMap(),
+            'format' => 'raw',
             'value' => function ($model) {
-                return $model->course->title;
+                $course = $model->course;
+                if ($course) {
+                    return Html::a(
+                        $course->title,
+                        Url::to(['/admin/course/view', 'id' => $model->course_id]),
+                        ['class' => 'btn btn-secondary btn-block']
+                    );
+                }
             }
         ],
         [
@@ -59,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 $direction = $model->direction;
                 if ($direction) {
                     return Html::a(
-                        $model->direction->short_title,
+                        $direction->short_title,
                         Url::to(['/admin/direction/view', 'id' => $model->direction_id]),
                         ['class' => 'btn btn-secondary btn-block']
                     );
