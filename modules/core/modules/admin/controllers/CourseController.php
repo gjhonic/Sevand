@@ -9,7 +9,8 @@
 
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\models\base\Course;
+use app\modules\core\modules\admin\models\Course;
+use app\modules\core\modules\admin\models\search\CourseSearch;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
@@ -35,7 +36,7 @@ class CourseController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['view'],
+                        'actions' => ['view', 'index'],
                         'roles' => [User::ROLE_MODERATOR, User::ROLE_ADMIN, User::ROLE_ROOT],
                     ],
                 ],
@@ -55,6 +56,22 @@ class CourseController extends Controller
     }
 
     public $layout = 'admin';
+
+    /**
+     * Lists all Direction models.
+     *
+     * @return string
+     */
+    public function actionIndex()
+    {
+        $searchModel = new CourseSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+        ]);
+    }
 
 
     /**

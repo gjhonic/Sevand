@@ -13,6 +13,7 @@ use yii\grid\GridView;
 /* @var $searchModel \app\modules\core\models\search\CourseSearch */
 
 $this->title = Module::t('app', 'Courses');
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="course-index">
