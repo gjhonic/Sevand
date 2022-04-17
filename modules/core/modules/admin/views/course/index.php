@@ -2,6 +2,7 @@
 
 use app\modules\core\models\base\Course;
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\IcoComponent;
 use kartik\dynagrid\DynaGrid;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -20,35 +21,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Module::t('app', 'Create Course'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-
     <?php
      $columns = [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
             'title',
-            [
-                'attribute' => 'created_at',
-                'value' => function ($model) {
-                    return date('j F, Y H:i:s', $model->created_at);
-                }
-            ],
-            [
-                'attribute' => 'updated_at',
-                'value' => function ($model) {
-                    return date('j F, Y H:i:s', $model->updated_at);
-                }
-            ],
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Course $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 },
-                'template'=>'{view}  {update}',
-            ],
+         [
+             'label' => Module::t('app', 'Action column'),
+             'format' => 'raw',
+             'value' => function ($model) {
+                 $html = Html::a(IcoComponent::view() . ' ' . Module::t('app', 'Show'), Url::to(['view', 'id' => $model->id]), ['class' => 'btn btn-success btn-block']);
+                 return $html;
+             }
+         ],
         ]; ?>
 
     <?= DynaGrid::widget([
