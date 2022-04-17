@@ -182,4 +182,9 @@ class Group extends \yii\db\ActiveRecord
         $this->activity_id = self::ACTIVITY_DISABLE_ID;
         return $this->save(false);
     }
+
+    public function filterByCourse(int $course_id)
+    {
+        return $this->andFilterWhere(['course_id' => $course_id]);
+    }
 }
