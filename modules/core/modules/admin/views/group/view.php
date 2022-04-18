@@ -59,9 +59,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'course_id',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->course->title,
-                        Url::to(['/course/view', 'id' => $model->course_id]),
-                        ['class' => 'btn btn-outline-secondary']);
+                    $course = $model->course;
+                    if($course){
+                        return Html::a($course->title,
+                                       Url::to(['admin/course/view', 'id' => $model->course_id]),
+                                       ['class' => 'btn btn-outline-secondary']);
+                    }
                 }
             ],
             [
@@ -69,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Html::a($model->direction->short_title,
-                        Url::to(['/direction/view', 'id' => $model->direction_id]),
+                        Url::to(['admin/direction/view', 'id' => $model->direction_id]),
                         ['class' => 'btn btn-outline-secondary']);
                 }
             ],
@@ -78,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Html::a($model->curator->username,
-                        Url::to(['/user/view', 'id' => $model->curator_id]),
+                        Url::to(['admin/user/view', 'id' => $model->curator_id]),
                         ['class' => 'btn btn-outline-secondary']);
                 }
             ],
@@ -87,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Html::a($model->headman->username,
-                        Url::to(['/user/view', 'id' => $model->headman_id]),
+                        Url::to(['admin/user/view', 'id' => $model->headman_id]),
                         ['class' => 'btn btn-outline-secondary']);
                 }
             ],
@@ -96,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Html::a($model->department->short_title,
-                        Url::to(['/department/view', 'id' => $model->department_id]),
+                        Url::to(['admin/department/view', 'id' => $model->department_id]),
                         ['class' => 'btn btn-outline-secondary']);
                 }
             ],
