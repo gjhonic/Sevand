@@ -51,7 +51,7 @@ class UserController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['create', 'update', 'delete'],
+                        'actions' => ['create', 'create-student', 'update', 'delete'],
                         'roles' => [User::ROLE_ADMIN, User::ROLE_ROOT],
                     ],
                 ],
@@ -107,7 +107,7 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a new Direction model.
+     * Creates a new Student model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      * @throws \Exception
@@ -132,6 +132,38 @@ class UserController extends Controller
 
         return $this->render(
             'create',
+            [
+                'model' => $model,
+            ]
+        );
+    }
+
+    /**
+     * Creates a new Student model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return string|\yii\web\Response
+     * @throws \Exception
+     */
+    public function actionCreateStudent()
+    {
+        $model = new User();
+        $model->setDepartmentFromUser();
+        if ($model->load($this->request->post()) && $model->validate()) {
+            $codeCreateUser = $model->createStudent(false);
+            if ($codeCreateUser === UserError::SUCCESS_CREATE_USER) {
+                LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_USER_CREATED, 'UserId: ' . $model->id);
+                Yii::$app->session->setFlash('info', Module::t('note', 'User successfully created'));
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_USER_CREATED);
+                Yii::$app->session->setFlash('warning', Module::t('note', UserError::getDescriptionError($codeCreateUser)));
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render(
+            'create_student',
             [
                 'model' => $model,
             ]

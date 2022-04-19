@@ -1,7 +1,5 @@
 <?php
 
-use app\modules\core\models\base\Department;
-use app\modules\core\models\base\User;
 use app\modules\core\Module;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -21,12 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
 
-    <?php
-        if ($model->isNewRecord) { ?>
-            <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
-    <?php } ?>
-
-    <?= $form->field($model, 'role')->dropDownList(User::getRolesForAdmin()) ?>
+    <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Module::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

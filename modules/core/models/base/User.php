@@ -96,11 +96,41 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
-     * Метод сохраняет пользователя
+     * Метод добавляет пользователя
      * @return int
      * @throws \Exception
      */
     public function createUser(bool $validate = true): int
+    {
+        if($validate){
+            if(!$this->validate()){
+                return UserError::ERROR_VALIDATE;
+            }
+        }
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $this->status_id = self::STATUS_ACTIVE_ID;
+            $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+            if($this->save(false)){
+                Yii::$app->authManager->assign(Yii::$app->authManager->getRole($this->role), $this->id);
+                $transaction->commit();
+                return UserError::SUCCESS_CREATE_USER;
+            }else{
+                $transaction->rollBack();
+            }
+
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            throw new NotFoundHttpException(UserError::getDescriptionError(UserError::ERROR_CREATE_USER));
+        }
+    }
+
+    /**
+     * Метод добавляет пользователя + добавляет студента
+     * @return int
+     * @throws \Exception
+     */
+    public function createStudent(bool $validate = true): int
     {
         if($validate){
             if(!$this->validate()){
