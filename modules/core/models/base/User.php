@@ -351,4 +351,13 @@ class User extends \yii\db\ActiveRecord
         $this->activity_id = self::ACTIVITY_DISABLE_ID;
         return $this->save(false);
     }
+
+
+    /**
+     * Устанавливает роль студент
+     */
+    public function setStudentRole()
+    {
+        $this->role = self::ROLE_STUDENT;
+    }
 }

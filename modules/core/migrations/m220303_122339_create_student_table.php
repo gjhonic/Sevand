@@ -18,7 +18,7 @@ class m220303_122339_create_student_table extends Migration
             'surname' => $this->string(50)->notNull(),
             'patronymic' => $this->string(50)->notNull(),
             'gender' => $this->integer(1)->defaultValue(0)->notNull(),
-            'group_id' => $this->integer()->notNull(),
+            'group_id' => $this->integer()->null(),
             'status_id' => $this->integer(1)->notNull(),
             'department_id' => $this->integer()->notNull(),
             'user_id' => $this->integer()->notNull(),

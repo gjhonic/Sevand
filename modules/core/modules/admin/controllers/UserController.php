@@ -147,6 +147,7 @@ class UserController extends Controller
     public function actionCreateStudent()
     {
         $model = new User();
+        $model->setStudentRole();
         $model->setDepartmentFromUser();
         if ($model->load($this->request->post()) && $model->validate()) {
             $codeCreateUser = $model->createStudent(false);
