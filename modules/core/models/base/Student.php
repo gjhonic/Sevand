@@ -51,10 +51,10 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'surname', 'patronymic', 'status_id', 'department_id', 'user_id'], 'required'],
-            [['gender', 'group_id', 'status_id', 'department_id', 'user_id'], 'default', 'value' => null],
+            [['group_id'], 'default', 'value' => null],
             [['gender', 'group_id', 'status_id', 'department_id', 'user_id'], 'integer'],
             [['description'], 'string'],
-            [[ 'created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['name', 'surname', 'patronymic'], 'string', 'max' => 50],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'id']],

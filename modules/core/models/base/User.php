@@ -15,6 +15,7 @@ use yii\web\NotFoundHttpException;
  * @property string $name
  * @property string $surname
  * @property string $username
+ * @property string $patronymic
  * @property string $password
  * @property string $role
  * @property int $status_id
@@ -64,6 +65,10 @@ class User extends \yii\db\ActiveRecord
     const ACTIVITY_DISABLE_ID = 2;
     const ACTIVITY_DISABLE = 'Not active';
 
+
+    //Атрибуты
+    public $patronymic;
+
     /**
      * @return string
      */
@@ -78,7 +83,7 @@ class User extends \yii\db\ActiveRecord
             [['name', 'surname', 'username', 'password', 'role'], 'required'],
             [['status_id', 'department_id', 'activity_id'], 'integer'],
             ['activity_id', 'default', 'value' => 1],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at', 'patronymic'], 'safe'],
             [['name', 'surname'], 'string', 'max' => 50],
             [['username', 'password'], 'string', 'max' => 255],
             [['auth_key', 'access_token'], 'string', 'max' => 32],
@@ -132,6 +137,7 @@ class User extends \yii\db\ActiveRecord
      */
     public function createStudent(bool $validate = true): int
     {
+        $this->setStudentRole();
         if($validate){
             if(!$this->validate()){
                 return UserError::ERROR_VALIDATE;
@@ -144,7 +150,22 @@ class User extends \yii\db\ActiveRecord
             if($this->save(false)){
                 Yii::$app->authManager->assign(Yii::$app->authManager->getRole($this->role), $this->id);
                 $transaction->commit();
-                return UserError::SUCCESS_CREATE_USER;
+
+                $student = new Student();
+                $student->name = $this->name;
+                $student->surname = $this->surname;
+                $student->patronymic = $this->patronymic;
+                $student->user_id = $this->id;
+                $student->status_id = Student::STATUS_ACTIVE;
+                $student->gender = Student::GENDRE_MAN;
+                $student->department_id = $this->department_id;
+
+                if($student->save()){
+                    return UserError::SUCCESS_CREATE_USER;
+                } else {
+                    $transaction->rollBack();
+                }
+
             }else{
                 $transaction->rollBack();
             }
