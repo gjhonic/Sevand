@@ -26,6 +26,7 @@ use yii\behaviors\TimestampBehavior;
  * @property Department $department
  * @property Group $group
  * @property User $user
+ * @property string $fullname
  */
 class Student extends \yii\db\ActiveRecord
 {
@@ -106,6 +107,15 @@ class Student extends \yii\db\ActiveRecord
     }
 
     /**
+     * Возвращает полное имя студента
+     * @return string
+     */
+    public function getFullname(): string
+    {
+        return $this->surname . ' ' . $this->name;
+    }
+
+    /**
      * Массив статусов
      * @return array
      */
@@ -155,5 +165,15 @@ class Student extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * Возвращает студента по пользователю
+     * @param int $user_id
+     * @return Student|array|\yii\db\ActiveRecord|null
+     */
+    public static function getStudentByUser(int $user_id)
+    {
+        return static::find()->where(['user_id' => $user_id])->one();
     }
 }

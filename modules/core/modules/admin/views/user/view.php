@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\models\Student;
 use app\modules\core\modules\admin\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -66,12 +67,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-                'attribute' => 'created_at',
-                'value' => function ($model) {
-                    return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
-                }
-            ],
-            [
                 'attribute' => 'role',
                 'value' => function ($model) {
                     return $model->roleTitle;
@@ -90,6 +85,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
+                'attribute' => 'created_at',
+                'value' => function ($model) {
+                    return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");
+                }
+            ],
+            [
                 'attribute' => 'updated_at',
                 'value' => function ($model) {
                     return Yii::$app->formatter->asDatetime($model->updated_at, "php:d.m.Y H:i:s");
@@ -97,4 +98,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ],
     ]) ?>
+
+    <?php if($model->role == User::ROLE_STUDENT) {
+       $student = Student::getStudentByUser($model->id);
+       if($student) { ?>
+           <?=Html::a(Module::t('app', 'Student') . ' ' . $student->fullname, ['student/view', 'id' => $student->id], [
+               'class' => 'btn btn-secondary'
+           ]);?>
+       <?php }else { ?>
+           <div class="alert alert-danger" role="alert">
+               <?=Module::t('error', 'The user is not associated with a student.')?>
+           </div>
+       <?php }
+     } ?>
 </div>
