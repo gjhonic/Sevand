@@ -50,7 +50,7 @@ class Student extends \yii\db\ActiveRecord
     public function rules(): array
     {
         return [
-            [['name', 'surname', 'patronymic', 'status_id', 'department_id', 'user_id'], 'required'],
+            [['name', 'surname', 'status_id', 'department_id', 'user_id'], 'required'],
             [['group_id'], 'default', 'value' => null],
             [['gender', 'group_id', 'status_id', 'department_id', 'user_id'], 'integer'],
             [['description'], 'string'],

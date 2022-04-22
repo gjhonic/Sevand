@@ -186,6 +186,7 @@ class User extends \yii\db\ActiveRecord
             'name' => Module::t('app', 'Name'),
             'surname' => Module::t('app', 'Surname'),
             'username' => Module::t('app', 'Username'),
+            'patronymic' => Module::t('app', 'Patronymic'),
             'password' => Module::t('app', 'Password'),
             'role' => Module::t('app', 'Role'),
             'status_id' => Module::t('app', 'Status'),
