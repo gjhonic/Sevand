@@ -4,6 +4,7 @@ namespace app\modules\core\models\base;
 
 use app\modules\core\Module;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "core_group".
@@ -186,5 +187,11 @@ class Group extends \yii\db\ActiveRecord
     public function filterByCourse(int $course_id)
     {
         return $this->andFilterWhere(['course_id' => $course_id]);
+    }
+
+    public static function getGroupsMap(): array
+    {
+        $groups = static::find()->all();
+        return ArrayHelper::map($groups, 'id', 'title');
     }
 }
