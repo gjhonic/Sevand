@@ -14,6 +14,7 @@ use yii\helpers\Url;
 /* @var $searchModel \app\modules\core\models\search\StudentSearch */
 
 $this->title = Module::t('app', 'Students');
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-index">
