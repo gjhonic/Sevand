@@ -41,9 +41,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'user_id',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->department->short_title,
-                                   Url::to(['/department/view', 'id' => $model->department_id]),
+                    $user = $model->user;
+                    if($user){
+                        return Html::a($model->user->getFullname(),
+                                   Url::to(['/user/view', 'id' => $model->user_id]),
                                    ['class' => 'btn btn-primary']);
+                    }
                 }
             ],
             [

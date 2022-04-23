@@ -215,6 +215,15 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
+     * Возвращает полное имя пользователя
+     * @return string
+     */
+    public function getFullname(): string
+    {
+        return $this->surname . ' ' . $this->name;
+    }
+
+    /**
      * Возврщает мап ролей
      * @return array
      */
