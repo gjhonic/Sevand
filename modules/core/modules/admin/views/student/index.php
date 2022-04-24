@@ -63,6 +63,20 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
         [
+            'attribute' => 'user_id',
+            'format' => 'raw',
+            'value' => function ($model) {
+                $user = $model->user;
+                if ($user) {
+                    return Html::a(
+                        $user->getFullname(),
+                        Url::to(['/admin/user/view', 'id' => $model->user_id]),
+                        ['class' => 'btn btn-secondary btn-block']
+                    );
+                }
+            }
+        ],
+        [
             'attribute' => 'created_at',
             'value' => function ($model) {
                 return Yii::$app->formatter->asDatetime($model->created_at, "php:d.m.Y H:i:s");

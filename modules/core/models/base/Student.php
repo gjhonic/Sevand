@@ -14,7 +14,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $patronymic
  * @property int $gender
  * @property int $group_id
- * @property int $status_id
+ * @property int $activity_id
  * @property int $department_id
  * @property int $user_id
  * @property string|null $description
@@ -27,6 +27,7 @@ use yii\behaviors\TimestampBehavior;
  * @property Group $group
  * @property User $user
  * @property string $fullname
+ * @property string $activity
  */
 class Student extends \yii\db\ActiveRecord
 {
@@ -34,8 +35,12 @@ class Student extends \yii\db\ActiveRecord
     const GENDRE_MAN = 1;
     const GENDRE_WOMAN = 0;
 
-    const STATUS_ACTIVE = 1;
-    const STATUS_ARCHIVE = 2;
+    //Активность студента
+    const ACTIVITY_ENABLE_ID = 1;
+    const ACTIVITY_ENABLE = 'Active';
+
+    const ACTIVITY_DISABLE_ID = 2;
+    const ACTIVITY_DISABLE = 'Not active';
 
     /**
      * @return string
@@ -53,8 +58,9 @@ class Student extends \yii\db\ActiveRecord
         return [
             [['name', 'surname', 'status_id', 'department_id', 'user_id'], 'required'],
             [['group_id'], 'default', 'value' => null],
-            [['gender', 'group_id', 'status_id', 'department_id', 'user_id'], 'integer'],
+            [['gender', 'group_id', 'status_id', 'department_id', 'user_id', 'activity_id'], 'integer'],
             [['description'], 'string'],
+            ['activity_id', 'default', 'value' => 1],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'surname', 'patronymic'], 'string', 'max' => 50],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
@@ -85,7 +91,7 @@ class Student extends \yii\db\ActiveRecord
             'patronymic' => Module::t('app', 'Patronymic'),
             'gender' => Module::t('app', 'Gender'),
             'group_id' => Module::t('app', 'Group'),
-            'status_id' => Module::t('app', 'Status'),
+            'activity_id' => Module::t('app', 'Activity'),
             'department_id' => Module::t('app', 'Department'),
             'user_id' => Module::t('app', 'User'),
             'description' => Module::t('app', 'Description'),

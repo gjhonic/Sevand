@@ -27,7 +27,7 @@ class StudentSearch extends Student
     {
         return [
             [['name', 'surname', 'patronymic'], 'string', 'max' => 50],
-            [['status_id', 'department_id', 'gender', 'group_id'], 'integer'],
+            [['status_id', 'department_id', 'gender', 'group_id', 'user_id'], 'integer'],
         ];
     }
 
