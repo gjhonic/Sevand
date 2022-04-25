@@ -173,40 +173,40 @@ class StudentController extends Controller
     }
 
     /**
-     * Enable direction
+     * Enable student
      * @param int $id ID
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionEnable($id)
     {
-        $direction = $this->findModel($id);
-        if ($direction->enable()) {
-            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_ENABLED, 'DirectionId: ' . $direction->id);
-            Yii::$app->session->setFlash('success', Module::t('note', 'Direction successfully enabled'));
+        $student = $this->findModel($id);
+        if ($student->enable()) {
+            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_STUDENT_ENABLED, 'StudentId: ' . $student->id);
+            Yii::$app->session->setFlash('success', Module::t('note', 'Student successfully enabled'));
         } else {
-            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_ENABLED, 'DirectionId: ' . $direction->id);
-            Yii::$app->session->setFlash('danger', Module::t('error', 'Direction not enabled'));
+            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_STUDENT_ENABLED, 'StudentId: ' . $student->id);
+            Yii::$app->session->setFlash('danger', Module::t('error', 'Student not enabled'));
         }
 
         return $this->redirect(['view', 'id' => $id]);
     }
 
     /**
-     * Disable direction
+     * Disable student
      * @param int $id ID
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDisable($id)
     {
-        $direction = $this->findModel($id);
-        if ($direction->disable()) {
-            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_DISABLED, 'DirectionId: ' . $direction->id);
-            Yii::$app->session->setFlash('success', Module::t('note', 'Direction successfully enabled'));
+        $student = $this->findModel($id);
+        if ($student->disable()) {
+            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_STUDENT_DISABLED, 'StudentId: ' . $student->id);
+            Yii::$app->session->setFlash('success', Module::t('note', 'Student successfully enabled'));
         } else {
-            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_DISABLED, 'DirectionId: ' . $direction->id);
-            Yii::$app->session->setFlash('danger', Module::t('error', 'Direction not disabled'));
+            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_STUDENT_DISABLED, 'StudentId: ' . $student->id);
+            Yii::$app->session->setFlash('danger', Module::t('error', 'Student not disabled'));
         }
 
         return $this->redirect(['view', 'id' => $id]);
