@@ -10,7 +10,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\core\models\base\Student */
 
-$this->title = $model->name;
+$this->title = $model->fullname;
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Students'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -66,17 +66,31 @@ $this->params['breadcrumbs'][] = $this->title;
             'patronymic',
             'genderTitle',
             [
+                'attribute' => 'group_id',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    $group = $model->group;
+                    $htmlBtn = Module::t('app', 'Not set');
+                    if($group){
+                        $htmlBtn = Html::a($group->title,
+                            Url::to(['/group/view', 'id' => $model->group_id]),
+                            ['class' => 'btn btn-primary']);
+                    }
+                    return $htmlBtn;
+                }
+            ],
+            [
                 'attribute' => 'user_id',
                 'format' => 'raw',
                 'value' => function ($model) {
                     $user = $model->user;
-                    $btn = '';
+                    $htmlBtn = '';
                     if($user){
-                        $btn = Html::a($model->user->getFullname(),
+                        $htmlBtn = Html::a($user->fullname,
                                    Url::to(['/user/view', 'id' => $model->user_id]),
                                    ['class' => 'btn btn-primary']);
                     }
-                    return $btn;
+                    return $htmlBtn;
                 }
             ],
             [
@@ -108,5 +122,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ],
     ]) ?>
+
+    <h3>
+        <?=Module::t('app', 'Description')?>
+    </h3>
+    <div class="jumbotron">
+        <?=$model->description?>
+    </div>
 
 </div>

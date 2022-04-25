@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\models\base\Student;
+use app\modules\core\Module;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -19,19 +20,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'patronymic')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status_id')->dropDownList(Student::getGendersMap()) ?>
-
-    <?= $form->field($model, 'status_id')->dropDownList(Student::getStatusesMap()) ?>
-
-    <?= $form->field($model, 'status_id')->textInput() ?>
-
-    <?= $form->field($model, 'department_id')->textInput() ?>
-
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Module::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -56,9 +56,9 @@ class Student extends \yii\db\ActiveRecord
     public function rules(): array
     {
         return [
-            [['name', 'surname', 'status_id', 'department_id', 'user_id'], 'required'],
+            [['name', 'surname', 'department_id', 'user_id'], 'required'],
             [['group_id'], 'default', 'value' => null],
-            [['gender', 'group_id', 'status_id', 'department_id', 'user_id', 'activity_id'], 'integer'],
+            [['gender', 'group_id','department_id', 'user_id', 'activity_id'], 'integer'],
             [['description'], 'string'],
             ['activity_id', 'default', 'value' => 1],
             [['created_at', 'updated_at'], 'safe'],
@@ -90,6 +90,7 @@ class Student extends \yii\db\ActiveRecord
             'surname' => Module::t('app', 'Surname'),
             'patronymic' => Module::t('app', 'Patronymic'),
             'gender' => Module::t('app', 'Gender'),
+            'genderTitle' => Module::t('app', 'Gender'),
             'group_id' => Module::t('app', 'Group'),
             'activity_id' => Module::t('app', 'Activity'),
             'department_id' => Module::t('app', 'Department'),
