@@ -12,6 +12,9 @@ use app\modules\core\modules\admin\models\Student;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\modules\admin\models\search\StudentSearch;
 use app\modules\core\Module;
+use app\modules\core\services\log\LogMessage;
+use app\modules\core\services\log\LogService;
+use app\modules\core\services\log\LogStatus;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
@@ -42,7 +45,12 @@ class StudentController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'enable', 'disable'],
+                        'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_MODERATOR],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'update', 'delete'],
                         'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN],
                     ],
                 ],
@@ -162,5 +170,45 @@ class StudentController extends Controller
         }
 
         throw new NotFoundHttpException(Module::t('error', 'The requested page does not exist.'));
+    }
+
+    /**
+     * Enable direction
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionEnable($id)
+    {
+        $direction = $this->findModel($id);
+        if ($direction->enable()) {
+            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_ENABLED, 'DirectionId: ' . $direction->id);
+            Yii::$app->session->setFlash('success', Module::t('note', 'Direction successfully enabled'));
+        } else {
+            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_ENABLED, 'DirectionId: ' . $direction->id);
+            Yii::$app->session->setFlash('danger', Module::t('error', 'Direction not enabled'));
+        }
+
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
+    /**
+     * Disable direction
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDisable($id)
+    {
+        $direction = $this->findModel($id);
+        if ($direction->disable()) {
+            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_DISABLED, 'DirectionId: ' . $direction->id);
+            Yii::$app->session->setFlash('success', Module::t('note', 'Direction successfully enabled'));
+        } else {
+            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_DISABLED, 'DirectionId: ' . $direction->id);
+            Yii::$app->session->setFlash('danger', Module::t('error', 'Direction not disabled'));
+        }
+
+        return $this->redirect(['view', 'id' => $id]);
     }
 }

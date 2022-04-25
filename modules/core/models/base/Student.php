@@ -101,6 +101,27 @@ class Student extends \yii\db\ActiveRecord
     }
 
     /**
+     * Возврщает мап активности
+     * @return array
+     */
+    public static function getAtivities(): array
+    {
+        return [
+            self::ACTIVITY_ENABLE_ID => Module::t('app', self::ACTIVITY_ENABLE),
+            self::ACTIVITY_DISABLE_ID => Module::t('app', self::ACTIVITY_DISABLE),
+        ];
+    }
+
+    /**
+     * Возвращает статус пользователя
+     * @return string
+     */
+    public function getActivity(): string
+    {
+        return self::getAtivities()[$this->activity_id];
+    }
+
+    /**
      * Массив пол
      * @return array
      */
@@ -120,19 +141,6 @@ class Student extends \yii\db\ActiveRecord
     {
         return $this->surname . ' ' . $this->name;
     }
-
-    /**
-     * Массив статусов
-     * @return array
-     */
-    public static function getStatusesMap(): array
-    {
-        return [
-            self::STATUS_ACTIVE => Module::t('app', 'Active'),
-            self::STATUS_ARCHIVE => Module::t('app', 'Archive'),
-        ];
-    }
-
 
     /**
      * Возвращает строку пол
@@ -171,6 +179,26 @@ class Student extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * Метод активирует студента
+     * @return bool
+     */
+    public function enable(): bool
+    {
+        $this->activity_id = self::ACTIVITY_ENABLE_ID;
+        return $this->save(false);
+    }
+
+    /**
+     * Метод деактивирует студента
+     * @return bool
+     */
+    public function disable(): bool
+    {
+        $this->activity_id = self::ACTIVITY_DISABLE_ID;
+        return $this->save(false);
     }
 
     /**

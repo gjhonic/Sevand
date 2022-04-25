@@ -1,6 +1,8 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\IcoComponent;
+use app\modules\core\modules\admin\models\Student;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
@@ -27,6 +29,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+
+        <?php
+        if ($model->activity_id === Student::ACTIVITY_ENABLE_ID) {
+            echo Html::a(
+                IcoComponent::disable() . ' ' . Module::t('app', 'To archive'),
+                ['disable', 'id' => $model->id],
+                [
+                    'class' => 'btn btn-warning',
+                    'data' => [
+                        'confirm' => Module::t('note', 'Are you sure you want to archive the student?'),
+                    ],
+                ]
+            );
+        } elseif ($model->activity_id === Student::ACTIVITY_DISABLE_ID) {
+            echo Html::a(
+                IcoComponent::enable() . ' ' . Module::t('app', 'Activate'),
+                ['enable', 'id' => $model->id],
+                [
+                    'class' => 'btn btn-warning',
+                    'data' => [
+                        'confirm' => Module::t('note', 'Are you sure you want to activate the student?'),
+                    ],
+                ]
+            );
+        }
+        ?>
     </p>
 
     <?= DetailView::widget([
@@ -42,11 +70,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     $user = $model->user;
+                    $btn = '';
                     if($user){
-                        return Html::a($model->user->getFullname(),
+                        $btn = Html::a($model->user->getFullname(),
                                    Url::to(['/user/view', 'id' => $model->user_id]),
                                    ['class' => 'btn btn-primary']);
                     }
+                    return $btn;
                 }
             ],
             [

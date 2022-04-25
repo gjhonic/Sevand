@@ -14,6 +14,7 @@ use app\modules\core\modules\admin\models\search\GroupSearch;
 use app\modules\core\modules\admin\models\Group;
 use app\modules\core\services\log\LogMessage;
 use app\modules\core\services\log\LogService;
+use app\modules\core\services\log\LogStatus;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
@@ -44,7 +45,7 @@ class GroupController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view'],
+                        'actions' => ['index', 'view', 'enable', 'disable'],
                         'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_MODERATOR],
                     ],
                     [
@@ -112,10 +113,10 @@ class GroupController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->validate()) {
                 if ($model->save()) {
-                    LogService::createLog(LogService::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_GROUP_CREATE, 'GroupId: ' . $model->id);
+                    LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_GROUP_CREATE, 'GroupId: ' . $model->id);
                     Yii::$app->session->setFlash('success', Module::t('log', LogMessage::SUCCESS_GROUP_CREATE));
                 } else {
-                    LogService::createLog(LogService::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_GROUP_CREATE);
+                    LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_GROUP_CREATE);
                     Yii::$app->session->setFlash('danger', Module::t('log', LogMessage::DANGER_GROUP_CREATE));
                 }
 
