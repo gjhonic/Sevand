@@ -20,6 +20,11 @@ class LogMessage
     const SUCCESS_USER_ENABLED = 'User successfully enabled';
     const SUCCESS_USER_DISABLED = 'User successfully disabled';
 
+    //student
+    const SUCCESS_STUDENT_CREATED = 'Student successfully created';
+    const SUCCESS_STUDENT_ENABLED = 'Student successfully enabled';
+    const SUCCESS_STUDENT_DISABLED = 'Student successfully disabled';
+
     //group
     const SUCCESS_GROUP_CREATE = 'Group successfully created';
 

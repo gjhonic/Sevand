@@ -16,12 +16,23 @@ return [
     // - - - INFO LOGS - - -
     "User logged in" => "Пользователь авторизавался",
 
+
+
     // - - - SUCCESS LOGS - - -
     //user
-    "User successfully created" => "Пользователь успешно создан",
+    "User successfully created"  => "Пользователь успешно создан",
+    "User successfully enabled"  => "Пользователь успешно активирован",
+    "User successfully disabled" => "Пользователь успешно заархивирован",
+
+    //student
+    "Student successfully created"  => "Студент успешно создана",
+    "Student successfully enabled"  => "Студент успешно активирована",
+    "Student successfully disabled" => "Студент успешно заархивирована",
 
     //group
-    "Group successfully created" => "Группа успешно создана",
+    "Group successfully created"  => "Группа успешно создана",
+    "Group successfully enabled"  => "Группа успешно активирована",
+    "Group successfully disabled" => "Группа успешно заархивирована",
 
     //discipline
     "Discipline successfully created"  => "Дисциплина успешно создана",
@@ -40,12 +51,19 @@ return [
 
     // - - - DANGER LOGS - - -
     //user
-    "User not created" => "Пользователь не создан",
-    "User successfully enabled"  => "Пользователь успешно активирован",
-    "User successfully disabled" => "Пользователь успешно заархивирован",
+    "User not created"  => "Пользователь не создан",
+    "User not enabled"  => "Пользователь не активирован",
+    "User not disabled" => "Пользователь не заархивирован",
+
+    //student
+    "Student not created"  => "Студент не создан",
+    "Student not enabled"  => "Студент не активирован",
+    "Student not disabled" => "Студент не заархивирован",
 
     //group
-    "Group not created" => "Группа не создана",
+    "Group not created"  => "Группа не создана",
+    "Group not enabled"  => "Группа не активирована",
+    "Group not disabled" => "Группа не заархивирована",
 
     //discipline
     "Discipline not created"  => "Дисциплина не создана",
