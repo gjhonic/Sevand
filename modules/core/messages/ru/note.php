@@ -26,6 +26,11 @@ return [
     "User successfully enabled"  => "Пользователь успешно активирован",
     "User successfully disabled" => "Пользователь успешно заархивирован",
 
+    //user
+    "Student successfully created"  => "Студент успешно создан",
+    "Student successfully enabled"  => "Студент успешно активирован",
+    "Student successfully disabled" => "Студент успешно заархивирован",
+
     //discipline
     "Discipline successfully created"  => "Дисциплина успешно создана",
     "Discipline successfully enabled"  => "Дисциплина успешно активирована",

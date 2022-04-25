@@ -52,6 +52,11 @@ class LogMessage
     const DANGER_USER_ENABLED = "User not enabled";
     const DANGER_USER_DISABLED = "User not disabled";
 
+    //student
+    const DANGER_STUDENT_CREATED  = "Student not created";
+    const DANGER_STUDENT_ENABLED  = "Student not enabled";
+    const DANGER_STUDENT_DISABLED = "Student not disabled";
+
     //group
     const DANGER_GROUP_CREATE = "Group not created";
 

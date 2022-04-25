@@ -20,6 +20,11 @@ return [
     "Error validation" => "Ошибка валидации",
     "User creation error" => "Ошибка создания пользователя",
 
+    //StudentError
+    "Student creation error" => "Ошибка создания студента",
+    "Student not enabled" => "Студент не активирован",
+    "Student not disable" => "Студент не заархивирован",
+
     //DisciplineError
     "Discipline creation error" => "Ошибка создания дисциплины",
     "Discipline not enabled" => "Дисциплина не активирована",
