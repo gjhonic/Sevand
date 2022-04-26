@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
             <?= Html::a(
                 IcoComponent::add() . ' ' . Module::t('app', 'Create Student'),
-                ['create'],
+                ['user/create-student'],
                 ['class' => 'btn btn-success']
             ) ?>
             <?php
