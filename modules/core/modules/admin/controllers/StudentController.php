@@ -203,7 +203,7 @@ class StudentController extends Controller
         $student = $this->findModel($id);
         if ($student->disable()) {
             LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_STUDENT_DISABLED, 'StudentId: ' . $student->id);
-            Yii::$app->session->setFlash('success', Module::t('note', 'Student successfully enabled'));
+            Yii::$app->session->setFlash('success', Module::t('note', 'Student successfully disabled'));
         } else {
             LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_STUDENT_DISABLED, 'StudentId: ' . $student->id);
             Yii::$app->session->setFlash('danger', Module::t('error', 'Student not disabled'));

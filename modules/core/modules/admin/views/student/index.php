@@ -48,6 +48,13 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
         [
+            'attribute' => 'activity_id',
+            'filter' => Student::getAtivities(),
+            'value' => function ($model) {
+                return $model->activity;
+            }
+        ],
+        [
             'attribute' => 'group_id',
             'filter' => Group::getGroupsMap(),
             'format' => 'raw',

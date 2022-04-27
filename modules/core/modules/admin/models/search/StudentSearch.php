@@ -8,7 +8,7 @@
  */
 namespace app\modules\core\modules\admin\models\search;
 
-use app\modules\core\models\base\Student;
+use app\modules\core\modules\admin\models\Student;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -27,7 +27,7 @@ class StudentSearch extends Student
     {
         return [
             [['name', 'surname', 'patronymic'], 'string', 'max' => 50],
-            [['status_id', 'department_id', 'gender', 'group_id', 'user_id'], 'integer'],
+            [['activity_id', 'department_id', 'gender', 'group_id', 'user_id', 'id'], 'integer'],
         ];
     }
 
@@ -62,6 +62,7 @@ class StudentSearch extends Student
             return $dataProvider;
         }
 
+        $query->andFilterWhere(['=', 'id', $this->id]);
         $query->andFilterWhere(['like', 'name', $this->name]);
         $query->andFilterWhere(['like', 'surname', $this->surname]);
         $query->andFilterWhere(['like', 'patronymic', $this->patronymic]);
@@ -69,7 +70,7 @@ class StudentSearch extends Student
         $query->andFilterWhere(['=', 'gender', $this->gender]);
 
 
-        $query->andFilterWhere(['=', 'status_id', $this->status_id]);
+        $query->andFilterWhere(['=', 'activity_id', $this->activity_id]);
         $query->andFilterWhere(['=', 'group_id', $this->group_id]);
 
         return $dataProvider;
