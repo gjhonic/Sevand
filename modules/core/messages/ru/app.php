@@ -131,6 +131,7 @@ return [
     //Про студента
     "Create Student" => "Добавить студента",
     "Update Student: {name}" => "Редактировать студента: {name}",
+    "Transfer student" => "Перевести студента",
 
     //Про Группы
     "Create Group" => "Добавить группу",

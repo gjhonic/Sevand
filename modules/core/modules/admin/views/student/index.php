@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\ActivityComponent;
 use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\modules\admin\models\Group;
 use app\modules\core\modules\admin\models\Student;
@@ -49,9 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         [
             'attribute' => 'activity_id',
+            'format' => 'raw',
             'filter' => Student::getAtivities(),
             'value' => function ($model) {
-                return $model->activity;
+                return ActivityComponent::getLabel($model->activity_id);
             }
         ],
         [

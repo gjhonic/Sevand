@@ -18,6 +18,7 @@ class IcoComponent
     const ADD_ICO     = 'fa-plus';
     const ENABLE_ICO  = 'fa-check';
     const DISABLE_ICO = 'fa-ban';
+    const TRANSFER_ICO = 'fa-arrow-right';
 
     /**
      * Возвращает иконку глазика
@@ -71,6 +72,15 @@ class IcoComponent
     public static function disable(): string
     {
         return self::layout(self::DISABLE_ICO);
+    }
+
+    /**
+     * Возвращает иконку перевода
+     * @return string
+     */
+    public static function transfer(): string
+    {
+        return self::layout(self::TRANSFER_ICO);
     }
 
     /**

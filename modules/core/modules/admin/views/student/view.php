@@ -1,8 +1,10 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\ActivityComponent;
 use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\modules\admin\models\Student;
+use app\modules\core\modules\admin\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
@@ -21,14 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
+            <?= Html::a(IcoComponent::edit() . ' ' . Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(IcoComponent::delete() . ' ' . Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php } ?>
 
         <?php
         if ($model->activity_id === Student::ACTIVITY_ENABLE_ID) {
@@ -55,6 +59,11 @@ $this->params['breadcrumbs'][] = $this->title;
             );
         }
         ?>
+
+        <?php if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
+            <?= Html::a(IcoComponent::transfer() . ' ' . Module::t('app', 'Transfer student'), ['transfer', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
+        <?php } ?>
+
     </p>
 
     <?= DetailView::widget([
@@ -70,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     $group = $model->group;
-                    $htmlBtn = Module::t('app', 'Not set');
+                    $htmlBtn = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
                     if($group){
                         $htmlBtn = Html::a($group->title,
                             Url::to(['/group/view', 'id' => $model->group_id]),
@@ -98,14 +107,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Html::a($model->department->short_title,
-                                   Url::to(['/department/view', 'id' => $model->department_id]),
-                                   ['class' => 'btn btn-primary']);
+                                Url::to(['/department/view', 'id' => $model->department_id]),
+                                ['class' => 'btn btn-primary']);
                 }
             ],
             [
                 'attribute' => 'activity_id',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->activity;
+                    return ActivityComponent::getLabel($model->activity_id);
                 }
             ],
             [
