@@ -39,6 +39,8 @@ return [
     "Deactivate" => "Деактивировать",
     "Activate" => "Активировать",
     "Not set" => "Не задано",
+    "In" => "В",
+    "in" => "в",
 
     //Меню
     "Menu" => "Меню",
@@ -131,7 +133,8 @@ return [
     //Про студента
     "Create Student" => "Добавить студента",
     "Update Student: {name}" => "Редактировать студента: {name}",
-    "Transfer student" => "Перевести студента",
+    "Transfer Student" => "Перевести студента",
+    "Transfer from" => "Перевести из",
 
     //Про Группы
     "Create Group" => "Добавить группу",

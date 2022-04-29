@@ -28,6 +28,7 @@ return [
     "Student successfully created"  => "Студент успешно создана",
     "Student successfully enabled"  => "Студент успешно активирована",
     "Student successfully disabled" => "Студент успешно заархивирована",
+    "Student successfully transferred" => "Студент успешно переведен",
 
     //group
     "Group successfully created"  => "Группа успешно создана",
@@ -59,6 +60,7 @@ return [
     "Student not created"  => "Студент не создан",
     "Student not enabled"  => "Студент не активирован",
     "Student not disabled" => "Студент не заархивирован",
+    "Student not transferred" => "Студент не переведен",
 
     //group
     "Group not created"  => "Группа не создана",

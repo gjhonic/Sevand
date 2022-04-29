@@ -24,6 +24,7 @@ class LogMessage
     const SUCCESS_STUDENT_CREATED = 'Student successfully created';
     const SUCCESS_STUDENT_ENABLED = 'Student successfully enabled';
     const SUCCESS_STUDENT_DISABLED = 'Student successfully disabled';
+    const SUCCESS_STUDENT_TRANSFERRED = 'Student successfully transferred';
 
     //group
     const SUCCESS_GROUP_CREATE = 'Group successfully created';
@@ -56,6 +57,7 @@ class LogMessage
     const DANGER_STUDENT_CREATED  = "Student not created";
     const DANGER_STUDENT_ENABLED  = "Student not enabled";
     const DANGER_STUDENT_DISABLED = "Student not disabled";
+    const DANGER_STUDENT_TRANSFER = "Student not transferred";
 
     //group
     const DANGER_GROUP_CREATE = "Group not created";

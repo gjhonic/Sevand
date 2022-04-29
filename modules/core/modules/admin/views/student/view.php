@@ -12,7 +12,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\core\models\base\Student */
 
-$this->title = $model->fullname;
+$this->title = Module::t('app', 'Student') . ': ' . $model->fullname;
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Students'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
 
         <?php if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
-            <?= Html::a(IcoComponent::transfer() . ' ' . Module::t('app', 'Transfer student'), ['transfer', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
+            <?= Html::a(IcoComponent::transfer() . ' ' . Module::t('app', 'Transfer Student'), ['transfer', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
         <?php } ?>
 
     </p>
@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $htmlBtn = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
                     if($group){
                         $htmlBtn = Html::a($group->title,
-                            Url::to(['/group/view', 'id' => $model->group_id]),
+                            Url::to(['group/view', 'id' => $model->group_id]),
                             ['class' => 'btn btn-primary']);
                     }
                     return $htmlBtn;
@@ -96,7 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $htmlBtn = '';
                     if($user){
                         $htmlBtn = Html::a($user->fullname,
-                                   Url::to(['/user/view', 'id' => $model->user_id]),
+                                   Url::to(['user/view', 'id' => $model->user_id]),
                                    ['class' => 'btn btn-primary']);
                     }
                     return $htmlBtn;
@@ -107,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Html::a($model->department->short_title,
-                                Url::to(['/department/view', 'id' => $model->department_id]),
+                                Url::to(['department/view', 'id' => $model->department_id]),
                                 ['class' => 'btn btn-primary']);
                 }
             ],

@@ -45,7 +45,7 @@ class StudentController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'enable', 'disable'],
+                        'actions' => ['index', 'view', 'enable', 'disable', 'transfer'],
                         'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_MODERATOR],
                     ],
                     [
@@ -118,6 +118,36 @@ class StudentController extends Controller
         }
 
         return $this->render('create', [
+            'model' => $model,
+        ]);
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Метод переводит студента.
+     * @return string|\yii\web\Response
+     */
+    public function actionTransfer($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load($this->request->post()) && $model->validate()) {
+            if ($model->save()) {
+                LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_STUDENT_TRANSFERRED, 'StudentId: ' . $model->id);
+                Yii::$app->session->setFlash('success', Module::t('note', 'Student successfully transferred'));
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_STUDENT_TRANSFER);
+                Yii::$app->session->setFlash('danger', Module::t('error', 'Student not transferred'));
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('transfer_student', [
             'model' => $model,
         ]);
     }
