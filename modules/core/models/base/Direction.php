@@ -21,6 +21,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property Department $department
  * @property string $activity
+ * @property string $info
  */
 class Direction extends \yii\db\ActiveRecord
 {
@@ -137,5 +138,15 @@ class Direction extends \yii\db\ActiveRecord
     {
         $this->activity_id = self::ACTIVITY_DISABLE_ID;
         return $this->save(false);
+    }
+
+    /**
+     * Метод возвращает описание направления
+     */
+    public function getInfo(): string
+    {
+        return 'id: ' . $this->id .
+            ' title: ' . $this->title .
+            ' short_title: ' . $this->short_title;
     }
 }

@@ -41,5 +41,5 @@ return [
     "Direction successfully updated"  => "Направление успешно изменено",
     "Direction successfully enabled"  => "Направление успешно активировано",
     "Direction successfully disabled" => "Направление успешно заархивировано",
-
+    "Direction successfully deleted"  => "Направление успешно удалена",
 ];

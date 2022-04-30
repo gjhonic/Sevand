@@ -73,6 +73,7 @@ class LogMessage
     const DANGER_DIRECTION_UPDATED  = "Direction not updated";
     const DANGER_DIRECTION_ENABLED  = "Direction not enabled";
     const DANGER_DIRECTION_DISABLED = "Direction not disabled";
+    const DANGER_DIRECTION_DELETED  = "Direction not deleted";
 
 
 }

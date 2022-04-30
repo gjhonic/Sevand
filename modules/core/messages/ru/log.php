@@ -45,6 +45,7 @@ return [
     "Direction successfully updated"  => "Направление успешно изменено",
     "Direction successfully enabled"  => "Направление успешно активировано",
     "Direction successfully disabled" => "Направление успешно заархивировано",
+    "Direction successfully deleted"  => "Направление успешно удалена",
 
     // - - - WARNING LOGS - - -
     "The log was not created because status not found" => "Лог не был создан т.к статус не найден",
@@ -80,4 +81,5 @@ return [
     "Direction not updated"  => "Направление не изменено",
     "Direction not enabled"  => "Направление не активировано",
     "Direction not disabled" => "Направление не заархивировано",
+    "Direction not deleted"  => "Направление не удалена",
 ];

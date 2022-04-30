@@ -169,9 +169,17 @@ class DirectionController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if ($model->delete()) {
+            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_DELETED, 'Direction Info: ' . $model->info);
+            Yii::$app->session->setFlash('success', Module::t('note', 'Direction successfully deleted'));
+        } else {
+            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_DELETED);
+            Yii::$app->session->setFlash('danger', Module::t('error', 'Direction not deleted'));
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index']);          
     }
 
     /**
@@ -182,12 +190,12 @@ class DirectionController extends Controller
      */
     public function actionEnable($id)
     {
-        $direction = $this->findModel($id);
-        if ($direction->enable()) {
-            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_ENABLED, 'DirectionId: ' . $direction->id);
+        $model = $this->findModel($id);
+        if ($model->enable()) {
+            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_ENABLED, 'DirectionId: ' . $model->id);
             Yii::$app->session->setFlash('success', Module::t('note', 'Direction successfully enabled'));
         } else {
-            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_ENABLED, 'DirectionId: ' . $direction->id);
+            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_ENABLED, 'DirectionId: ' . $model->id);
             Yii::$app->session->setFlash('danger', Module::t('error', 'Direction not enabled'));
         }
 
@@ -202,12 +210,12 @@ class DirectionController extends Controller
      */
     public function actionDisable($id)
     {
-        $direction = $this->findModel($id);
-        if ($direction->disable()) {
-            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_DISABLED, 'DirectionId: ' . $direction->id);
+        $model = $this->findModel($id);
+        if ($model->disable()) {
+            LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_DISABLED, 'DirectionId: ' . $model->id);
             Yii::$app->session->setFlash('success', Module::t('note', 'Direction successfully enabled'));
         } else {
-            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_DISABLED, 'DirectionId: ' . $direction->id);
+            LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_DISABLED, 'DirectionId: ' . $model->id);
             Yii::$app->session->setFlash('danger', Module::t('error', 'Direction not disabled'));
         }
 
