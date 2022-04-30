@@ -37,6 +37,7 @@ class LogMessage
 
     //direction
     const SUCCESS_DIRECTION_CREATED  = 'Direction successfully created';
+    const SUCCESS_DIRECTION_UPDATED  = 'Direction successfully updated';
     const SUCCESS_DIRECTION_ENABLED  = 'Direction successfully enabled';
     const SUCCESS_DIRECTION_DISABLED = 'Direction successfully disabled';
     const SUCCESS_DIRECTION_DELETED  = 'Direction successfully deleted';
@@ -69,6 +70,7 @@ class LogMessage
 
     //direction
     const DANGER_DIRECTION_CREATED  = "Direction not created";
+    const DANGER_DIRECTION_UPDATED  = "Direction not updated";
     const DANGER_DIRECTION_ENABLED  = "Direction not enabled";
     const DANGER_DIRECTION_DISABLED = "Direction not disabled";
 

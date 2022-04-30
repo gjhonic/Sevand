@@ -42,6 +42,7 @@ return [
 
     //direction
     "Direction successfully created"  => "Направление успешно создано",
+    "Direction successfully updated"  => "Направление успешно изменено",
     "Direction successfully enabled"  => "Направление успешно активировано",
     "Direction successfully disabled" => "Направление успешно заархивировано",
 
@@ -49,6 +50,8 @@ return [
     "The log was not created because status not found" => "Лог не был создан т.к статус не найден",
     "The log was not created because the user was not found" => "Лог не был создан т.к пользователь не найден",
     "The log was not created" => "Лог не был создан",
+
+
 
     // - - - DANGER LOGS - - -
     //user
@@ -74,6 +77,7 @@ return [
 
     //direction
     "Direction not created"  => "Направление не создано",
+    "Direction not updated"  => "Направление не изменено",
     "Direction not enabled"  => "Направление не активировано",
     "Direction not disabled" => "Направление не заархивировано",
 ];

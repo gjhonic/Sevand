@@ -74,7 +74,6 @@ class DirectionController extends Controller
 
     /**
      * Lists all Direction models.
-     *
      * @return string
      */
     public function actionIndex()
@@ -142,8 +141,18 @@ class DirectionController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->validate()) {
+                if ($model->save()) {
+                    LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DIRECTION_UPDATED, 'DirectionId: ' . $model->id);
+                    Yii::$app->session->setFlash('success', Module::t('note', 'Direction successfully updated'));
+                    return $this->redirect(['view', 'id' => $model->id]);
+                } else {
+                    LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DIRECTION_UPDATED);
+                    Yii::$app->session->setFlash('danger', Module::t('error', 'Direction not updated'));
+                }
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [

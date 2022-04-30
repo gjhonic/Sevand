@@ -32,6 +32,7 @@ return [
 
     //DirectionError
     "Direction creation error" => "Ошибка создания направления",
+    "Direction not updated" => "Направление не изменено",
     "Direction not enabled" => "Направление не активировано",
     "Direction not disable" => "Направление не заархивировано",
 

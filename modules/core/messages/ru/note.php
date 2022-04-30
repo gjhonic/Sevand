@@ -38,6 +38,7 @@ return [
 
     //direction
     "Direction successfully created"  => "Направление успешно создано",
+    "Direction successfully updated"  => "Направление успешно изменено",
     "Direction successfully enabled"  => "Направление успешно активировано",
     "Direction successfully disabled" => "Направление успешно заархивировано",
 
