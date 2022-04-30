@@ -141,7 +141,7 @@ class Direction extends \yii\db\ActiveRecord
     }
 
     /**
-     * Метод возвращает описание направления
+     * Метод возвращает информацию о направлении
      */
     public function getInfo(): string
     {

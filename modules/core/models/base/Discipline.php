@@ -19,6 +19,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property Department $department
  * @property string $activity
+ * @property string $info
  */
 class Discipline extends \yii\db\ActiveRecord
 {
@@ -128,5 +129,15 @@ class Discipline extends \yii\db\ActiveRecord
     {
         $this->activity_id = self::ACTIVITY_DISABLE_ID;
         return $this->save(false);
+    }
+
+    /**
+     * Метод возвращает информацию о дисциплине
+     */
+    public function getInfo(): string
+    {
+        return 'id: ' . $this->id .
+            ' title: ' . $this->title .
+            ' short_title: ' . $this->short_title;
     }
 }
