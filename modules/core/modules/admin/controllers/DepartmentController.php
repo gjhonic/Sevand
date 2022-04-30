@@ -9,7 +9,7 @@
 
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\models\base\Department;
+use app\modules\core\models\admin\models\Department;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
@@ -77,7 +77,7 @@ class DepartmentController extends Controller
      */
     protected function findModel(): Department
     {
-        if (($model = Department::findOne(['id' => Yii::$app->user->identity->department_id])) !== null) {
+        if (($model = Department::find()->one()) !== null) {
             return $model;
         }
 

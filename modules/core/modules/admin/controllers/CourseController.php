@@ -61,7 +61,7 @@ class CourseController extends Controller
     public $layout = 'admin';
 
     /**
-     * Lists all Direction models.
+     * Lists all Course models.
      *
      * @return string
      */
@@ -78,7 +78,7 @@ class CourseController extends Controller
 
 
     /**
-     * Displays a single Department model.
+     * Displays a single Course model.
      * @return string
      * @param int $id
      * @throws NotFoundHttpException if the model cannot be found
