@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\services\log\LogStatus;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
@@ -34,8 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'message:ntext',
             [
                 'attribute' => 'status_id',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->status;
+                    return LogStatus::getLabel($model->status_id);
                 }
             ],
             [

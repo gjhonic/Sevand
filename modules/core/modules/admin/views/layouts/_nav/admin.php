@@ -30,9 +30,9 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         [
             'label' => Module::t('app', 'Dictionaries'),
             'url' => Url::to('/admin/dictionaries'),
-            'ico' => 'fa-database',
+            'ico' => 'fa-book',
             'controller' => 'page',
-            'action' => 'bases'
+            'action' => 'dictionaries'
         ],
         [
             'label' => Module::t('app', 'Settings'),
@@ -44,7 +44,7 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         [
             'label' => Module::t('app', 'Logs'),
             'url' => Url::to('/admin/log'),
-            'ico' => 'fa-book',
+            'ico' => 'fa-clipboard',
             'controller' => 'log',
             'action' => 'index'
         ]
@@ -66,6 +66,13 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
             'action' => 'bases'
         ],
         [
+            'label' => Module::t('app', 'Dictionaries'),
+            'url' => Url::to('/admin/dictionaries'),
+            'ico' => 'fa-book',
+            'controller' => 'page',
+            'action' => 'dictionaries'
+        ],
+        [
             'label' => Module::t('app', 'Settings'),
             'url' => Url::to('/settings/index'),
             'ico' => 'fa-wrench',
@@ -75,7 +82,7 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         [
             'label' => Module::t('app', 'Logs'),
             'url' => Url::to('/admin/log'),
-            'ico' => 'fa-book',
+            'ico' => 'fa-clipboard',
             'controller' => 'log',
             'action' => 'index'
         ]
@@ -95,6 +102,13 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
             'ico' => 'fa-database',
             'controller' => 'page',
             'action' => 'bases'
+        ],
+        [
+            'label' => Module::t('app', 'Dictionaries'),
+            'url' => Url::to('/admin/dictionaries'),
+            'ico' => 'fa-book',
+            'controller' => 'page',
+            'action' => 'dictionaries'
         ],
         [
             'label' => Module::t('app', 'Settings'),

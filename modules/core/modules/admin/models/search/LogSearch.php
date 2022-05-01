@@ -27,7 +27,7 @@ class LogSearch extends Log
     public function rules(): array
     {
         return [
-            [['message'], 'string', 'max' => 255],
+            [['message', 'description'], 'string', 'max' => 255],
             [['id', 'status_id'], 'integer'],
         ];
     }
@@ -62,6 +62,7 @@ class LogSearch extends Log
         }
         $query->andFilterWhere(['=', 'id', $this->id]);
         $query->andFilterWhere(['like', 'message', $this->message]);
+        $query->andFilterWhere(['like', 'description', $this->description]);
         $query->andFilterWhere(['=', 'status_id', $this->status_id]);
 
         return $dataProvider;
