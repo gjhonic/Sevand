@@ -53,7 +53,7 @@ return [
     "Admin panel" => "Админка",
     "Root panel" => "Root панель",
     "Sign in" => "Войти",
-    "Dictionaries" => "Словари",
+    "Dictionaries" => "Справочники",
     "Base" => "База",
     "Bases" => "Базы",
 

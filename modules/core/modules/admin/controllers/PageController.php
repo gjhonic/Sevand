@@ -110,11 +110,13 @@ class PageController extends Controller
     }
 
     /**
-     * Показывает страницу словарей
+     * Показывает страницу справочников
      * @return string
      */
     public function actionDictionaries()
     {
-        return $this->render('dictionaries');
+        return $this->render('dictionaries', [
+            
+        ]);
     }
 }

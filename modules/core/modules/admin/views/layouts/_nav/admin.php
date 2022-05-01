@@ -28,6 +28,13 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
             'action' => 'bases'
         ],
         [
+            'label' => Module::t('app', 'Dictionaries'),
+            'url' => Url::to('/admin/dictionaries'),
+            'ico' => 'fa-database',
+            'controller' => 'page',
+            'action' => 'bases'
+        ],
+        [
             'label' => Module::t('app', 'Settings'),
             'url' => Url::to('/settings/index'),
             'ico' => 'fa-wrench',
