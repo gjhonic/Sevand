@@ -3,15 +3,14 @@
 use app\modules\core\models\base\Log;
 use app\modules\core\Module;
 use app\modules\core\modules\admin\components\IcoComponent;
-use app\modules\core\services\log\LogService;
+use app\modules\core\services\log\LogStatus;
 use kartik\dynagrid\DynaGrid;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $searchModel \app\modules\core\models\search\LogSearch */
+/* @var $searchModel \app\modules\core\modules\admin\models\search\LogSearch */
 
 $this->title = Module::t('app', 'Logs');
 $this->params['breadcrumbs'][] = $this->title;
@@ -34,9 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         [
             'attribute' => 'status_id',
+            'format' => 'raw',
             'filter' => Log::getStatuses(),
             'value' => function ($model) {
-                return $model->status;
+                return LogStatus::getLabel($model->status_id);
             }
         ],
         [
@@ -47,6 +47,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 if($user){
                     return Html::a($model->user->username, Url::to(['/admin/user/view', 'id' => $model->user_id]), ['class' => 'btn btn-secondary btn-block']);
                 }
+            }
+        ],
+        [
+            'attribute' => 'description',
+            'value' => function ($model) {
+                return mb_substr($model->description, 0, 20) . ']...';
             }
         ],
         [

@@ -9,7 +9,7 @@ use yii\helpers\Html;
 $this->title = Module::t('app', 'Editing Direction: {name}', [
     'name' => $model->short_title,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Dictionaries'), 'url' => ['/admin/dictionaries']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Directions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->short_title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Module::t('app', 'Editing');

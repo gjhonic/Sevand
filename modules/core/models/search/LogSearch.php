@@ -8,7 +8,6 @@
  */
 namespace app\modules\core\models\search;
 
-use app\modules\core\models\base\Discipline;
 use app\modules\core\models\base\Log;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;

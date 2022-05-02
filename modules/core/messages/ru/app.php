@@ -53,7 +53,7 @@ return [
     "Admin panel" => "Админка",
     "Root panel" => "Root панель",
     "Sign in" => "Войти",
-    "Dictionaries" => "Словари",
+    "Dictionaries" => "Справочники",
     "Base" => "База",
     "Bases" => "Базы",
 
@@ -65,11 +65,13 @@ return [
     "Group base" => "База групп",
     "Count groups" => "Количество групп",
     "Watch groups" => "Смотреть группы",
+    "Watch courses" => "Смотреть курсы",
+    "Watch disciplines" => "Смотреть дисциплины",
     "Discipline base" => "База дисциплин",
     "Count discipline" => "Количество дисциплин",
     "Direction base" => "База направлений",
     "Count direction" => "Количество направлений",
-    "Watch direction" => "Смотреть направления",
+    "Watch directions" => "Смотреть направления",
 
 
     //Сущности
@@ -129,6 +131,13 @@ return [
     "Gender" => "Пол",
     "Male" => "Мужской",
     "Female" => "Женский",
+
+    //Статусы логов
+    "info" => "информационный",
+    "success" => "успех",
+    "warning" => "внимание",
+    "danger" => "опасность",
+    "crazy" => "критично",
 
     //Про студента
     "Create Student" => "Добавить студента",
