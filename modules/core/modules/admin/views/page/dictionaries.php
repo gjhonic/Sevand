@@ -19,45 +19,59 @@ $this->params['breadcrumbs'][] = $this->title;
     <a href="<?= Url::to('/admin/department/view') ?>"><?= Yii::$app->user->identity->department->short_title ?></a>
 </h1>
 
-<table>
-    <tr>
-        <td>
-            <div class="box-direct">
-                <?=Module::t('app', 'Direction')?>:
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><?=Module::t('app', 'Directions')?></h5>
                 <?= Html::a(
                     Module::t('app', 'Watch direction'),
                     Url::to('/admin/direction/index'),
                     ['class' => 'btn btn-outline-primary btn-block']
                 ) ?>
             </div>
-        </td>
-        <td>
-            <?=Module::t('app', 'Courses')?>:
-            <?= Html::a(
-                Module::t('app', 'Watch courses'),
-                Url::to('/admin/course/index'),
-                ['class' => 'btn btn-outline-primary btn-block']
-            ) ?>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <?=Module::t('app', 'Disciplines')?>:
-            <?= Html::a(
-                Module::t('app', 'Watch disciplines'),
-                Url::to('/admin/discipline/index'),
-                ['class' => 'btn btn-outline-primary btn-block']
-            ) ?>
-        </td>
-        <td>
-            <?=Module::t('app', 'Direction')?>:
-            <?= Html::a(
-                Module::t('app', 'Watch direction'),
-                Url::to('/admin/direction/index'),
-                ['class' => 'btn btn-outline-primary btn-block']
-            ) ?>
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><?=Module::t('app', 'Courses')?></h5>
+                <?= Html::a(
+                    Module::t('app', 'Watch courses'),
+                    Url::to('/admin/course/index'),
+                    ['class' => 'btn btn-outline-primary btn-block']
+                ) ?>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><?=Module::t('app', 'Disciplines')?></h5>
+                <?= Html::a(
+                    Module::t('app', 'Watch disciplines'),
+                    Url::to('/admin/discipline/index'),
+                    ['class' => 'btn btn-outline-primary btn-block']
+                ) ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><?=Module::t('app', '...')?></h5>
+                <?= Html::a(
+                    Module::t('app', '...'),
+                    Url::to('/admin/dictionaries'),
+                    ['class' => 'btn btn-outline-primary btn-block']
+                ) ?>
+            </div>
+        </div>
+    </div>
+</div>
 
 

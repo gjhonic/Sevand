@@ -65,6 +65,8 @@ return [
     "Group base" => "База групп",
     "Count groups" => "Количество групп",
     "Watch groups" => "Смотреть группы",
+    "Watch courses" => "Смотреть курсы",
+    "Watch disciplines" => "Смотреть дисциплины",
     "Discipline base" => "База дисциплин",
     "Count discipline" => "Количество дисциплин",
     "Direction base" => "База направлений",

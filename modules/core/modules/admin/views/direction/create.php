@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\modules\core\models\base\Direction */
 
 $this->title = Module::t('app', 'Create Direction');
-$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Dictionaries'), 'url' => ['/admin/dictionaries']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Directions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

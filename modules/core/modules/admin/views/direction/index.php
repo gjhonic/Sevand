@@ -13,7 +13,7 @@ use yii\helpers\Url;
 /* @var $searchModel \app\modules\core\models\search\DirectionSearch */
 
 $this->title = Module::t('app', 'Directions');
-$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Dictionaries'), 'url' => ['/admin/dictionaries']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="direction-index">
