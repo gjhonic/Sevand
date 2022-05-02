@@ -15,63 +15,114 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<h1><?= Module::t('app', 'Dictionaries') ?>
-    <a href="<?= Url::to('/admin/department/view') ?>"><?= Yii::$app->user->identity->department->short_title ?></a>
-</h1>
-
-
-<div class="row">
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title"><?=Module::t('app', 'Directions')?></h5>
+<div class="block-bases">
+    <h1><?= Module::t('app', 'Dictionaries') ?>
+        <a href="<?= Url::to('/admin/department/view') ?>"><?= Yii::$app->user->identity->department->short_title ?></a>
+    </h1>
+    <table class="table table-bordered table-linght">
+        <tbody>
+        <tr>
+            <td class="block-title" rowspan="2" >
+                <h2 class="title-base"><?=Module::t('app', 'Directions')?></h2>
+            </td>
+            <td width="60%">
+                <?=Module::t('app', 'Count user')?>:
+                <i>
+                    <?=$userCount?>
+                </i>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <?= Html::a(
-                    Module::t('app', 'Watch direction'),
+                    Module::t('app', 'Watch directions'),
                     Url::to('/admin/direction/index'),
                     ['class' => 'btn btn-outline-primary btn-block']
                 ) ?>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title"><?=Module::t('app', 'Courses')?></h5>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+
+    <table class="table table-bordered table-linght">
+        <tbody>
+        <tr>
+            <td class="block-title" rowspan="3">
+                <h2 class="title-base"><?=Module::t('app', 'Courses')?></h2>
+            </td>
+
+            <td width="60%">
+                <?=Module::t('app', 'Count groups')?>:
+                <i>
+                    <?=$groupCount?>
+                </i>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <?= Html::a(
                     Module::t('app', 'Watch courses'),
                     Url::to('/admin/course/index'),
                     ['class' => 'btn btn-outline-primary btn-block']
                 ) ?>
-            </div>
-        </div>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title"><?=Module::t('app', 'Disciplines')?></h5>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+
+    <!-- Панель базы студентов -->
+    <table class="table table-bordered table-linght">
+        <tbody>
+        <tr>
+            <td class="block-title" rowspan="2">
+                <h2 class="title-base"><?=Module::t('app', 'Disciplines')?></h2>
+            </td>
+            <td width="60%">
+                <?=Module::t('app', 'Count students')?>:
+                <i>
+                    <?=$studentCount?>
+                </i>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <?= Html::a(
                     Module::t('app', 'Watch disciplines'),
                     Url::to('/admin/discipline/index'),
                     ['class' => 'btn btn-outline-primary btn-block']
                 ) ?>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title"><?=Module::t('app', '...')?></h5>
-                <?= Html::a(
-                    Module::t('app', '...'),
-                    Url::to('/admin/dictionaries'),
-                    ['class' => 'btn btn-outline-primary btn-block']
-                ) ?>
-            </div>
-        </div>
-    </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+
 </div>
+
+<style>
+    table {
+        background-color: #fafafa;
+        font-size: 22px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    table:hover {
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .td_image {
+        margin: 2% 20%;
+    }
+    .block-title{
+        position: relative;
+    }
+    .title-base{
+        position: absolute;
+        top: 30%;
+        left: 10%;
+    }
+</style>
 
 

@@ -20,19 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </h1>
 
     <table class="table table-bordered table-linght">
-        <thead class="thead-light">
-        <tr>
-            <td colspan="2" align="center">
-                <strong>
-                    <?=Module::t('app', 'User base')?>
-                </strong>
-            </td>
-        </tr>
-        </thead>
         <tbody>
             <tr>
-                <td rowspan="2">
-                    <img src="" class="td_image" alt="" width="60%">
+                <td class="block-title" rowspan="2" >
+                    <h2 class="title-base"><?=Module::t('app', 'Users')?></h2>
                 </td>
                 <td width="60%">
                     <?=Module::t('app', 'Count user')?>:
@@ -55,30 +46,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
 
     <table class="table table-bordered table-linght">
-        <thead class="thead-light">
-            <tr>
-                <td colspan="2" align="center">
-                    <strong>
-                        <?=Module::t('app', 'Group base')?>
-                    </strong>
-                </td>
-            </tr>
-        </thead>
         <tbody>
             <tr>
-                <td rowspan="3">
-                    <img src="" class="td_image" alt="" width="60%">
+                <td class="block-title" rowspan="3">
+                    <h2 class="title-base"><?=Module::t('app', 'Groups')?></h2>
                 </td>
 
                 <td width="60%">
                     <?=Module::t('app', 'Count groups')?>:
                     <i>
                         <?=$groupCount?>
-                    </i>
-                    <br>
-                    <?=Module::t('app', 'Count direction')?>:
-                    <i>
-                        <?=$directionCount?>
                     </i>
                 </td>
             </tr>
@@ -89,11 +66,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         Url::to('/admin/group/index'),
                         ['class' => 'btn btn-outline-primary btn-block']
                     ) ?>
-                    <?= Html::a(
-                        Module::t('app', 'Watch direction'),
-                        Url::to('/admin/direction/index'),
-                        ['class' => 'btn btn-outline-primary btn-block']
-                    ) ?>
                 </td>
             </tr>
         </tbody>
@@ -102,19 +74,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <!-- Панель базы студентов -->
     <table class="table table-bordered table-linght">
-        <thead class="thead-light">
-            <tr>
-                <td colspan="2" align="center">
-                    <strong>
-                        <?=Module::t('app', 'Student base')?>
-                    </strong>
-                </td>
-            </tr>
-        </thead>
         <tbody>
             <tr>
-                <td rowspan="2">
-                    <img src="" class="td_image" alt="" width="60%">
+                <td class="block-title" rowspan="2">
+                    <h2 class="title-base"><?=Module::t('app', 'Students')?></h2>
                 </td>
                 <td width="60%">
                     <?=Module::t('app', 'Count students')?>:
@@ -136,42 +99,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
     <br>
 
-    <table class="table table-bordered table-linght">
-        <thead class="thead-light">
-            <tr>
-                <td colspan="2" align="center">
-                    <strong>
-                        <?=Module::t('app', 'Discipline base')?>
-                    </strong>
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td rowspan="3">
-                    <img src="" class="td_image" alt="" width="60%">
-                </td>
-                <td width="60%">
-                    <?=Module::t('app', 'Count discipline')?>:
-                    <i>
-                        <?=$disciplineCount?>
-                    </i>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <?= Html::a(
-                        Module::t('app', 'Go'),
-                        Url::to('/admin/discipline/index'),
-                        ['class' => 'btn btn-outline-primary btn-block']
-                    ) ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-
-
 </div>
 
 <style>
@@ -187,5 +114,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     .td_image {
         margin: 2% 20%;
+    }
+    .block-title{
+        position: relative;
+    }
+    .title-base{
+        position: absolute;
+        top: 30%;
+        left: 10%;
     }
 </style>

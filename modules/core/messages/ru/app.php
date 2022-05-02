@@ -71,7 +71,7 @@ return [
     "Count discipline" => "Количество дисциплин",
     "Direction base" => "База направлений",
     "Count direction" => "Количество направлений",
-    "Watch direction" => "Смотреть направления",
+    "Watch directions" => "Смотреть направления",
 
 
     //Сущности
