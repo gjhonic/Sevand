@@ -22,49 +22,61 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <div class="col-md-12">
+    <div class="row">
         <?php if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
-            <?= Html::a(IcoComponent::edit() . ' ' . Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a(IcoComponent::delete() . ' ' . Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
-                    'method' => 'post',
-                ],
-            ]) ?>
+            <div class="col">
+                <?= Html::a(IcoComponent::edit() . ' ' . Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-block']) ?>
+            </div>
+            <div class="col">
+                <?= Html::a(IcoComponent::delete() . ' ' . Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger btn-block',
+                    'data' => [
+                        'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </div>
         <?php } ?>
 
-        <?php
-        if ($model->activity_id === Student::ACTIVITY_ENABLE_ID) {
-            echo Html::a(
-                IcoComponent::disable() . ' ' . Module::t('app', 'To archive'),
-                ['disable', 'id' => $model->id],
-                [
-                    'class' => 'btn btn-warning',
-                    'data' => [
-                        'confirm' => Module::t('note', 'Are you sure you want to archive the student?'),
-                    ],
-                ]
-            );
-        } elseif ($model->activity_id === Student::ACTIVITY_DISABLE_ID) {
-            echo Html::a(
-                IcoComponent::enable() . ' ' . Module::t('app', 'Activate'),
-                ['enable', 'id' => $model->id],
-                [
-                    'class' => 'btn btn-warning',
-                    'data' => [
-                        'confirm' => Module::t('note', 'Are you sure you want to activate the student?'),
-                    ],
-                ]
-            );
-        }
-        ?>
+        <div class="col">
+            <?php if ($model->activity_id === Student::ACTIVITY_ENABLE_ID) {
+                echo Html::a(
+                    IcoComponent::disable() . ' ' . Module::t('app', 'To archive'),
+                    ['disable', 'id' => $model->id],
+                    [
+                        'class' => 'btn btn-warning btn-block',
+                        'data' => [
+                            'confirm' => Module::t('note', 'Are you sure you want to archive the student?'),
+                        ],
+                    ]
+                );
+            } elseif ($model->activity_id === Student::ACTIVITY_DISABLE_ID) {
+                echo Html::a(
+                    IcoComponent::enable() . ' ' . Module::t('app', 'Activate'),
+                    ['enable', 'id' => $model->id],
+                    [
+                        'class' => 'btn btn-warning btn-block',
+                        'data' => [
+                            'confirm' => Module::t('note', 'Are you sure you want to activate the student?'),
+                        ],
+                    ]
+                );
+            } ?>
+        </div>
 
         <?php if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
-            <?= Html::a(IcoComponent::transfer() . ' ' . Module::t('app', 'Transfer Student'), ['transfer', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
+            <div class="col">
+                <?= Html::a(IcoComponent::transfer() . ' ' . Module::t('app', 'Transfer Student'),
+                    ['transfer', 'id' => $model->id],
+                    ['class' => 'btn btn-secondary btn-block'])
+                ?>
+            </div>
         <?php } ?>
 
-    </p>
+    </div>
+    </div>
+    <br>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -79,13 +91,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     $group = $model->group;
-                    $htmlBtn = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
+                    $htmlGroup = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
                     if($group){
-                        $htmlBtn = Html::a($group->title,
+                        $htmlGroup = Html::a($group->title,
                             Url::to(['group/view', 'id' => $model->group_id]),
-                            ['class' => 'btn btn-primary']);
+                            ['class' => 'btn btn-outline-primary']);
                     }
-                    return $htmlBtn;
+                    return $htmlGroup;
                 }
             ],
             [
@@ -93,22 +105,28 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
                     $user = $model->user;
-                    $htmlBtn = '';
+                    $htmlUser = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
                     if($user){
-                        $htmlBtn = Html::a($user->fullname,
+                        $htmlUser = Html::a($user->fullname,
                                    Url::to(['user/view', 'id' => $model->user_id]),
-                                   ['class' => 'btn btn-primary']);
+                                   ['class' => 'btn btn-outline-primary']);
                     }
-                    return $htmlBtn;
+                    return $htmlUser;
                 }
             ],
             [
                 'attribute' => 'department_id',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->department->short_title,
+                    $department =  $model->department;
+                    $htmlDepartment = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
+                    if ($department) {
+                        $htmlDepartment =  Html::a($department->short_title,
                                 Url::to(['department/view', 'id' => $model->department_id]),
-                                ['class' => 'btn btn-primary']);
+                                ['class' => 'btn btn-outline-primary']);
+                    }
+
+                    return $htmlDepartment;
                 }
             ],
             [
