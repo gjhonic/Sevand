@@ -151,7 +151,6 @@ class User extends \yii\db\ActiveRecord
             $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
             if($this->save(false)){
                 Yii::$app->authManager->assign(Yii::$app->authManager->getRole($this->role), $this->id);
-                $transaction->commit();
 
                 $student = new Student();
                 $student->name = $this->name;
@@ -163,6 +162,7 @@ class User extends \yii\db\ActiveRecord
                 $student->department_id = $this->department_id;
 
                 if($student->save()){
+                    $transaction->commit();
                     return UserError::SUCCESS_CREATE_USER;
                 } else {
                     $transaction->rollBack();

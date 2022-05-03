@@ -143,8 +143,6 @@ class StudentController extends Controller
                 LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_STUDENT_TRANSFER);
                 Yii::$app->session->setFlash('danger', Module::t('error', 'Student not transferred'));
             }
-        } else {
-            $model->loadDefaultValues();
         }
 
         return $this->render('transfer_student', [

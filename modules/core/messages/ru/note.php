@@ -30,6 +30,7 @@ return [
     "Student successfully created"  => "Студент успешно создан",
     "Student successfully enabled"  => "Студент успешно активирован",
     "Student successfully disabled" => "Студент успешно заархивирован",
+    "Student successfully transferred" => "Студент успешно переведен",
 
     //discipline
     "Discipline successfully created"  => "Дисциплина успешно создана",

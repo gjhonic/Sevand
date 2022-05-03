@@ -228,10 +228,6 @@ class Student extends \yii\db\ActiveRecord
      */
     public function transferStudent($validate = false): bool
     {
-        /*echo "<pre>";
-        print_r($this->group_id);
-        echo "</pre>";
-        die;*/
         if($validate){
             if(!$this->validate()){
                 return false;
@@ -239,19 +235,18 @@ class Student extends \yii\db\ActiveRecord
         }
         $transaction = Yii::$app->db->beginTransaction();
         try {
-            $studentCur = Student::find()->where(['id' => $this->id])->one();
-            $groupFrom = $studentCur->group_id;
 
-            if($this->save(false)){
+            if($this->update(false)){
                 $studentTransferLog = new StudentTransferLog();
                 $studentTransferLog->department_id = $this->department_id;
                 $studentTransferLog->user_id = Yii::$app->user->identity->id;
                 $studentTransferLog->student_id = $this->id;
-                $studentTransferLog->group_from_id = $groupFrom;
+                $studentTransferLog->group_from_id = $this->group_id;
                 $studentTransferLog->group_to_id = $this->group_id;
                 $studentTransferLog->message = $this->message;
 
                 if($studentTransferLog->save()){
+                    $transaction->commit();
                     return true;
                 } else {
                     $transaction->rollBack();
@@ -264,7 +259,7 @@ class Student extends \yii\db\ActiveRecord
 
         } catch (\Exception $e) {
             $transaction->rollBack();
-            throw new NotFoundHttpException('Error');
+            return false;
         }
 
         return false;

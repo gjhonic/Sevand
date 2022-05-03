@@ -42,8 +42,9 @@ class StudentTransferLog extends \yii\db\ActiveRecord
     {
         return [
             [['department_id', 'user_id', 'student_id', 'group_to_id'], 'required'],
-            [['department_id', 'user_id', 'student_id', 'group_from_id', 'group_to_id', 'created_at'], 'integer'],
+            [['department_id', 'user_id', 'student_id', 'group_from_id', 'group_to_id'], 'integer'],
             [['message'], 'string'],
+            [['created_at'], 'safe'],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
             [['group_from_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_from_id' => 'id']],
             [['group_to_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_to_id' => 'id']],
