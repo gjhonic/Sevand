@@ -22,7 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(); ?>
 
             <div class="row">
-
                 <div class="col">
                     <label for="text-from-group" style="visibility: hidden">1</label>
                     <?php
@@ -39,7 +38,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col">
                     <?= $form->field($model, 'group_id')->dropDownList(Group::getGroupsMap()) ?>
                 </div>
+            </div>
 
+            <div class="row">
+                <div class="col">
+                    <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
+                </div>
             </div>
 
         <div class="form-group">

@@ -2,8 +2,11 @@
 
 namespace app\modules\core\models\base;
 
+use app\modules\core\models\error\UserError;
 use app\modules\core\Module;
+use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class for table "core_student".
@@ -22,6 +25,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $updated_at
  *
  * @property string $genderTitle
+ * @property string $message
  *
  * @property Department $department
  * @property Group $group
@@ -42,6 +46,8 @@ class Student extends \yii\db\ActiveRecord
     const ACTIVITY_DISABLE_ID = 2;
     const ACTIVITY_DISABLE = 'Not active';
 
+    public $message;
+
     /**
      * @return string
      */
@@ -61,7 +67,7 @@ class Student extends \yii\db\ActiveRecord
             [['gender', 'group_id','department_id', 'user_id', 'activity_id'], 'integer'],
             [['description'], 'string'],
             ['activity_id', 'default', 'value' => 1],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at', 'message'], 'safe'],
             [['name', 'surname', 'patronymic'], 'string', 'max' => 50],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'id']],
@@ -96,6 +102,7 @@ class Student extends \yii\db\ActiveRecord
             'department_id' => Module::t('app', 'Department'),
             'user_id' => Module::t('app', 'User'),
             'description' => Module::t('app', 'Description'),
+            'message' => Module::t('app', 'Message'),
             'created_at' => Module::t('app', 'Created at'),
             'updated_at' => Module::t('app', 'Updated at'),
         ];
@@ -210,5 +217,56 @@ class Student extends \yii\db\ActiveRecord
     public static function getStudentByUser(int $user_id)
     {
         return static::find()->where(['user_id' => $user_id])->one();
+    }
+
+
+    /**
+     * Метод переводит студента и сохраняет в журнал переводов
+     * @param bool $validate
+     * @return bool
+     * @throws NotFoundHttpException
+     */
+    public function transferStudent($validate = false): bool
+    {
+        /*echo "<pre>";
+        print_r($this->group_id);
+        echo "</pre>";
+        die;*/
+        if($validate){
+            if(!$this->validate()){
+                return false;
+            }
+        }
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $studentCur = Student::find()->where(['id' => $this->id])->one();
+            $groupFrom = $studentCur->group_id;
+
+            if($this->save(false)){
+                $studentTransferLog = new StudentTransferLog();
+                $studentTransferLog->department_id = $this->department_id;
+                $studentTransferLog->user_id = Yii::$app->user->identity->id;
+                $studentTransferLog->student_id = $this->id;
+                $studentTransferLog->group_from_id = $groupFrom;
+                $studentTransferLog->group_to_id = $this->group_id;
+                $studentTransferLog->message = $this->message;
+
+                if($studentTransferLog->save()){
+                    return true;
+                } else {
+                    $transaction->rollBack();
+                    return false;
+                }
+
+            }else{
+                $transaction->rollBack();
+            }
+
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            throw new NotFoundHttpException('Error');
+        }
+
+        return false;
     }
 }

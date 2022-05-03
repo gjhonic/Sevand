@@ -7,6 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\modules\core\models\base\Group */
 
 $this->title = Module::t('app', 'Create Group');
+$this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Groups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * StudentSearch
+ * StudentTransferLogSearch
  * Модель поиска истории переводов
  * @copyright Copyright (c) 2022 Eugene Andreev
  * @author Eugene Andreev <gjhonic@gmail.com>
@@ -13,7 +13,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * Class StudentSearch
+ * Class StudentTransferLogSearch
  * @package app\modules\core\modules\admin\models\search
  *
  * @property integer $department_id
@@ -26,8 +26,8 @@ class StudentTransferLogSearch extends StudentTransferLog
     public function rules(): array
     {
         return [
-            [['name', 'surname', 'patronymic'], 'string', 'max' => 50],
-            [['activity_id', 'department_id', 'gender', 'group_id', 'user_id', 'id'], 'integer'],
+            [['message'], 'string'],
+            [['id', 'group_from_id', 'group_to_id'], 'integer'],
         ];
     }
 
@@ -48,7 +48,7 @@ class StudentTransferLogSearch extends StudentTransferLog
      */
     public function search($params)
     {
-        $query = Student::find();
+        $query = StudentTransferLog::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -63,16 +63,9 @@ class StudentTransferLogSearch extends StudentTransferLog
         }
 
         $query->andFilterWhere(['=', 'id', $this->id]);
-        $query->andFilterWhere(['like', 'name', $this->name]);
-        $query->andFilterWhere(['like', 'surname', $this->surname]);
-        $query->andFilterWhere(['like', 'patronymic', $this->patronymic]);
-
-        $query->andFilterWhere(['=', 'gender', $this->gender]);
-
-
-        $query->andFilterWhere(['=', 'activity_id', $this->activity_id]);
-        $query->andFilterWhere(['=', 'group_id', $this->group_id]);
-
+        $query->andFilterWhere(['like', 'message', $this->message]);
+        $query->andFilterWhere(['=', 'group_from_id', $this->group_from_id]);
+        $query->andFilterWhere(['=', 'group_to_id', $this->group_to_id]);
         return $dataProvider;
     }
 }

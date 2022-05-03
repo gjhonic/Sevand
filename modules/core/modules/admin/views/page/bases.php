@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <a href="<?= Url::to('/admin/department/view') ?>"><?= Yii::$app->user->identity->department->short_title ?></a>
     </h1>
 
+    <!-- Панель базы пользователей -->
     <table class="table table-bordered table-linght">
         <tbody>
             <tr>
@@ -45,6 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
     <br>
 
+    <!-- Панель базы групп -->
     <table class="table table-bordered table-linght">
         <tbody>
             <tr>
@@ -99,10 +101,38 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
     <br>
 
+    <!-- Панель базы историй переводов студентов -->
+    <table class="table table-bordered table-linght">
+        <tbody>
+        <tr>
+            <td class="block-title" rowspan="2">
+                <h3 class="title-base"><?=Module::t('app', 'Students Transfer Log')?></h3>
+            </td>
+            <td width="60%">
+                <?=Module::t('app', 'Count students')?>:
+                <i>
+                    <?=$studentCount?>
+                </i>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?= Html::a(
+                    Module::t('app', 'Go'),
+                    Url::to('/admin/transfer/index'),
+                    ['class' => 'btn btn-outline-primary btn-block']
+                ) ?>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+
 </div>
 
 <style>
     table {
+        height: 150px;
         background-color: #fafafa;
         font-size: 22px;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
@@ -120,7 +150,6 @@ $this->params['breadcrumbs'][] = $this->title;
     }
     .title-base{
         position: absolute;
-        top: 30%;
-        left: 10%;
+        top: 35%;
     }
 </style>

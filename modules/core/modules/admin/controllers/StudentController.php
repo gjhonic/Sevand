@@ -135,7 +135,7 @@ class StudentController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load($this->request->post()) && $model->validate()) {
-            if ($model->save()) {
+            if ($model->transferStudent()) {
                 LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_STUDENT_TRANSFERRED, 'StudentId: ' . $model->id);
                 Yii::$app->session->setFlash('success', Module::t('note', 'Student successfully transferred'));
                 return $this->redirect(['view', 'id' => $model->id]);

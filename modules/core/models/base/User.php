@@ -128,6 +128,8 @@ class User extends \yii\db\ActiveRecord
             $transaction->rollBack();
             throw new NotFoundHttpException(UserError::getDescriptionError(UserError::ERROR_CREATE_USER));
         }
+
+        return UserError::ERROR_CREATE_USER;
     }
 
     /**
@@ -156,7 +158,7 @@ class User extends \yii\db\ActiveRecord
                 $student->surname = $this->surname;
                 $student->patronymic = $this->patronymic;
                 $student->user_id = $this->id;
-                $student->status_id = Student::STATUS_ACTIVE;
+                $student->activity_id = Student::ACTIVITY_ENABLE_ID;
                 $student->gender = Student::GENDRE_MAN;
                 $student->department_id = $this->department_id;
 
@@ -174,6 +176,8 @@ class User extends \yii\db\ActiveRecord
             $transaction->rollBack();
             throw new NotFoundHttpException(UserError::getDescriptionError(UserError::ERROR_CREATE_USER));
         }
+
+        return UserError::ERROR_CREATE_USER;
     }
 
     /**

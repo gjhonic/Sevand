@@ -1,7 +1,7 @@
 <?php
 /**
- * LogController
- * Контроллер для работы с логами в модуле core/admin
+ * StudentTransferLogController
+ * Контроллер для работы с журналом перевода студентов core/admin
  * @copyright Copyright (c) 2022 Eugene Andreev
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
@@ -9,9 +9,9 @@
 
 namespace app\modules\core\modules\admin\controllers;
 
+use app\modules\core\modules\admin\models\search\StudentTransferLogSearch;
+use app\modules\core\modules\admin\models\StudentTransferLog;
 use app\modules\core\modules\admin\models\User;
-use app\modules\core\modules\admin\models\Log;
-use app\modules\core\modules\admin\models\search\LogSearch;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
@@ -21,9 +21,9 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
- * StudentTransferLogController  for Log model.
+ * StudentTransferLogController for StudentTransferLog model.
  */
-class StudentTransferLogController extends Controller
+class TransferController extends Controller
 {
     public function behaviors(): array
     {
@@ -37,7 +37,7 @@ class StudentTransferLogController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index', 'view'],
-                        'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN],
+                        'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_MODERATOR],
                     ],
                 ],
             ],
@@ -64,7 +64,7 @@ class StudentTransferLogController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new LogSearch();
+        $searchModel = new StudentTransferLogSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -91,14 +91,13 @@ class StudentTransferLogController extends Controller
      * Finds the Log model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Log the loaded model
+     * @return StudentTransferLog the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel(int $id): Log
+    protected function findModel(int $id): StudentTransferLog
     {
-        $model = Log::findOne([
+        $model = StudentTransferLog::findOne([
             'id' => $id,
-            'department_id' => Yii::$app->user->identity->department_id,
         ]);
 
         if ($model !== null) {

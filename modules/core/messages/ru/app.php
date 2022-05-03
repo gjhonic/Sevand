@@ -41,6 +41,8 @@ return [
     "Not set" => "Не задано",
     "In" => "В",
     "in" => "в",
+    "From" => "От",
+    "To" => "К",
 
     //Меню
     "Menu" => "Меню",
@@ -72,6 +74,7 @@ return [
     "Direction base" => "База направлений",
     "Count direction" => "Количество направлений",
     "Watch directions" => "Смотреть направления",
+    "Students Transfer Log" => "Журнал перевода студентов",
 
 
     //Сущности
@@ -148,6 +151,8 @@ return [
     //Про Группы
     "Create Group" => "Добавить группу",
     "Update Group: {name}" => "Редактировать группу: {name}",
+    "Group From" => "Группа из",
+    "Group To" => "Группа в",
 
     //Роли
     "Root" => "Root",
