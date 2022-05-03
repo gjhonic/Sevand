@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\ActivityComponent;
 use app\modules\core\modules\admin\models\Student;
 use app\modules\core\modules\admin\models\User;
 use yii\helpers\Html;
@@ -63,13 +64,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     return Html::a($model->department->short_title,
                         Url::to(['/department/view', 'id' => $model->department_id]),
-                        ['class' => 'btn btn-primary']);
+                        ['class' => 'btn btn-outline-primary']);
                 }
             ],
             [
                 'attribute' => 'role',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->roleTitle;
+                    $htmlRole = $model->roleTitle;
+                    if ($model->isStudent()) {
+                        $student = Student::getStudentByUser($model->id);
+                        if($student) {
+                            $htmlRole .=  ': ' . Html::a( $student->fullname, ['student/view', 'id' => $student->id], [
+                                'class' => 'btn btn-outline-secondary btn-sm'
+                            ]);
+                        } else {
+                            $htmlRole .= ' <div class="alert alert-danger" role="alert">' . Module::t('error', 'The user is not associated with a student.') . '</div>';
+                        }
+                    }
+                    return $htmlRole;
                 }
             ],
             [
@@ -80,8 +93,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'activity_id',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->activity;
+                    return ActivityComponent::getLabel($model->activity_id);
                 }
             ],
             [
@@ -98,17 +112,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ],
     ]) ?>
-
-    <?php if($model->role == User::ROLE_STUDENT) {
-       $student = Student::getStudentByUser($model->id);
-       if($student) { ?>
-           <?=Html::a(Module::t('app', 'Student') . ' ' . $student->fullname, ['student/view', 'id' => $student->id], [
-               'class' => 'btn btn-secondary'
-           ]);?>
-       <?php }else { ?>
-           <div class="alert alert-danger" role="alert">
-               <?=Module::t('error', 'The user is not associated with a student.')?>
-           </div>
-       <?php }
-     } ?>
 </div>

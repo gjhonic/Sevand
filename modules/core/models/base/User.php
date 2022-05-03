@@ -391,4 +391,13 @@ class User extends \yii\db\ActiveRecord
     {
         $this->role = self::ROLE_STUDENT;
     }
+
+    /**
+     * Метод проверяет является ли пользователь студентов
+     * @return bool
+     */
+    public function isStudent(): bool
+    {
+        return ($this->role == self::ROLE_STUDENT || $this->role == self::ROLE_HEADMAN);
+    }
 }
