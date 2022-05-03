@@ -21,7 +21,7 @@ composer update
 4) Start migration
 ```
 yii migrate --migrationPath=@yii/rbac/migrations
-yii migrate -- --migrationPath=@modules/core/migrations
+yii migrate --migrationPath=@modules/core/migrations
 ```
 
 
