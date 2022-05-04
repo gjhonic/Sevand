@@ -1,10 +1,8 @@
 <?php
 
-use app\modules\core\models\base\Log;
 use app\modules\core\Module;
 use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\modules\admin\models\Group;
-use app\modules\core\services\log\LogStatus;
 use kartik\dynagrid\DynaGrid;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -17,7 +15,7 @@ $this->title = Module::t('app', 'Students Transfer Log');
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="log-index">
+<div class="student-transfer-lot-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -35,13 +33,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
         'id',
         [
-            'attribute' => 'user_id',
+            'attribute' => 'student_id',
             'format' => 'raw',
             'value' => function ($model) {
-                $user = $model->user;
-                if($user){
-                    return Html::a($model->user->username, Url::to(['/admin/user/view', 'id' => $model->user_id]), ['class' => 'btn btn-secondary btn-block']);
+                $student = $model->student;
+                $htmlGroup = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
+                if($student){
+                    $htmlGroup = Html::a($student->fullname,
+                        Url::to(['student/view', 'id' => $model->student_id]),
+                        ['class' => 'btn btn-primary']);
                 }
+                return $htmlGroup;
             }
         ],
         [
@@ -82,6 +84,26 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'message',
             'value' => function ($model) {
                 return mb_substr($model->message, 0, 20) . ']...';
+            }
+        ],
+        [
+            'attribute' => 'user_id',
+            'format' => 'raw',
+            'value' => function ($model) {
+                $user = $model->user;
+                $htmlUser = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
+                if ($user) {
+                    $htmlUser = Html::a(
+                        $user->fullname,
+                        Url::to(['/admin/user/view', 'id' => $model->user_id]),
+                        ['class' => 'btn btn-secondary btn-block']
+                    );
+                }
+                return $htmlUser;
+
+                if($user){
+                    return Html::a($model->user->username, Url::to(['/admin/user/view', 'id' => $model->user_id]), ['class' => 'btn btn-secondary btn-block']);
+                }
             }
         ],
         [

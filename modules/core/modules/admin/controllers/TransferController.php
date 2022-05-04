@@ -58,8 +58,7 @@ class TransferController extends Controller
     public $layout = 'admin';
 
     /**
-     * Lists all Log models.
-     *
+     * Lists all StudentTransferLog models.
      * @return string
      */
     public function actionIndex()
@@ -74,7 +73,7 @@ class TransferController extends Controller
     }
 
     /**
-     * Displays a single Log model.
+     * Displays a single StudentTransferLog model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found

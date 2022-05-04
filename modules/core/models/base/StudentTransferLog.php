@@ -61,7 +61,7 @@ class StudentTransferLog extends \yii\db\ActiveRecord
         return [
             'id' => Module::t('app', 'ID'),
             'department_id' => Module::t('app', 'Department'),
-            'user_id' => Module::t('app', 'User'),
+            'user_id' => Module::t('app', 'Transferred'),
             'student_id' => Module::t('app', 'Student'),
             'group_from_id' => Module::t('app', 'Group From'),
             'group_to_id' => Module::t('app', 'Group To'),
