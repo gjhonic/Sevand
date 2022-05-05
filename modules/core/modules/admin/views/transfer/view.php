@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             [
-                'attribute' => 'student_id',
+                'label' => Module::t('app', 'Student'),
                 'format' => 'raw',
                 'value' => function ($model) {
                     $student = $model->student;

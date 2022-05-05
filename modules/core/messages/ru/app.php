@@ -156,6 +156,10 @@ return [
     "Group From" => "Группа из",
     "Group To" => "Группа в",
 
+    //Про историю переводов
+    "View history transfer" => "Смотреть историю переводов",
+    "View history transfer student" => "Смотреть историю перевода студента",
+
     //Роли
     "Root" => "Root",
     "Admin" => "Админ",

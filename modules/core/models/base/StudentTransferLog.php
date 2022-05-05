@@ -132,4 +132,14 @@ class StudentTransferLog extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    /**
+     * Возвращает историю перевода студента
+     * @param int $student_id
+     * @return array|ActiveRecord[]
+     */
+    public static function getTransferStudent(int $student_id)
+    {
+        return StudentTransferLog::find()->where(['student_id' => $student_id])->orderBy(['id DESC'])->all();
+    }
 }

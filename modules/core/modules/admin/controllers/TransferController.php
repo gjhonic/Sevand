@@ -10,6 +10,7 @@
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\modules\admin\models\search\StudentTransferLogSearch;
+use app\modules\core\modules\admin\models\Student;
 use app\modules\core\modules\admin\models\StudentTransferLog;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\Module;
@@ -36,7 +37,7 @@ class TransferController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view'],
+                        'actions' => ['index', 'view', 'student-transfer'],
                         'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_MODERATOR],
                     ],
                 ],
@@ -84,6 +85,28 @@ class TransferController extends Controller
                 'model' => $this->findModel($id),
             ]
         );
+    }
+
+    /**
+     * Lists all StudentTransferLog models.
+     * @return string
+     */
+    public function actionStudentTransfer($id)
+    {
+        $student = Student::findOne(['id' => $id]);
+        $searchModel = new StudentTransferLogSearch();
+        $params = [
+            'StudentTransferLogSearch' => [
+                'student_id' => $student->id,
+            ],
+        ];
+        $dataProvider = $searchModel->search($params);
+
+        return $this->render('student-transfer', [
+            'student' => $student,
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+        ]);
     }
 
     /**

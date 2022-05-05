@@ -20,6 +20,7 @@ use yii\data\ActiveDataProvider;
  */
 class StudentTransferLogSearch extends StudentTransferLog
 {
+
     /**
      * @return array
      */
@@ -27,7 +28,7 @@ class StudentTransferLogSearch extends StudentTransferLog
     {
         return [
             [['message'], 'string'],
-            [['id', 'group_from_id', 'group_to_id'], 'integer'],
+            [['id', 'group_from_id', 'group_to_id', 'student_id'], 'integer'],
         ];
     }
 
@@ -58,14 +59,18 @@ class StudentTransferLogSearch extends StudentTransferLog
 
         $dataProvider->sort->defaultOrder = ['id' => SORT_DESC];
 
-        if (!($this->load($params) && $this->validate()) && empty($this->tag_id)) {
+        if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
+
+       /* print_r($params);
+        die;*/
 
         $query->andFilterWhere(['=', 'id', $this->id]);
         $query->andFilterWhere(['like', 'message', $this->message]);
         $query->andFilterWhere(['=', 'group_from_id', $this->group_from_id]);
         $query->andFilterWhere(['=', 'group_to_id', $this->group_to_id]);
+        $query->andFilterWhere(['=', 'student_id', $this->student_id]);
         return $dataProvider;
     }
 }

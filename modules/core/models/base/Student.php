@@ -233,6 +233,7 @@ class Student extends \yii\db\ActiveRecord
                 return false;
             }
         }
+        $studentCur = self::find()->where(['id' => $this->id])->one();
         $transaction = Yii::$app->db->beginTransaction();
         try {
 
@@ -241,7 +242,7 @@ class Student extends \yii\db\ActiveRecord
                 $studentTransferLog->department_id = $this->department_id;
                 $studentTransferLog->user_id = Yii::$app->user->identity->id;
                 $studentTransferLog->student_id = $this->id;
-                $studentTransferLog->group_from_id = $this->group_id;
+                $studentTransferLog->group_from_id = $studentCur->group_id;
                 $studentTransferLog->group_to_id = $this->group_id;
                 $studentTransferLog->message = $this->message;
 
