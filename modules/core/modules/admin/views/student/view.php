@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php } ?>
 
         <div class="col">
-            <?= Html::a( Module::t('app', 'View history transfer') . ' ' . Module::t('app', 'Transfer Student'),
+            <?= Html::a( Module::t('app', 'View history transfer'),
                 ['transfer/student-transfer', 'id' => $model->id],
                 ['class' => 'btn btn-info btn-block'])
             ?>

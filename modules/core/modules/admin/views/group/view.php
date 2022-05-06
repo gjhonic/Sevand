@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\ActivityComponent;
 use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\modules\admin\models\Group;
 use app\modules\core\modules\admin\models\User;
@@ -9,9 +10,9 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\core\models\base\Group */
+/* @var $model app\modules\core\modules\admin\models\Group */
 
-$this->title = $model->title;
+$this->title = Module::t('app', 'Group') . ": " . $model->title;
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Bases'), 'url' => ['/admin/bases']];
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Groups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -80,13 +81,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'value' => function ($model) {
                         $course = $model->course;
+                        $courseHtml = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
                         if ($course) {
-                            return Html::a(
+                            $courseHtml = Html::a(
                                 $course->title,
                                 Url::to(['course/view', 'id' => $model->course_id]),
                                 ['class' => 'btn btn-outline-secondary']
                             );
                         }
+                        return $courseHtml;
                     }
                 ],
                 [
@@ -94,13 +97,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'value' => function ($model) {
                         $direction = $model->direction;
+                        $directionHtml = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
                         if($direction){
-                            return Html::a(
+                            $directionHtml = Html::a(
                                 $direction->short_title,
                                 Url::to(['direction/view', 'id' => $model->direction_id]),
                                 ['class' => 'btn btn-outline-secondary']
                             );
                         }
+                        return $directionHtml;
                     }
                 ],
                 [
@@ -108,13 +113,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'value' => function ($model) {
                         $curator = $model->curator;
+                        $curatorHtml = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
                         if ($curator) {
-                            return Html::a(
+                            $curatorHtml =  Html::a(
                                 $curator->username,
                                 Url::to(['user/view', 'id' => $model->curator_id]),
                                 ['class' => 'btn btn-outline-secondary']
                             );
                         }
+                        return $curatorHtml;
                     }
                 ],
                 [
@@ -122,13 +129,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'value' => function ($model) {
                         $headman = $model->headman;
+                        $headmanHtml = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
                         if ($headman) {
-                            return Html::a(
+                            $headmanHtml = Html::a(
                                 $headman->username,
                                 Url::to(['user/view', 'id' => $model->headman_id]),
                                 ['class' => 'btn btn-outline-secondary']
                             );
                         }
+                        return $headmanHtml;
                     }
                 ],
                 [
@@ -143,6 +152,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ['class' => 'btn btn-outline-secondary']
                             );
                         }
+                    }
+                ],
+                [
+                    'attribute' => 'activity_id',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return ActivityComponent::getLabel($model->activity_id);
                     }
                 ],
                 [
