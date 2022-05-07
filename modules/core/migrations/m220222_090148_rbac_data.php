@@ -23,9 +23,13 @@ class m220222_090148_rbac_data extends Migration
         $auth->add($curatorRole);
         $auth->addChild($curatorRole, $headmanRole);
 
+        $labRole = $auth->createRole(User::ROLE_LABORANT);
+        $auth->add($labRole);
+        $auth->addChild($labRole, $curatorRole);
+
         $moderatorRole = $auth->createRole(User::ROLE_MODERATOR);
         $auth->add($moderatorRole);
-        $auth->addChild($moderatorRole, $curatorRole);
+        $auth->addChild($moderatorRole, $labRole);
 
         $adminRole = $auth->createRole(User::ROLE_ADMIN);
         $auth->add($adminRole);

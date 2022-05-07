@@ -37,6 +37,7 @@ class User extends \yii\db\ActiveRecord
     const ROLE_ROOT = "root";
     const ROLE_ADMIN = "admin";
     const ROLE_MODERATOR = "moderator";
+    const ROLE_LABORANT = "laborant"
     const ROLE_CURATOR = "curator";
     const ROLE_HEADMAN = "headman";
     const ROLE_STUDENT = "student";
