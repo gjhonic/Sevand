@@ -39,6 +39,8 @@ return [
     "Discipline successfully created"  => "Дисциплина успешно создана",
     "Discipline successfully enabled"  => "Дисциплина успешно активирована",
     "Discipline successfully disabled" => "Дисциплина успешно заархивирована",
+    "Discipline successfully updated" => "Дисциплина успешно изменена",
+    "Discipline successfully deleted" => "Дисциплина успешно удалена",
 
     //direction
     "Direction successfully created"  => "Направление успешно создано",
@@ -75,6 +77,8 @@ return [
     "Discipline not created"  => "Дисциплина не создана",
     "Discipline not enabled"  => "Дисциплина не активирована",
     "Discipline not disabled" => "Дисциплина не заархивирована",
+    "Discipline not updated" => "Дисциплина не изменена",
+    "Discipline not deleted" => "Дисциплина не удалена",
 
     //direction
     "Direction not created"  => "Направление не создано",

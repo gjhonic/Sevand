@@ -44,9 +44,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'raw',
             'value' => function ($model) {
                 $user = $model->user;
-                if($user){
-                    return Html::a($model->user->username, Url::to(['/admin/user/view', 'id' => $model->user_id]), ['class' => 'btn btn-secondary btn-block']);
+                $userHtml = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
+                if ($user) {
+                    $userHtml = Html::a($user->username, Url::to(['/admin/user/view', 'id' => $model->user_id]), ['class' => 'btn btn-secondary btn-block']);
                 }
+                return $userHtml;
             }
         ],
         [

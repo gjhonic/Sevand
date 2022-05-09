@@ -19,8 +19,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'short_title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'activity_id')->dropDownList(Discipline::getAtivities()) ?>
-
     <div class="form-group">
         <?= Html::submitButton(Module::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>

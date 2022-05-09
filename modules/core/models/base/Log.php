@@ -99,11 +99,11 @@ class Log extends \yii\db\ActiveRecord
     public static function getStatuses(): array
     {
         return [
-            LogStatus::STATUS_INFO => 'info',
-            LogStatus::STATUS_SUCCESS => 'success',
-            LogStatus::STATUS_WARNING => 'warning',
-            LogStatus::STATUS_DANGER => 'danger',
-            LogStatus::STATUS_CRAZY => 'crazy',
+            LogStatus::STATUS_INFO => Module::t('app', 'info'),
+            LogStatus::STATUS_SUCCESS => Module::t('app','success'),
+            LogStatus::STATUS_WARNING => Module::t('app','warning'),
+            LogStatus::STATUS_DANGER => Module::t('app','danger'),
+            LogStatus::STATUS_CRAZY => Module::t('app','crazy'),
         ];
     }
 
