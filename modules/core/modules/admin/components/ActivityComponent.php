@@ -19,7 +19,10 @@ class ActivityComponent
     const ACTIVITY_DISABLE_ID = 2;
     const ACTIVITY_DISABLE = 'Not active';
 
-
+    /**
+     * Мап статусов активности
+     * @return \string[][]
+     */
     private static function dataStatus(): array
     {
         return [

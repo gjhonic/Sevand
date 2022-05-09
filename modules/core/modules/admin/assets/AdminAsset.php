@@ -4,12 +4,14 @@ namespace app\modules\core\modules\admin\assets;
 
 use yii\web\AssetBundle;
 
+/**
+ * Ассет для модуля core/admin
+ */
 class AdminAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web/media/core/admin';
     public $css = [
-        //'css/bootstrap/bootstrap.min.css',
         'css/dashboard.css',
 
         //доп иконки
@@ -20,7 +22,6 @@ class AdminAsset extends AssetBundle
         "js\dashboard.js"
     ];
     public $depends = [
-        //'yii\web\YiiAsset',
         'yii\bootstrap4\BootstrapAsset',
     ];
 }

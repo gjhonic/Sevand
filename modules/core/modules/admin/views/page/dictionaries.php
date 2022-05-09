@@ -4,10 +4,8 @@ use app\modules\core\Module;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-/* @var $userCount int */
-/* @var $groupCount int */
 /* @var $directionCount int */
-/* @var $studentCount int */
+/* @var $courseCount int */
 /* @var $disciplineCount int */
 
 $this->title = Module::t('app', 'Dictionaries');
@@ -26,9 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h2 class="title-base"><?=Module::t('app', 'Directions')?></h2>
             </td>
             <td width="60%">
-                <?=Module::t('app', 'Count user')?>:
+                <?=Module::t('app', 'Count direction')?>:
                 <i>
-                    <?=$userCount?>
+                    <?=$directionCount?>
                 </i>
             </td>
         </tr>
@@ -53,9 +51,9 @@ $this->params['breadcrumbs'][] = $this->title;
             </td>
 
             <td width="60%">
-                <?=Module::t('app', 'Count groups')?>:
+                <?=Module::t('app', 'Count courses')?>:
                 <i>
-                    <?=$groupCount?>
+                    <?=$courseCount?>
                 </i>
             </td>
         </tr>
@@ -80,9 +78,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h2 class="title-base"><?=Module::t('app', 'Disciplines')?></h2>
             </td>
             <td width="60%">
-                <?=Module::t('app', 'Count students')?>:
+                <?=Module::t('app', 'Count discipline')?>:
                 <i>
-                    <?=$studentCount?>
+                    <?=$disciplineCount?>
                 </i>
             </td>
         </tr>

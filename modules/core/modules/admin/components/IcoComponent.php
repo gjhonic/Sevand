@@ -11,7 +11,6 @@ namespace app\modules\core\modules\admin\components;
  */
 class IcoComponent
 {
-
     const VIEW_ICO     = 'fa-eye';
     const EDIT_ICO     = 'fa-pencil';
     const DELETE_ICO   = 'fa-trash';

@@ -70,6 +70,7 @@ return [
     "Count groups" => "Количество групп",
     "Watch groups" => "Смотреть группы",
     "Watch courses" => "Смотреть курсы",
+    "Count courses" => "Количество курсов",
     "Watch disciplines" => "Смотреть дисциплины",
     "Discipline base" => "База дисциплин",
     "Count discipline" => "Количество дисциплин",
