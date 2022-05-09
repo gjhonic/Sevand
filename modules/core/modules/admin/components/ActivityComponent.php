@@ -44,12 +44,12 @@ class ActivityComponent
      * @param int $status_id
      * @return string
      */
-    public static function getLabel(int $status_id): string
+    public static function getLabel(int $status_id, int $size=4): string
     {
         $class = self::dataStatus()[$status_id]['class'];
         $title = self::dataStatus()[$status_id]['title'];
 
-        return "<h4><span class='badge " . $class . "'>" . Module::t('app', $title) . "</span><h4>";
+        return "<h". $size . "><span class='badge " . $class . "'>" . Module::t('app', $title) . "</span><h" . $size . ">";
     }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\ActivityComponent;
 use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\modules\admin\models\Discipline;
 use app\modules\core\modules\admin\models\User;
@@ -59,8 +60,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'short_title',
             [
                 'attribute' => 'activity_id',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->activity;
+                    return ActivityComponent::getLabel($model->activity_id);
                 }
             ],
             [
