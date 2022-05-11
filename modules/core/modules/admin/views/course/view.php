@@ -81,19 +81,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => function ($model) {
                 $html = Html::a(
                     IcoComponent::view() . ' ' . Module::t('app', 'Show'),
-                    Url::to(['view', 'id' => $model->id]),
+                    Url::to(['group/view', 'id' => $model->id]),
                     ['class' => 'btn btn-success btn-block']
                 );
 
                 if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) {
                     $html .= ' ' . Html::a(
                             IcoComponent::edit() . ' ' . Module::t('app', 'Edit'),
-                            Url::to(['update', 'id' => $model->id]),
+                            Url::to(['group/update', 'id' => $model->id]),
                             ['class' => 'btn btn-primary btn-block']
                         );
                     $html .= ' ' . Html::a(
                             IcoComponent::delete() . ' ' . Module::t('app', 'Delete'),
-                            Url::to(['delete', 'id' => $model->id]),
+                            Url::to(['group/delete', 'id' => $model->id]),
                             [
                                 'class' => 'btn btn-danger btn-block',
                                 'data' => [
