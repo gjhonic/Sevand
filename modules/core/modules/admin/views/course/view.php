@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\ActivityComponent;
 use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\modules\admin\models\Course;
 use app\modules\core\modules\admin\models\Direction;
@@ -12,6 +13,8 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\core\models\base\Course */
+/* @var $groupDataProvider app\modules\core\modules\admin\models\Group */
+/* @var $groupSearchModel app\modules\core\modules\admin\models\search\GroupSearch */
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Module::t('app', 'Dictionaries'), 'url' => ['/admin/dictionaries']];
@@ -38,13 +41,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'raw',
             'value' => function ($model) {
                 $course = $model->course;
+                $courseHtml = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
                 if ($course) {
-                    return Html::a(
+                    $courseHtml = Html::a(
                         $course->title,
                         Url::to(['/admin/course/view', 'id' => $model->course_id]),
                         ['class' => 'btn btn-secondary btn-block']
                     );
                 }
+
+                return $courseHtml;
             }
         ],
         [
@@ -53,13 +59,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'raw',
             'value' => function ($model) {
                 $direction = $model->direction;
+                $directionHtml = "<span style='color:red'>" . Module::t('app', 'Not set') . "</span>";
                 if ($direction) {
-                    return Html::a(
+                    $directionHtml = Html::a(
                         $direction->short_title,
                         Url::to(['/admin/direction/view', 'id' => $model->direction_id]),
                         ['class' => 'btn btn-secondary btn-block']
                     );
                 }
+                return $directionHtml;
             }
         ],
         [
@@ -70,9 +78,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         [
             'attribute' => 'activity_id',
+            'format' => 'raw',
             'filter' => Group::getAtivities(),
             'value' => function ($model) {
-                return $model->activity;
+                return ActivityComponent::getLabel($model->activity_id, 5);
             }
         ],
         [

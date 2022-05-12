@@ -1,13 +1,10 @@
 <?php
 
-use app\modules\core\models\base\Course;
 use app\modules\core\Module;
 use app\modules\core\modules\admin\components\IcoComponent;
 use kartik\dynagrid\DynaGrid;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -25,14 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
      $columns = [
             ['class' => 'yii\grid\SerialColumn'],
             'title',
-         [
-             'label' => Module::t('app', 'Action column'),
-             'format' => 'raw',
-             'value' => function ($model) {
-                 $html = Html::a(IcoComponent::view() . ' ' . Module::t('app', 'Show'), Url::to(['view', 'id' => $model->id]), ['class' => 'btn btn-success btn-block']);
-                 return $html;
-             }
-         ],
+            [
+                 'label' => Module::t('app', 'Action column'),
+                 'format' => 'raw',
+                 'value' => function ($model) {
+                     $html = Html::a(IcoComponent::view() . ' ' . Module::t('app', 'Show'), Url::to(['view', 'id' => $model->id]), ['class' => 'btn btn-success btn-block']);
+                     return $html;
+                 }
+            ],
         ]; ?>
 
     <?= DynaGrid::widget([
@@ -80,6 +77,4 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => $columns,
     ]);
     ?>
-
-
 </div>
