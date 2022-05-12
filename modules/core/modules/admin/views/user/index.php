@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\core\Module;
+use app\modules\core\modules\admin\components\ActivityComponent;
 use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\modules\admin\models\User;
 use kartik\dynagrid\DynaGrid;
@@ -47,16 +48,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
         [
             'attribute' => 'status_id',
+            'format' => 'raw',
             'filter' => User::getStatuses(),
             'value' => function ($model) {
-                return $model->status;
+                return ActivityComponent::getLabel($model->status_id, 5);
             }
         ],
         [
             'attribute' => 'activity_id',
+            'format' => 'raw',
             'filter' => User::getAtivities(),
             'value' => function ($model) {
-                return $model->activity;
+                return ActivityComponent::getLabel($model->activity_id, 5);
             }
         ],
         [

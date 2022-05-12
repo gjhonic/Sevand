@@ -88,8 +88,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'status_id',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->status;
+                    return ActivityComponent::getLabel($model->status_id);
                 }
             ],
             [
