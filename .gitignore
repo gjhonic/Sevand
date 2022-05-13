@@ -32,6 +32,9 @@ tests/_support/_generated
 #vagrant folder
 /.vagrant
 
+#assets
+web/assets/*
+
 #env
 .env
 config/.env

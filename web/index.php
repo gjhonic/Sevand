@@ -1,8 +1,11 @@
 <?php
 
-// comment out the following two lines when deployed to production
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'dev');
+if (file_exists(__DIR__ . '/offline.php')) {
+    include __DIR__ . '/offline.php';
+    die(0);
+}
+
+require(__DIR__ . '/.env');
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
