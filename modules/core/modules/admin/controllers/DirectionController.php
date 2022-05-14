@@ -6,7 +6,6 @@
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
-
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\modules\admin\models\Direction;
@@ -17,6 +16,8 @@ use app\modules\core\services\log\LogMessage;
 use app\modules\core\services\log\LogService;
 use app\modules\core\services\log\LogStatus;
 use app\modules\core\services\user\StatusService;
+use yii\data\ActiveDataProvider;
+use app\modules\core\modules\admin\models\Group;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -95,8 +96,24 @@ class DirectionController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $query = Group::find();
+
+        $groupProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                    'title' => SORT_ASC, 
+                ]
+            ],
+        ]);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'groupProvider' => $groupProvider,
         ]);
     }
 
