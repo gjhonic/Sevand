@@ -125,7 +125,7 @@ class SigninForm extends Model
     /**
      * Метод заполняем свойство _user  обьектом user, если он не заполнен и возвращает его.
      */
-    public function getUser(): object
+    public function getUser(): ?object
     {
         if ($this->_user === false) {
             $this->_user = UserIdentity::findByUsername($this->username);

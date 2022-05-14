@@ -2,6 +2,8 @@
 
 use app\modules\core\Module;
 use app\modules\core\modules\admin\models\Group;
+use app\modules\core\modules\admin\models\User;
+use app\modules\core\modules\admin\components\IcoComponent;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -39,6 +41,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'group_id')->dropDownList(Group::getGroupsMap()) ?>
                 </div>
             </div>
+
+            <dev class="row">
+                <div class="col"></div>
+                <div class="col">
+                <?php
+                    if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
+                        <?= Html::a(
+                            IcoComponent::add() . ' ' . Module::t('app', 'Create Group'),
+                            ['group/create'],
+                            ['class' => 'btn btn-success']
+                        ) ?>
+                <?php } ?>
+                </div>
+            </dev>
 
             <div class="row">
                 <div class="col">
