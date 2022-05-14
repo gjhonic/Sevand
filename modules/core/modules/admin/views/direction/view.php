@@ -109,6 +109,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <?=Module::t('app', 'Groups')?>:
     </h3>
 
+    <p>
+        <?php
+        if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
+            <?= Html::a(
+                IcoComponent::add() . ' ' . Module::t('app', 'Create Group'),
+                ['group/create'],
+                ['class' => 'btn btn-success']
+            ) ?>
+        <?php
+        } ?>
+    </p>
+
     <?= GridView::widget([
         'dataProvider' => $groupProvider,
         'columns' => [
