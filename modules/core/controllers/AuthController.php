@@ -7,6 +7,7 @@ use app\modules\core\models\forms\SigninForm;
 use app\modules\core\Module;
 use app\modules\core\services\LogMessage;
 use app\modules\core\services\LogService;
+use app\modules\core\services\LogStatus;
 use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;

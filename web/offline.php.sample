@@ -1,0 +1,48 @@
+<?php
+
+?>
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>На сайте ведутся технические работы</title>
+            <meta charset="utf-8"/>
+        </head>
+    <body>
+        <div class="block">
+            <div class="template">
+                <img class="bender" src="media/pin.png">
+                <h1>На сайте ведутся технические работы</h1>
+                <p>На текущий момент наш интернет-ресурс недоступен. Матрица не сломалась. Мы просто решили сделать ее немного
+                    лучше.</p>
+                <p>Обновите страницу через пару минут. Все будет работать.</p>
+            </div>
+        </div>
+    </body>
+</html>
+
+<style>
+    body{
+        font-family: Verdana, Arial, sans-serif;
+        font-size: 20px;
+        color : #000;
+    }
+    h1{
+        font-size: 30px;
+    }
+    p{
+        font-size: 22px;
+        padding: 0 0 0 10px;
+        margin:0;
+    }
+    .template{
+        padding: 0 0 10px 50px;
+        text-align: center;
+    }
+    .block{
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    .bender{
+        max-width: 400px;
+    }
+</style>
