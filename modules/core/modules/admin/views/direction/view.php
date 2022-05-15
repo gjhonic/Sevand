@@ -150,9 +150,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'activity_id',
+                'format' => 'raw',
                 'filter' => Group::getAtivities(),
                 'value' => function ($model) {
-                    return $model->activity;
+                    return ActivityComponent::getLabel($model->activity_id, 5);
                 }
             ],
             [
@@ -161,7 +162,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     return Html::a(
                         IcoComponent::view() . ' ' . Module::t('app', 'Show'),
-                        Url::to(['view', 'id' => $model->id]),
+                        Url::to(['group/view', 'id' => $model->id]),
                         ['class' => 'btn btn-success btn-block']
                     );
                 }
