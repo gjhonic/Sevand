@@ -114,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
         if (Yii::$app->user->identity->role !== User::ROLE_MODERATOR) { ?>
             <?= Html::a(
                 IcoComponent::add() . ' ' . Module::t('app', 'Create Group'),
-                ['group/create'],
+                ['group/create', 'direction_id' => $model->id],
                 ['class' => 'btn btn-success']
             ) ?>
         <?php

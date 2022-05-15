@@ -103,12 +103,17 @@ class GroupController extends Controller
     /**
      * Creates a new Group model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param int|null $direction_id
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate(int $direction_id=null)
     {
         $model = new Group();
         $model->setDepartmentFromUser();
+
+        if ($direction_id != null) {
+            $model->direction_id = $direction_id;
+        }
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->validate()) {
