@@ -43,7 +43,7 @@ class PageController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'bases', 'dictionaries'],
+                        'actions' => ['index', 'bases', 'dictionaries', 'settings'],
                         'roles' => [User::ROLE_MODERATOR, User::ROLE_ADMIN, User::ROLE_ROOT],
                     ],
                 ],
