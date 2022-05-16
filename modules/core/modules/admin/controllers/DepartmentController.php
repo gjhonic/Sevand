@@ -9,7 +9,7 @@
 
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\models\admin\models\Department;
+use app\modules\core\modules\admin\models\Department;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
@@ -72,10 +72,10 @@ class DepartmentController extends Controller
     /**
      * Finds the Department model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @return Department the loaded model
+     * @return Department|array|\yii\db\ActiveRecord
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel(): Department
+    protected function findModel()
     {
         if (($model = Department::find()->one()) !== null) {
             return $model;
