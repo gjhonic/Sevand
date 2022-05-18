@@ -14,11 +14,10 @@ use yii\grid\GridView;
 $this->title = Module::t('app', 'Students');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="student-index">
+<section class="section-md">
+<div class="container">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -44,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
+    <br>
 
 </div>
+</section>

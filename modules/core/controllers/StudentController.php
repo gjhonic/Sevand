@@ -37,8 +37,8 @@ class StudentController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
-                        'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN],
+                        'actions' => ['index', 'view'],
+                        'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN, User::ROLE_STUDENT, User::ROLE_HEADMAN],
                     ],
                 ],
             ],
@@ -56,11 +56,10 @@ class StudentController extends Controller
         return parent::beforeAction($action);
     }
 
-    public $layout = 'admin';
+    public $layout = 'frontend';
 
     /**
      * Lists all Student models.
-     *
      * @return string
      */
     public function actionIndex()

@@ -26,7 +26,7 @@ $this->title = Module::t('app', 'Home page');
         <div class="row justify-content-center" id="counter">
             <div class="col-sm-4 digit-counter">
                 <div class="media">
-                    <a href="<?=Url::to('')?>"><i
+                    <a href="<?=Url::to('/student/index')?>"><i
                                 class="uil uil-user text-warning mr-2 align-self-center"></i></a>
                     <div class="media-body align-self-center">
                         <h3 class="mb-1"><span class="counter-value" data-count=""></span></h3>
@@ -36,7 +36,7 @@ $this->title = Module::t('app', 'Home page');
             </div>
             <div class="col-sm-4 digit-counter">
                 <div class="media">
-                    <a href="i<?=Url::to('')?>"><i
+                    <a href="i<?=Url::to('/group/index')?>"><i
                                 class="uil uil-users-alt text-success mr-2 align-self-center"></i></a>
                     <div class="media-body align-self-center">
                         <h3 class="mb-1"><span class="counter-value" data-count=""></span></h3>
@@ -46,7 +46,7 @@ $this->title = Module::t('app', 'Home page');
             </div>
             <div class="col-sm-4 digit-counter">
                 <div class="media">
-                    <a href="<?=Url::to('')?>"><i
+                    <a href="<?=Url::to('modules')?>"><i
                                 class="uil uil-circle text-primary mr-2 align-self-center"></i></a>
                     <div class="media-body align-self-center">
                         <h3 class="mb-1"><span class="counter-value" data-count=""></span></h3>
