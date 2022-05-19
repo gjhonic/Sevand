@@ -36,7 +36,7 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         ],
         [
             'label' => Module::t('app', 'Settings'),
-            'url' => Url::to('/settings/index'),
+            'url' => Url::to('/admin/settings/index'),
             'ico' => 'fa-wrench',
             'controller' => 'settings',
             'action' => 'index'
@@ -74,7 +74,7 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         ],
         [
             'label' => Module::t('app', 'Settings'),
-            'url' => Url::to('/settings/index'),
+            'url' => Url::to('/admin/settings/index'),
             'ico' => 'fa-wrench',
             'controller' => 'settings',
             'action' => 'index'
@@ -112,7 +112,7 @@ if (Yii::$app->user->identity->role === User::ROLE_ROOT) {
         ],
         [
             'label' => Module::t('app', 'Settings'),
-            'url' => Url::to('/settings/index'),
+            'url' => Url::to('/admin/settings/index'),
             'ico' => 'fa-wrench',
             'controller' => 'settings',
             'action' => 'index'
