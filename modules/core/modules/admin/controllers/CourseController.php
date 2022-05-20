@@ -10,14 +10,12 @@
 namespace app\modules\core\modules\admin\controllers;
 
 use app\modules\core\modules\admin\models\Course;
-use app\modules\core\modules\admin\models\Group;
 use app\modules\core\modules\admin\models\search\CourseSearch;
 use app\modules\core\modules\admin\models\search\GroupSearch;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\Module;
 use app\modules\core\services\user\StatusService;
 use Yii;
-use yii\base\BaseObject;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -62,7 +60,6 @@ class CourseController extends Controller
 
     /**
      * Lists all Course models.
-     *
      * @return string
      */
     public function actionIndex()
@@ -75,7 +72,6 @@ class CourseController extends Controller
             'searchModel' => $searchModel,
         ]);
     }
-
 
     /**
      * Displays a single Course model.

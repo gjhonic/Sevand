@@ -21,7 +21,7 @@ class ActivityComponent
 
     /**
      * Мап статусов активности
-     * @return \string[][]
+     * @return array
      */
     private static function dataStatus(): array
     {

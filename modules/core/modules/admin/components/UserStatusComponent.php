@@ -24,7 +24,7 @@ class UserStatusComponent
 
     /**
      * Мап статусов активности
-     * @return \string[][]
+     * @return array
      */
     private static function dataStatus(): array
     {
@@ -50,6 +50,7 @@ class UserStatusComponent
     /**
      * Метод возвразает цветной текстовый статус конкуса
      * @param int $status_id
+     * @param int $size
      * @return string
      */
     public static function getLabel(int $status_id, int $size=4): string

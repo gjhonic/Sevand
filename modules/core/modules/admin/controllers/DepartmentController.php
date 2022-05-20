@@ -56,7 +56,6 @@ class DepartmentController extends Controller
 
     public $layout = 'admin';
 
-
     /**
      * Displays a single Department model.
      * @return string
