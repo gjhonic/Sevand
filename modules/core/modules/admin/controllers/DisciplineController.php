@@ -9,6 +9,7 @@
 
 namespace app\modules\core\modules\admin\controllers;
 
+use app\modules\core\modules\admin\forms\GenerateDiscipline;
 use app\modules\core\modules\admin\models\Discipline;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\modules\admin\models\search\DisciplineSearch;
@@ -51,7 +52,7 @@ class DisciplineController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['create', 'update', 'delete'],
+                        'actions' => ['create', 'update', 'delete', 'generate'],
                         'roles' => [User::ROLE_ROOT, User::ROLE_ADMIN],
                     ],
                 ],
@@ -123,6 +124,46 @@ class DisciplineController extends Controller
         }
 
         return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Generate a new Discipline model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return string|\yii\web\Response
+     */
+    public function actionGenerate()
+    {
+        $model = new GenerateDiscipline();
+
+        echo " - - - DUMP - - -";
+        echo "<pre>";
+        print_r(123);
+        echo "</pre>";
+        echo "- - - - - - - - -";
+        die;
+
+        $model->setDepartmentFromUser();
+        if ($model->load($this->request->post()) && $model->validate()) {
+            if ($model->generate()) {
+                LogService::createLog(LogStatus::STATUS_SUCCESS, Yii::$app->user->identity->id, LogMessage::SUCCESS_DISCIPLINE_CREATED, 'DisciplineId: ' . $model->id);
+                Yii::$app->session->setFlash('success', Module::t('note', 'Discipline successfully created'));
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                LogService::createLog(LogStatus::STATUS_DANGER, Yii::$app->user->identity->id, LogMessage::DANGER_DISCIPLINE_CREATED);
+                Yii::$app->session->setFlash('danger', Module::t('error', 'Discipline creation error'));
+            }
+        }
+
+        echo " - - - DUMP - - -";
+        echo "<pre>";
+        print_r(123);
+        echo "</pre>";
+        echo "- - - - - - - - -";
+        die;
+
+        return $this->render('generate', [
             'model' => $model,
         ]);
     }

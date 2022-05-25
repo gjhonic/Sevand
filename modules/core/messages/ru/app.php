@@ -119,6 +119,7 @@ return [
 
     //Про Дисциплину
     "Create Discipline" => "Добавить дисциплину",
+    "Generate disciplines" => "Сгенерировать дисциплины",
     "Editing Discipline: {name}" => "Редактирование дисциплины: {name}",
 
     //Про пользователя
