@@ -60,6 +60,22 @@ class DisciplineController extends Controller
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
+    }
+
     public function beforeAction($action)
     {
         if (!Yii::$app->user->isGuest) {
@@ -137,12 +153,12 @@ class DisciplineController extends Controller
     {
         $model = new GenerateDiscipline();
 
-        echo " - - - DUMP - - -";
+        /*echo " - - - DUMP - - -";
         echo "<pre>";
         print_r(123);
         echo "</pre>";
         echo "- - - - - - - - -";
-        die;
+        die;*/
 
         $model->setDepartmentFromUser();
         if ($model->load($this->request->post()) && $model->validate()) {

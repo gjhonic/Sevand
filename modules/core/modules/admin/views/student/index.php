@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['user/create-student'],
                 ['class' => 'btn btn-success']
             ) ?>
+            <?= Html::a(IcoComponent::add() . ' ' . Module::t('app', 'Generate students'), ['user/generate-students'], ['class' => 'btn btn-success']) ?>
             <?php
         } ?>
     </p>
