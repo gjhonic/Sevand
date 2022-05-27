@@ -18,6 +18,10 @@ return [
     "Are you sure you want to activate the discipline?" => "Вы действительно хотите активировать дисциплину?",
     "You have successfully signed in" => "Вы успешно выполнили вход",
 
+    "To generate disciplines, use the following form" => "Для генерации дисциплин используйте следущую форму",
+    "Full name{number}:Abbreviated name{number};" => "Полное название{number}:Сокращенное название{number};",
+    "The abbreviated name is optional, leave it blank and the name will be duplicated" => "Сокращенное название не обезательно для заполнения оставьте пустым и название продублируется",
+
     "Do you really want to leave" => "Вы действительно хотите выйти",
     "Go to home page" => "Перейти на главную страницу",
 

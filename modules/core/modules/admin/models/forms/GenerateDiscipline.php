@@ -1,7 +1,8 @@
 <?php
 
-namespace app\modules\core\modules\admin\forms;
+namespace app\modules\core\modules\admin\models\forms;
 
+use app\modules\core\Module;
 use Yii;
 use yii\base\Model;
 
@@ -21,23 +22,23 @@ class GenerateDiscipline extends Model
     }
 
     /**
+     * @return array
+     */
+    public function attributeLabels(): array
+    {
+        return [
+            'text_discipline' => '',
+        ];
+    }
+
+
+
+    /**
      * Устанавливает факультет пользователя
      */
     public function setDepartmentFromUser()
     {
         $this->department_id = Yii::$app->user->identity->department_id;
-    }
-
-    public function __construct($config = [])
-    {
-        echo " - - - DUMP - - -";
-        echo "<pre>";
-        print_r(123);
-        echo "</pre>";
-        echo "- - - - - - - - -";
-        die;
-
-        parent::__construct($config);
     }
 
     /**

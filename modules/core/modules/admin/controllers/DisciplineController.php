@@ -9,7 +9,7 @@
 
 namespace app\modules\core\modules\admin\controllers;
 
-use app\modules\core\modules\admin\forms\GenerateDiscipline;
+use app\modules\core\modules\admin\models\forms\GenerateDiscipline;
 use app\modules\core\modules\admin\models\Discipline;
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\modules\admin\models\search\DisciplineSearch;
@@ -152,14 +152,6 @@ class DisciplineController extends Controller
     public function actionGenerate()
     {
         $model = new GenerateDiscipline();
-
-        /*echo " - - - DUMP - - -";
-        echo "<pre>";
-        print_r(123);
-        echo "</pre>";
-        echo "- - - - - - - - -";
-        die;*/
-
         $model->setDepartmentFromUser();
         if ($model->load($this->request->post()) && $model->validate()) {
             if ($model->generate()) {
@@ -171,13 +163,6 @@ class DisciplineController extends Controller
                 Yii::$app->session->setFlash('danger', Module::t('error', 'Discipline creation error'));
             }
         }
-
-        echo " - - - DUMP - - -";
-        echo "<pre>";
-        print_r(123);
-        echo "</pre>";
-        echo "- - - - - - - - -";
-        die;
 
         return $this->render('generate', [
             'model' => $model,

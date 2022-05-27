@@ -45,6 +45,7 @@ return [
     "To" => "К",
     "Transfer" => "Перевод",
     "Transferred" => "Перевел",
+    "For example" => "Например",
 
     //Меню
     "Menu" => "Меню",
