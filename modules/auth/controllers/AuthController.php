@@ -1,22 +1,30 @@
 <?php
-
+/**
+ * AuthController
+ * Контроллер для авторизации
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
 namespace app\modules\core\controllers;
 
 use app\modules\core\models\base\User;
 use app\modules\core\models\forms\SigninForm;
 use app\modules\core\Module;
-use app\modules\core\services\LogMessage;
-use app\modules\core\services\LogService;
-use app\modules\core\services\LogStatus;
-use app\modules\core\services\user\StatusService;
+use app\modules\core\services\log\LogMessage;
+use app\modules\core\services\log\LogService;
+use app\modules\core\services\log\LogStatus;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
 
+/**
+ * Контроллер для аутентификации
+ */
 class AuthController extends Controller
 {
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'access' => [
@@ -40,7 +48,7 @@ class AuthController extends Controller
         ];
     }
 
-    public function actions()
+    public function actions(): array
     {
         return [
             'error' => [
@@ -57,6 +65,7 @@ class AuthController extends Controller
 
     /**
      * Метод обрабатывает форму аутентификация
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionSignin()
     {
@@ -69,13 +78,12 @@ class AuthController extends Controller
         if ($model->set(Yii::$app->request->post())) {
             $resLogin = $model->login();
             if($resLogin == SigninForm::SUCCESS_AUTH){
-                LogService::createLog(LogService::STATUS_INFO, Yii::$app->user->identity->id, LogMessage::INFO_USER_LOGGED_IN);
+                LogService::createLog(LogStatus::STATUS_INFO, Yii::$app->user->identity->id, LogMessage::INFO_USER_LOGGED_IN);
                 Yii::$app->session->setFlash('info', Module::t('note', 'You have successfully signed in'));
                 return $this->redirect(Url::to(['/me']));
             }else{
                 Yii::$app->session->setFlash('danger', Module::t('error', SigninForm::getDescriptionError($resLogin)));
             }
-
         }
 
         $model->password = '';
