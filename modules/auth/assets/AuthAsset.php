@@ -1,13 +1,19 @@
 <?php
-
-namespace app\modules\core\assets;
+/**
+ * AuthAsset
+ * Ассет для модуля Аутентификации
+ * @copyright Copyright (c) 2022 Eugene Andreev
+ * @author Eugene Andreev <gjhonic@gmail.com>
+ *
+ */
+namespace app\modules\auth\assets;
 
 use yii\web\AssetBundle;
 
 class AuthAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/media/core/auth';
+    public $baseUrl = '@web/media/auth';
 
     public $css = [
         'vendor/bootstrap/css/bootstrap.min.css',

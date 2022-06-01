@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use app\modules\core\assets\AuthAsset;
+use app\modules\auth\assets\AuthAsset;
 
 /* @var $content string */
 

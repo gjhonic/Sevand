@@ -6,7 +6,7 @@
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
-namespace app\modules\core\controllers;
+namespace app\modules\auth\controllers;
 
 use app\modules\core\models\base\User;
 use app\modules\core\models\forms\SigninForm;
@@ -22,7 +22,7 @@ use yii\web\Controller;
 /**
  * Контроллер для аутентификации
  */
-class AuthController extends Controller
+class SiteController extends Controller
 {
     public function behaviors(): array
     {
