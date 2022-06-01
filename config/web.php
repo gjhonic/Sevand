@@ -69,6 +69,9 @@ $config = [
         ],
     ],
     'modules' => [
+        'auth' => [
+            'class' => 'app\modules\auth\Module',
+        ],
         'core' => [
             'class' => 'app\modules\core\Module',
             'modules' => [

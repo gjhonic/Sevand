@@ -6,14 +6,14 @@ use Yii;
 use yii\web\ErrorHandler;
 
 /**
- * core module definition class
+ * Auth module definition class
  */
 class Module extends \yii\base\Module
 {
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'app\modules\core\controllers';
+    public $controllerNamespace = 'app\modules\auth\controllers';
 
     /**
      * {@inheritdoc}
@@ -40,21 +40,21 @@ class Module extends \yii\base\Module
 
     public function registerTranslations()
     {
-        Yii::$app->i18n->translations['modules/core/*'] = [
+        Yii::$app->i18n->translations['modules/auth/*'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
-            'basePath' => '@app/modules/core/messages',
+            'basePath' => '@app/modules/auth/messages',
             'fileMap' => [
-                'modules/core/app' => 'app.php',
-                'modules/core/note' => 'note.php',
-                'modules/core/error' => 'error.php',
-                'modules/core/log' => 'log.php'
+                'modules/auth/app' => 'app.php',
+                'modules/auth/note' => 'note.php',
+                'modules/auth/error' => 'error.php',
+                'modules/auth/log' => 'log.php'
             ],
         ];
     }
 
     public static function t($category, $message, $params = [], $language = null)
     {
-        return Yii::t('modules/core/' . $category, $message, $params, $language);
+        return Yii::t('modules/auth/' . $category, $message, $params, $language);
     }
 }

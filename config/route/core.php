@@ -2,9 +2,6 @@
 
 //Роутинг на модуль "Core"
 return [
-
-    'signin' => '/core/auth/signin',
-    'signout' => '/core/auth/signout',
     'me' => 'core/page/me',
     'ban' => 'core/page/ban',
 
