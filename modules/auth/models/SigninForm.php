@@ -6,10 +6,8 @@
  * @author Eugene Andreev <gjhonic@gmail.com>
  */
 
-namespace app\modules\core\models\forms;
+namespace app\modules\auth\models;
 
-use app\modules\core\models\base\User;
-use app\modules\core\Module;
 use Yii;
 use yii\base\Model;
 use app\modules\core\models\auth\UserIdentity;
@@ -90,7 +88,6 @@ class SigninForm extends Model
     {
         if ($this->validate()) {
             if (Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0)) {
-                //print_r(Yii::$app->user->identity);
                 return self::SUCCESS_AUTH;
             } else {
                 return self::ERROR_AUTH_FAILED;

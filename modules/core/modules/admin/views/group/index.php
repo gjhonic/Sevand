@@ -3,7 +3,6 @@
 use app\modules\core\modules\admin\components\ActivityComponent;
 use app\modules\core\modules\admin\components\IcoComponent;
 use app\modules\core\modules\admin\models\Direction;
-use app\modules\core\modules\admin\models\Group;
 use app\modules\core\Module;
 use app\modules\core\modules\admin\models\Student;
 use app\modules\core\modules\admin\models\User;

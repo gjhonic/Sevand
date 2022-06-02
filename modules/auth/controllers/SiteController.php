@@ -9,7 +9,7 @@
 namespace app\modules\auth\controllers;
 
 use app\modules\core\models\base\User;
-use app\modules\core\models\forms\SigninForm;
+use app\modules\auth\models\SigninForm;
 use app\modules\core\Module;
 use app\modules\core\services\log\LogMessage;
 use app\modules\core\services\log\LogService;
