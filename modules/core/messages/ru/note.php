@@ -16,7 +16,6 @@ return [
     "Are you sure you want to activate the user?" => "Вы действительно хотите активировать пользователя?",
     "Are you sure you want to archive the discipline?" => "Вы действительно хотите архивировать дисциплину?",
     "Are you sure you want to activate the discipline?" => "Вы действительно хотите активировать дисциплину?",
-    "You have successfully signed in" => "Вы успешно выполнили вход",
 
     "To generate disciplines, use the following form" => "Для генерации дисциплин используйте следущую форму",
     "Full name{number}:Abbreviated name{number};" => "Полное название{number}:Сокращенное название{number};",

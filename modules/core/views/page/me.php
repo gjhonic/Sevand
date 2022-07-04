@@ -1,7 +1,7 @@
 <?php
 
 use app\modules\core\Module;
-use app\modules\core\widgets\Alert;
+use app\modules\core\widgets\Alert4;
 use yii\helpers\Url;
 
 /* @var $user \app\modules\core\models\base\User */
@@ -62,11 +62,12 @@ $this->title = Module::t('app', 'Personal account');
         </div>
     </section>
 
-    <br>
-    <?= Alert::widget() ?>
-    <br>
-
     <section class="section-md">
+
+        <br>
+        <?= Alert4::widget() ?>
+        <br>
+
         <div class="container">
             <div class="row">
                 <div class="col-12">
