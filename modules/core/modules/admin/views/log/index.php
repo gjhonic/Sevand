@@ -54,7 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'description',
             'value' => function ($model) {
-                return mb_substr($model->description, 0, 20) . ']...';
+                if ($model->description !== '') {
+                    return mb_substr($model->description, 0, 20) . ']...';
+                }
             }
         ],
         [
