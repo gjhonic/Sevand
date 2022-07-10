@@ -83,7 +83,9 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'message',
             'value' => function ($model) {
-                return mb_substr($model->message, 0, 20) . ']...';
+                if($model->message != null) {
+                    return mb_substr($model->message, 0, 20) . ']...';
+                }
             }
         ],
         [
