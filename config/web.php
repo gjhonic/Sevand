@@ -78,6 +78,9 @@ $config = [
                 'admin' => [
                     'class' => 'app\modules\core\modules\admin\AdminModule',
                 ],
+                'personal' => [
+                    'class' => 'app\modules\core\modules\personal\PersonalModule',
+                ],
                 'root' => [
                     'class' => 'app\modules\core\modules\root\RootModule',
                 ],

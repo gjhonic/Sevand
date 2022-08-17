@@ -10,6 +10,7 @@ return [
 
     'admin' => 'core/admin/page/index',
     'root' => 'core/root/page/index',
+    'personal' => 'core/personal/page/index',
 
     'admin/index' => 'core/admin/page/index',
     'admin/bases' => 'core/admin/page/bases',
@@ -19,9 +20,13 @@ return [
     'root/bases' => 'core/root/page/bases',
     'root/dictionaries' => 'core/root/page/dictionaries',
 
+    'personal/index' => 'core/personal/page/index',
+
     'admin/<controller:\w+>/<action:\w+>' => 'core/admin/<controller>/<action>',
 
     'root/<controller:\w+>/<action:\w+>' => 'core/root/<controller>/<action>',
+
+    'personal/<controller:\w+>/<action:\w+>' => 'core/personal/<controller>/<action>',
 
     //'admin/<action:\w+>' => 'core/admin/<action>',
     '<controller:\w+>/<action:\w+>' => 'core/<controller>/<action>',

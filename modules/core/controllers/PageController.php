@@ -80,7 +80,11 @@ class PageController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if(Yii::$app->user->identity->getGroupRole() === User::GROUP_ROLE_ADMIN) {
+            $this->redirect('admin');
+        } else {
+            $this->redirect('me');
+        }
     }
 
     /**
