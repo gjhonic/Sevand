@@ -58,7 +58,7 @@ $config = [
             'showScriptName' => false,
             'rules' => $route,
             'ignoreLanguageUrlPatterns' => [
-                //'#^api/#' =>'#^api/#',
+                '#^api/#' =>'#^api/#',
             ],
             'enableDefaultLanguageUrlCode' => true,
             'enableLanguagePersistence' => true,

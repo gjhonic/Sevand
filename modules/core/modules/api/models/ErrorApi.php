@@ -2,6 +2,7 @@
 
 namespace app\modules\core\modules\api\models;
 
+use app\modules\core\modules\api\ApiModule;
 use Yii;
 
 /**
@@ -14,7 +15,6 @@ class ErrorApi
     const ERROR_STUDENT_NOT_FOUND = 2;
 
 
-
     /**
      * Описание ошибок
      * @return array
@@ -22,8 +22,8 @@ class ErrorApi
     public static function descriptionOfErrors(): array
     {
         return [
-            self::ERROR_EMPTY_ID_STUDENT => Yii::t('app/error', 'Student id parameter not specified'),
-            self::ERROR_STUDENT_NOT_FOUND => Yii::t('app/error', 'Student not found'),
+            self::ERROR_EMPTY_ID_STUDENT => ApiModule::t('error', 'Student id parameter not specified'),
+            self::ERROR_STUDENT_NOT_FOUND => ApiModule::t('error', 'Student not found'),
         ];
     }
 

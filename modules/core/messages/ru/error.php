@@ -34,6 +34,8 @@ return [
     "Direction not deleted" => "Направление не удалено",
 
 
-    //API ERROR
 
+    //API ERROR
+    "Student id parameter not specified" => "Id студента не передано",
+    "Student not found" => "Студент не найден",
 ];

@@ -9,17 +9,18 @@
 namespace app\modules\core\modules\api\controllers;
 
 use app\modules\core\modules\admin\models\User;
+use app\modules\core\modules\api\models\ErrorApi;
+use app\modules\core\modules\api\models\StudentApi;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Url;
-use yii\web\Controller;
 use yii\web\Response;
 
 /**
  * controller for work student the `core/api` module
  */
-class StudentController extends Controller
+class StudentController extends BaseController
 {
     public function behaviors(): array
     {
@@ -69,18 +70,18 @@ class StudentController extends Controller
     public function actionGet(): Response
     {
         if (!empty(Yii::$app->request->get('id'))) {
-            $user = UserOpenApi::findByCodeApi(Yii::$app->request->get('code'));
+            $student = StudentApi::findById(Yii::$app->request->get('id'));
 
-            if ($user) {
-                return $this->asJson($user->getUserInArrayApi());
+            if ($student) {
+                return $this->asJson($student->getStudentInArrayApi());
             } else {
                 return $this->asJson([
-                    'error' => ErrorApi::getDescriptionError(ErrorApi::ERROR_USER_NOT_FOUND)
+                    'error' => ErrorApi::getDescriptionError(ErrorApi::ERROR_STUDENT_NOT_FOUND)
                 ]);
             }
         } else {
             return $this->asJson([
-                'error' => ErrorApi::getDescriptionError(ErrorApi::ERROR_EMPTY_CODE_USER)
+                'error' => ErrorApi::getDescriptionError(ErrorApi::ERROR_EMPTY_ID_STUDENT)
             ]);
         }
     }
