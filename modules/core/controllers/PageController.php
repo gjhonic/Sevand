@@ -75,27 +75,18 @@ class PageController extends Controller
     }
 
     /**
-     * Render homepage
+     * Точка входа sevand.[]
      * @return string
      */
     public function actionIndex()
     {
-        if(Yii::$app->user->identity->getGroupRole() === User::GROUP_ROLE_ADMIN) {
+        if (Yii::$app->user->isGuest) {
+            $this->redirect('signin');
+        } else if(Yii::$app->user->identity->getGroupRole() === User::GROUP_ROLE_ADMIN) {
             $this->redirect('admin');
         } else {
-            $this->redirect('me');
+            $this->redirect('personal');
         }
-    }
-
-    /**
-     * Render personal account user
-     * @return string
-     */
-    public function actionMe()
-    {
-        return $this->render('me', [
-            'user' =>  Yii::$app->user->identity,
-        ]);
     }
 
     /**

@@ -1,25 +1,25 @@
 <?php
 /**
- * PageController
- * Основной Контроллер модуля core/personal
+ * StudentController
+ * Основной Контроллер модуля core/api
  * @copyright Copyright (c) 2022 Eugene Andreev
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
-namespace app\modules\core\modules\personal\controllers;
+namespace app\modules\core\modules\api\controllers;
 
 use app\modules\core\modules\admin\models\User;
-use app\modules\core\services\user\StatusService;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Url;
 use yii\web\Controller;
+use yii\web\Response;
 
 /**
- * Default controller for the `core/personal` module
+ * controller for work student the `core/api` module
  */
-class PageController extends Controller
+class StudentController extends Controller
 {
     public function behaviors(): array
     {
@@ -38,26 +38,13 @@ class PageController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'group', 'settings'],
-                        'roles' => [User::ROLE_HEADMAN, User::ROLE_STUDENT, User::ROLE_MODERATOR, User::ROLE_ADMIN, User::ROLE_ROOT],
+                        'actions' => ['get'],
+                        'roles' => [User::ROLE_GUEST, User::ROLE_AUTHORIZED],
                     ],
                 ],
             ],
         ];
     }
-
-    public function beforeAction($action)
-    {
-        if (!Yii::$app->user->isGuest) {
-            if (StatusService::checkStatusBanUser(Yii::$app->user->identity)) {
-                $this->redirect('/ban');
-            }
-        }
-
-        return parent::beforeAction($action);
-    }
-
-    public $layout = 'main';
 
     /**
      * {@inheritdoc}
@@ -76,20 +63,25 @@ class PageController extends Controller
     }
 
     /**
-     * HomePage personal
-     * @return string
+     * Возвращает студента по id
+     * @return Response
      */
-    public function actionIndex()
+    public function actionGet(): Response
     {
-        return $this->render('index');
-    }
+        if (!empty(Yii::$app->request->get('id'))) {
+            $user = UserOpenApi::findByCodeApi(Yii::$app->request->get('code'));
 
-    /**
-     * Page group
-     * @return string
-     */
-    public function actionGroup()
-    {
-        return $this->render('group');
+            if ($user) {
+                return $this->asJson($user->getUserInArrayApi());
+            } else {
+                return $this->asJson([
+                    'error' => ErrorApi::getDescriptionError(ErrorApi::ERROR_USER_NOT_FOUND)
+                ]);
+            }
+        } else {
+            return $this->asJson([
+                'error' => ErrorApi::getDescriptionError(ErrorApi::ERROR_EMPTY_CODE_USER)
+            ]);
+        }
     }
 }

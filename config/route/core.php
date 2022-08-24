@@ -11,6 +11,7 @@ return [
     'admin' => 'core/admin/page/index',
     'root' => 'core/root/page/index',
     'personal' => 'core/personal/page/index',
+    'api' => 'core/api/page/index',
 
     'admin/index' => 'core/admin/page/index',
     'admin/bases' => 'core/admin/page/bases',
@@ -27,6 +28,8 @@ return [
     'root/<controller:\w+>/<action:\w+>' => 'core/root/<controller>/<action>',
 
     'personal/<controller:\w+>/<action:\w+>' => 'core/personal/<controller>/<action>',
+
+    'api/<controller:\w+>/<action:\w+>' => 'core/api/<controller>/<action>',
 
     //'admin/<action:\w+>' => 'core/admin/<action>',
     '<controller:\w+>/<action:\w+>' => 'core/<controller>/<action>',

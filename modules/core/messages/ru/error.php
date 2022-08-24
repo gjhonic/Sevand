@@ -32,4 +32,8 @@ return [
     "Direction not enabled" => "Направление не активировано",
     "Direction not disable" => "Направление не заархивировано",
     "Direction not deleted" => "Направление не удалено",
+
+
+    //API ERROR
+
 ];

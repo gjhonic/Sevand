@@ -1,0 +1,260 @@
+openapi: 3.0.0
+info:
+  title: Raffle.ru
+  description: "Public API"
+  version: 1.0
+
+servers:
+  - url: http://raffle.local/api
+    description: ""
+
+################################################################################
+paths:
+  /raffle/get:
+    get:
+      summary: Get Raffle
+      description: Returns the raffle by code
+      tags:
+        - Raffle
+      parameters:
+        - name: code
+          in: query
+          required: true
+          description: Code raffle
+          schema:
+            type: string
+        - name: lang
+          in: query
+          required: false
+          description: Error Language (en/ru)
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Raffle'
+  /raffle/tags:
+    get:
+      summary: Get contest raffle
+      description: Returns tags that are assigned to the raffle by a raffle code
+      tags:
+        - Raffle
+      parameters:
+        - name: code
+          in: query
+          required: true
+          description: Code raffle
+          schema:
+            type: string
+        - name: lang
+          in: query
+          required: false
+          description: Error Language (en/ru)
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+  /user/get:
+    get:
+      summary: Get user
+      description:  Returns a user by user code
+      tags:
+        - User
+      parameters:
+        - name: code
+          in: query
+          required: true
+          description: Code user
+          schema:
+            type: string
+        - name: lang
+          in: query
+          required: false
+          description: Error Language (en/ru)
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+  /user/raffles:
+    get:
+      summary: Get Raffles
+      description: Returns user raffles codes by user code
+      tags:
+        - User
+      parameters:
+        - name: code
+          in: query
+          required: true
+          description: Code user
+          schema:
+            type: string
+        - name: lang
+          in: query
+          required: false
+          description: Error Language (en/ru)
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserRaffle'
+
+  /user/countsubscribers:
+    get:
+      summary: Количество подписчиков
+      description: Возвращает количество подписчиков пользователя
+      tags:
+        - User
+      parameters:
+        - name: code
+          in: query
+          required: true
+          description: Код пользователя
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  description: Количество подписчиков
+
+  /user/countsubscriptions:
+    get:
+      summary: Количество подписок
+      description: Возвращает количество подписок пользователя
+      tags:
+        - User
+      parameters:
+        - name: code
+          in: query
+          required: true
+          description: Код пользователя
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  description: Количество подписок
+
+  /user/subscribe:
+    post:
+      summary: Подписаться
+      description: Подписывается на пользователя
+      tags:
+        - User
+      parameters:
+        - name: token
+          in: path
+          required: true
+          description: токен текущего пользователя
+          schema:
+            type: string
+        - name: user_code
+          in: path
+          required: true
+          description: Код пользователя на которого подписываемся
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: boolean
+                  description: Result query
+################################################################################
+components:
+  schemas:
+    Raffle:
+      properties:
+        code:
+          type: string
+          description: Code raffle
+        title:
+          type: string
+          description: Title raffle
+        short_description:
+          type: string
+          description: Short description raffle
+        description:
+          type: string
+          description: Description raffle
+        date_begin:
+          type: string
+          description: Date begin raffle
+        date_end:
+          type: string
+          description: Data end raffle
+        user_code:
+          type: string
+          description: User code author
+    User:
+      properties:
+        code:
+          type: string
+          description: User code
+        username:
+          type: string
+          description: Username user
+        name:
+          type: string
+          description: Name user
+        surname:
+          type: string
+          description: Surname user
+    UserRaffle:
+      properties:
+        code:
+          type: string
+          description: Raffle code
+    Tag:
+      properties:
+        title:
+          type: string
+          description: Title tag

@@ -28,15 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col">
                 <?= Html::a(IcoComponent::edit() . ' ' . Module::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-block']) ?>
             </div>
-            <div class="col">
-                <?= Html::a(IcoComponent::delete() . ' ' . Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-                    'class' => 'btn btn-danger btn-block',
-                    'data' => [
-                        'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
-                        'method' => 'post',
-                    ],
-                ]) ?>
-            </div>
         <?php } ?>
 
         <div class="col">
@@ -80,6 +71,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => 'btn btn-info btn-block'])
             ?>
         </div>
+
+        <?php if (Yii::$app->user->identity->role !== User::ROLE_ADMIN) { ?>
+            <div class="col">
+                <?= Html::a(IcoComponent::delete() . ' ' . Module::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger btn-block',
+                    'data' => [
+                        'confirm' => Module::t('note', 'Are you sure you want to delete this item?'),
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </div>
+        <?php } ?>
 
     </div>
     </div>

@@ -1,12 +1,12 @@
 <?php
 /**
  * PageController
- * Основной Контроллер модуля core/personal
+ * Основной Контроллер модуля core/api
  * @copyright Copyright (c) 2022 Eugene Andreev
  * @author Eugene Andreev <gjhonic@gmail.com>
  *
  */
-namespace app\modules\core\modules\personal\controllers;
+namespace app\modules\core\modules\api\controllers;
 
 use app\modules\core\modules\admin\models\User;
 use app\modules\core\services\user\StatusService;
@@ -17,7 +17,7 @@ use yii\helpers\Url;
 use yii\web\Controller;
 
 /**
- * Default controller for the `core/personal` module
+ * Default controller for the `core/api` module
  */
 class PageController extends Controller
 {
@@ -38,26 +38,13 @@ class PageController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'group', 'settings'],
-                        'roles' => [User::ROLE_HEADMAN, User::ROLE_STUDENT, User::ROLE_MODERATOR, User::ROLE_ADMIN, User::ROLE_ROOT],
+                        'actions' => ['index'],
+                        'roles' => [User::ROLE_GUEST, User::ROLE_AUTHORIZED],
                     ],
                 ],
             ],
         ];
     }
-
-    public function beforeAction($action)
-    {
-        if (!Yii::$app->user->isGuest) {
-            if (StatusService::checkStatusBanUser(Yii::$app->user->identity)) {
-                $this->redirect('/ban');
-            }
-        }
-
-        return parent::beforeAction($action);
-    }
-
-    public $layout = 'main';
 
     /**
      * {@inheritdoc}
@@ -79,17 +66,14 @@ class PageController extends Controller
      * HomePage personal
      * @return string
      */
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
-
     /**
-     * Page group
+     * Docs api public.
      * @return string
      */
-    public function actionGroup()
+    public function actionIndex()
     {
-        return $this->render('group');
+        return $this->renderPartial('index', [
+            'swagger_name' => 'swagger'
+        ]);
     }
 }

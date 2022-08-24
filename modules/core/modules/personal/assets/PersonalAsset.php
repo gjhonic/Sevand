@@ -12,16 +12,13 @@ class PersonalAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web/media/core/personal';
     public $css = [
-        'css/dashboard.css',
-
-        //доп иконки
-        'css/font/css/font-awesome.css',
+       'css/bootstrap.min.css',
+       'css/style.css',
     ];
     public $js = [
-        "js\bootstrap\bootstrap.bundle.js",
-        "js\dashboard.js"
+        'jquery/jquery-3.6.0.min.js'
     ];
     public $depends = [
-        'yii\bootstrap4\BootstrapAsset',
+
     ];
 }

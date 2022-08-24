@@ -79,10 +79,16 @@ $config = [
                     'class' => 'app\modules\core\modules\admin\AdminModule',
                 ],
                 'personal' => [
-                    'class' => 'app\modules\core\modules\personal\PersonalModule',
+                    'class' => 'app\modules\core\modules\personal\ApiModule',
                 ],
                 'root' => [
                     'class' => 'app\modules\core\modules\root\RootModule',
+                ],
+                'api' => [
+                    'class' => 'app\modules\core\modules\api\ApiModule',
+                ],
+                'guest' => [
+                    'class' => 'app\modules\core\modules\guest\GuestModule',
                 ],
             ],
         ],
